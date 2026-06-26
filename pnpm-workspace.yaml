@@ -1,0 +1,6 @@
+ignoredBuiltDependencies:
+  - msedge-tts
+  - sharp
+  - unrs-resolver
+  - "@google/genai"
+  - protobufjs
