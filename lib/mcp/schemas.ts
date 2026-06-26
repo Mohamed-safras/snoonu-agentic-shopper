@@ -1,5 +1,5 @@
 /**
- * Input schemas & types for the Kapruka MCP tools. Read-tool inputs are simple
+ * Input schemas & types for the Snoonu MCP tools. Read-tool inputs are simple
  * TS interfaces; the write tool (create_order) uses zod so we validate LLM-built
  * payloads before they reach the live, rate-limited order endpoint.
  */
@@ -45,9 +45,9 @@ export const createOrderSchema = z.object({
     anonymous: z.boolean().default(false),
   }),
   // The live MCP caps gift_message at 300 chars — match it so a long note fails
-  // our validation with a clear message instead of being rejected by Kapruka.
+  // our validation with a clear message instead of being rejected by Snoonu.
   gift_message: z.string().max(300).nullish(),
-  currency: z.string().default("LKR"),
+  currency: z.string().default("QAR"),
 });
 
 export type CartItemInput = z.infer<typeof cartItemSchema>;

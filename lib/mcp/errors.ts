@@ -35,7 +35,7 @@ export function friendlyMcpError(err: unknown): string {
       message,
     )
   ) {
-    return "Kapruka is briefly unreachable — please try again in a moment.";
+    return "Snoonu is briefly unreachable — please try again in a moment.";
   }
   return "Something went wrong on our side — please try again.";
 }

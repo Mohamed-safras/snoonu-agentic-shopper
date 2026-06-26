@@ -1,7 +1,8 @@
 /**
- * Low-level MCP connection to the Kapruka server (Streamable HTTP, no auth).
- * Server-only. Maintains a single shared, lazily-connected client and exposes
- * `listTools` / `callTool` primitives. Typed per-tool wrappers live in tools.ts.
+ * Low-level MCP connection to the Snoonu mock server (Streamable HTTP, no
+ * auth). Server-only. Maintains a single shared, lazily-connected client and
+ * exposes `listTools` / `callTool` primitives. Typed per-tool wrappers live
+ * in tools.ts.
  */
 import "server-only";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -26,7 +27,7 @@ const MAX_CONNECTION_AGE_MS = 4 * 60 * 1000;
 
 async function connect(): Promise<Client> {
   const client = new Client(
-    { name: "trova-kapruka-agent", version: "1.0.0" },
+    { name: "snoonu-shopping-agent", version: "1.0.0" },
     { capabilities: {} },
   );
   const transport = new StreamableHTTPClientTransport(new URL(config.mcp.url));
@@ -58,7 +59,7 @@ export async function listTools() {
 }
 
 /**
- * Invoke a tool and normalize its result. The Kapruka tools return their
+ * Invoke a tool and normalize its result. The Snoonu tools return their
  * payload as a JSON string inside a text content block; we parse it when we can.
  */
 async function invokeTool(
@@ -100,7 +101,7 @@ export async function callTool(
   name: string,
   args: Record<string, unknown>,
 ): Promise<ToolResult> {
-  const retryable = name !== "kapruka_create_order";
+  const retryable = name !== "snoonu_create_order";
   try {
     const result = await invokeTool(name, args);
     if (result.isError && retryable) {

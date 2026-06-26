@@ -1,5 +1,5 @@
 /**
- * Map raw Kapruka MCP responses → the app's domain types (@/types).
+ * Map raw Snoonu MCP responses → the app's domain types (@/types).
  * Pure functions, no I/O. Prices are passed through untouched (no conversion).
  */
 import type {
@@ -25,7 +25,7 @@ function amount(price?: RawPrice | null): number {
   return price && typeof price.amount === "number" ? price.amount : 0;
 }
 
-function currencyOf(price?: RawPrice | null, fallback = "LKR"): string {
+function currencyOf(price?: RawPrice | null, fallback = "QAR"): string {
   return price?.currency || fallback;
 }
 
@@ -43,7 +43,7 @@ function stockBadge(stockLevel?: string): string | undefined {
   return stockLevel.toLowerCase() === "low" ? "Few left" : undefined;
 }
 
-// All price-bearing fields Kapruka may use (the discounted selling price often
+// All price-bearing fields Snoonu may use (the discounted selling price often
 // sits in a different field than `price`, which can be the regular/MRP).
 const PRICE_FIELDS = [
   "price",
@@ -82,10 +82,10 @@ function priceAmounts(item: Record<string, unknown>): number[] {
 }
 
 /**
- * Resolve the real selling price + original (for discounts). Kapruka exposes the
+ * Resolve the real selling price + original (for discounts). Snoonu exposes the
  * markdown across different fields, so we take the LOWEST price-like value as
- * what the shopper pays and the HIGHEST as the original — matching the Kapruka
- * site (e.g. Rs 10,920 now, Rs 18,200 was, 40% off).
+ * what the shopper pays and the HIGHEST as the original — matching the Snoonu
+ * site (e.g. QAR 109.20 now, QAR 182.00 was, 40% off).
  */
 function priceInfo(
   item: Record<string, unknown>,
@@ -219,14 +219,14 @@ export function toQuote(raw: RawCheckDelivery): DeliveryQuote {
     city: raw.city,
     cityName: raw.city,
     fee: raw.rate,
-    currency: raw.currency || "LKR",
+    currency: raw.currency || "QAR",
     date: raw.checked_date,
     perishableWarning: raw.perishable_warning,
     available: raw.available,
   };
 }
 
-const KAPRUKA_BASE = "https://www.kapruka.com";
+const SNOONU_BASE = "https://www.snoonu.com";
 
 const stripTrailingPunctuation = (url: string) => url.replace(/[.,;)\]]+$/, "");
 
@@ -250,7 +250,7 @@ function pickUrl(value: unknown): string | undefined {
   if (bareDomain) return stripTrailingPunctuation("https://" + bareDomain[0]);
   // 4) Site-relative path.
   const trimmed = value.trim();
-  if (trimmed.startsWith("/")) return KAPRUKA_BASE + trimmed;
+  if (trimmed.startsWith("/")) return SNOONU_BASE + trimmed;
   return undefined;
 }
 
@@ -266,7 +266,7 @@ function collectStrings(value: unknown, accumulator: string[]): void {
 
 /** Pull the pay link out of a create_order response, tolerating field drift,
  *  missing schemes, relative paths, nesting, and URLs embedded in text — so the
- *  "Pay on Kapruka" button always points at a real, absolute URL. */
+ *  "Pay on Snoonu" button always points at a real, absolute URL. */
 export function extractPayUrl(raw: RawCreateOrder): string | undefined {
   // 1) The intended fields, in order of preference.
   for (const field of [raw.pay_url, raw.payment_url, raw.checkout_url, raw.link]) {
@@ -291,7 +291,7 @@ export function extractOrderRef(raw: RawCreateOrder): string {
     raw.order_ref ||
     raw.order_id ||
     raw.reference ||
-    "KAP-" + Date.now().toString(36).toUpperCase()
+    "SNU-" + Date.now().toString(36).toUpperCase()
   );
 }
 
@@ -310,7 +310,7 @@ export function buildOrder(
     fee?: number;
   },
 ): Order {
-  const currency = ctx.currency || ctx.items[0]?.currency || "LKR";
+  const currency = ctx.currency || ctx.items[0]?.currency || "QAR";
   const sub = ctx.items.reduce((a, it) => a + it.price * it.quantity, 0);
   const fee = ctx.fee ?? 0;
   return {

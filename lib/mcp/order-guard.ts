@@ -1,5 +1,5 @@
 /**
- * In-memory guard for the live order endpoint. The Kapruka MCP allows ~30
+ * In-memory guard for the live order endpoint. The Snoonu MCP allows ~30
  * order creations/hour per IP; we keep our own conservative ceiling so a runaway
  * agent loop can never spam real orders. Process-local (resets on cold start),
  * which is sufficient for a single-instance demo deployment.

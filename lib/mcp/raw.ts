@@ -1,6 +1,6 @@
 /**
- * Raw response shapes returned by the Kapruka MCP tools (response_format=json).
- * Derived from live probing of https://mcp.kapruka.com/mcp. Kept separate from
+ * Raw response shapes returned by the Snoonu MCP tools (response_format=json).
+ * Mirrors the shapes served by the mock Snoonu MCP server. Kept separate from
  * the app's domain types so adapter mapping stays explicit.
  */
 
@@ -96,7 +96,7 @@ export interface RawCheckDelivery {
 /**
  * create_order returns a payment reference + click-to-pay link. Exact field
  * names are handled defensively in the adapter (the order is not trackable
- * until the customer pays and receives the emailed Kapruka order number).
+ * until the customer pays and receives the emailed Snoonu order number).
  */
 export interface RawCreateOrder {
   order_ref?: string;
