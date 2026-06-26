@@ -69,7 +69,7 @@ export async function placeOrder(
       anonymous: checkoutRequest.sender.anonymous ?? false,
     },
     gift_message: checkoutRequest.giftMessage ?? null,
-    currency: "LKR",
+    currency: "QAR",
   };
 
   const raw = await createOrder(input);
@@ -77,7 +77,7 @@ export async function placeOrder(
 
   const order = buildOrder(raw, {
     items: checkoutRequest.cart,
-    currency: "LKR",
+    currency: "QAR",
     city: checkoutRequest.delivery.city,
     dateLabel: checkoutRequest.dateLabel,
     gift: checkoutRequest.giftMessage,

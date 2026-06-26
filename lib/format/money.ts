@@ -1,6 +1,6 @@
 /**
  * Currency formatting only. We never convert or invent prices — every amount
- * comes straight from the Kapruka MCP in its native currency (LKR by default;
+ * comes straight from the Snoonu MCP in its native currency (LKR by default;
  * the MCP also supports USD/GBP/AUD/CAD/EUR via the `currency` param).
  */
 

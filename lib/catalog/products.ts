@@ -1,7 +1,7 @@
 /** Small product helpers shared across agents/endpoints. */
 import type { Product } from "@/types";
 
-/** Remove duplicates by `id` (the Kapruka search can return repeats). */
+/** Remove duplicates by `id` (the Snoonu search can return repeats). */
 export function dedupeById<T extends { id: string }>(items: T[]): T[] {
   const seen = new Set<string>();
   const out: T[] = [];
@@ -54,7 +54,7 @@ const STOP = new Set([
   "delivered",
   "today",
   "online",
-  "kapruka",
+  "snoonu",
 ]);
 
 export function tokenize(string: string): string[] {
@@ -70,14 +70,14 @@ export function keyTerms(name: string, max = 8): string {
   return tokenize(name).slice(0, max).join(" ");
 }
 
-/** Catch-all categories that carry NO relevance signal — most of the Kapruka
+/** Catch-all categories that carry NO relevance signal — most of the Snoonu
  *  catalog is filed under these, so two items sharing one isn't "related". */
 const GENERIC_CATEGORIES = new Set([
   "",
   "general",
   "gift",
   "gifts",
-  "kapruka",
+  "snoonu",
   "other",
   "others",
   "misc",
@@ -121,7 +121,7 @@ function countInName(name: string): number | null {
 }
 
 /**
- * Re-rank Kapruka's fuzzy search results by how well each product actually
+ * Re-rank Snoonu's fuzzy search results by how well each product actually
  * matches the query keywords (name/category/blurb), dropping the off-topic
  * tail. Falls back to the original MCP order when too few clearly match, so we
  * never end up with an empty/odd shelf.

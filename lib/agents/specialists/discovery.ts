@@ -137,7 +137,7 @@ export async function searchAndRank(
   emit: EmitFn,
   input: DiscoveryInput,
 ): Promise<SearchResult> {
-  emit({ type: "tool", name: "kapruka_search_products", status: "running" });
+  emit({ type: "tool", name: "snoonu_search_products", status: "running" });
   // Remember the query/category that actually produced the shelf, plus the MCP
   // cursor for its next page, so "View more" can continue THAT same search.
   // (A holder object, since the assignment happens inside the search closure.)
@@ -190,7 +190,7 @@ export async function searchAndRank(
       }
     }
   }
-  emit({ type: "tool", name: "kapruka_search_products", status: "done" });
+  emit({ type: "tool", name: "snoonu_search_products", status: "done" });
 
   // In-stock filter (only when the shopper asked for availability), but never
   // empty the shelf entirely — keep all if nothing is explicitly in stock.
@@ -237,9 +237,9 @@ export async function emitProducts(
     (input.spotlight !== false && products.length >= 4);
 
   if (showSpotlight && products[0]) {
-    emit({ type: "tool", name: "kapruka_get_product", status: "running" });
+    emit({ type: "tool", name: "snoonu_get_product", status: "running" });
     const detail = await getProduct(products[0].id).catch(() => null);
-    emit({ type: "tool", name: "kapruka_get_product", status: "done" });
+    emit({ type: "tool", name: "snoonu_get_product", status: "done" });
     const hero = detail ? toProductFromDetail(detail) : products[0];
 
     emit({
@@ -311,7 +311,7 @@ export async function runDiscoveryIfRelevant(
     query,
   );
   if (strongMatchCount(ranked, query) < 2) return false; // not confidently a product query
-  emit({ type: "tool", name: "kapruka_search_products", status: "done" });
+  emit({ type: "tool", name: "snoonu_search_products", status: "done" });
   emit({
     type: "ui",
     directive: {
@@ -433,9 +433,9 @@ export async function runVisionDiscovery(
   let note = visionResult.note;
   const cleanHint = hint?.trim().replace(/find something like this/i, "").trim();
 
-  emit({ type: "tool", name: "kapruka_search_products", status: "running" });
+  emit({ type: "tool", name: "snoonu_search_products", status: "running" });
   const raw = await searchProducts({ query, limit: 48 });
-  emit({ type: "tool", name: "kapruka_search_products", status: "done" });
+  emit({ type: "tool", name: "snoonu_search_products", status: "done" });
   let products = rankByRelevance(
     dedupeById(raw.results.map(toProductFromSearch)),
     query,

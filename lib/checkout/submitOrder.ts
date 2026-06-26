@@ -1,6 +1,6 @@
 /** Builds and POSTs the real /api/checkout request body — the one place this
  *  happens, shared by the manual CheckoutForm and autobuy's autonomous
- *  hand-off so both stay byte-for-byte consistent with the live Kapruka API. */
+ *  hand-off so both stay byte-for-byte consistent with the live Snoonu API. */
 import type { CartItem, Order } from "@/types";
 
 export interface SubmitOrderInput {
@@ -50,7 +50,7 @@ export async function submitOrder(
           location_type: input.locationType,
           // The MCP has no coordinate field, so a confirmed map pin rides
           // along in the instructions. Raw lat,lng (NOT a URL) because
-          // Kapruka uppercases instructions and strips ":" / "/", which would
+          // Snoonu uppercases instructions and strips ":" / "/", which would
           // break a link — coordinates survive and the courier can map them.
           instructions:
             [
