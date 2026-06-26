@@ -1,14 +1,14 @@
 /** Product + cart-item shapes consumed by every UI component. */
 
 /**
- * Unified product shape. Prices are the real Kapruka amounts in `currency`
+ * Unified product shape. Prices are the real Snoonu amounts in `currency`
  * (LKR by default) — never converted locally.
  */
 export interface Product {
   id: string;
   name: string;
   brand?: string;
-  price: number; // amount in `currency`, exactly as returned by Kapruka
+  price: number; // amount in `currency`, exactly as returned by Snoonu
   currency: string; // e.g. "LKR"
   oldPrice?: number; // compare-at / was-price, same currency
   image?: string; // primary direct image URL (from MCP)
@@ -22,7 +22,7 @@ export interface Product {
   reviews?: number;
   sold?: number;
   emoji?: string;
-  url?: string; // product page on kapruka.com
+  url?: string; // product page on snoonu.com
   inStock?: boolean;
   variants?: ProductVariant[];
 }

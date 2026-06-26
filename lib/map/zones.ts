@@ -1,11 +1,12 @@
 /**
- * Sri Lanka's 25 administrative districts (geographic facts) + a PREDICTED
- * delivery window derived from the real road-distance from Kapruka HQ. This is
- * an estimate for the delivery-zones map — the authoritative fee/feasibility
- * for a specific city always comes from the live MCP `check_delivery`.
+ * Qatar's 8 municipalities (geographic facts) + a PREDICTED delivery window
+ * derived from the real road-distance from Snoonu HQ. This is an estimate
+ * for the delivery-zones map — the authoritative fee/feasibility for a
+ * specific city always comes from the live MCP `check_delivery` (matches the
+ * tiering in the mock server's `src/tools/delivery.py`).
  */
 
-export const KAPRUKA_HQ = { lat: 6.8728, lng: 79.8889 }; // Nugegoda
+export const SNOONU_HQ = { lat: 25.3548, lng: 51.4326 }; // West Bay / Lusail, Doha
 
 export interface District {
   name: string;
@@ -13,33 +14,16 @@ export interface District {
   lng: number;
 }
 
-/** District capitals (lat/lng). */
+/** Municipality centres (lat/lng) — matches scripts/seed.py's QATAR_CITIES. */
 export const DISTRICTS: District[] = [
-  { name: "Colombo", lat: 6.9271, lng: 79.8612 },
-  { name: "Gampaha", lat: 7.092, lng: 79.999 },
-  { name: "Kalutara", lat: 6.5854, lng: 79.9607 },
-  { name: "Kandy", lat: 7.2906, lng: 80.6337 },
-  { name: "Matale", lat: 7.4675, lng: 80.6234 },
-  { name: "Nuwara Eliya", lat: 6.9497, lng: 80.7891 },
-  { name: "Galle", lat: 6.0535, lng: 80.221 },
-  { name: "Matara", lat: 5.9549, lng: 80.555 },
-  { name: "Hambantota", lat: 6.1241, lng: 81.1185 },
-  { name: "Jaffna", lat: 9.6615, lng: 80.0255 },
-  { name: "Kilinochchi", lat: 9.3803, lng: 80.3847 },
-  { name: "Mannar", lat: 8.9776, lng: 79.9043 },
-  { name: "Vavuniya", lat: 8.7514, lng: 80.4971 },
-  { name: "Mullaitivu", lat: 9.2671, lng: 80.8142 },
-  { name: "Batticaloa", lat: 7.7102, lng: 81.6924 },
-  { name: "Ampara", lat: 7.2917, lng: 81.6726 },
-  { name: "Trincomalee", lat: 8.5874, lng: 81.2152 },
-  { name: "Kurunegala", lat: 7.4863, lng: 80.3623 },
-  { name: "Puttalam", lat: 8.0362, lng: 79.8283 },
-  { name: "Anuradhapura", lat: 8.3114, lng: 80.4037 },
-  { name: "Polonnaruwa", lat: 7.9403, lng: 81.0188 },
-  { name: "Badulla", lat: 6.9934, lng: 81.055 },
-  { name: "Monaragala", lat: 6.8728, lng: 81.351 },
-  { name: "Ratnapura", lat: 6.6828, lng: 80.3992 },
-  { name: "Kegalle", lat: 7.2513, lng: 80.3464 },
+  { name: "Doha", lat: 25.2854, lng: 51.531 },
+  { name: "Al Rayyan", lat: 25.2919, lng: 51.4244 },
+  { name: "Al Wakrah", lat: 25.1659, lng: 51.6038 },
+  { name: "Umm Salal", lat: 25.4151, lng: 51.3973 },
+  { name: "Al Khor", lat: 25.6804, lng: 51.4989 },
+  { name: "Al Daayen", lat: 25.5197, lng: 51.4926 },
+  { name: "Al Shamal", lat: 26.1167, lng: 51.2167 },
+  { name: "Al Shahaniya", lat: 25.3705, lng: 51.1969 },
 ];
 
 /** Great-circle distance in km (Haversine). */
@@ -67,28 +51,31 @@ export interface ZonePrediction {
   tier: 0 | 1 | 2 | 3;
 }
 
-/** Predict a delivery window from road-distance to Kapruka HQ. */
+/** Predict a delivery window from road-distance to Snoonu HQ. Qatar's whole
+ *  landmass is ~80km across (vs. Sri Lanka's ~450km), so these tiers are
+ *  scaled down accordingly — matches `_tier()` in the mock server's
+ *  `src/tools/delivery.py`. */
 export function predictZone(district: District): ZonePrediction {
-  const km = Math.round(distanceKm(KAPRUKA_HQ, district));
+  const km = Math.round(distanceKm(SNOONU_HQ, district));
   let eta: string;
   let tier: 0 | 1 | 2 | 3;
-  if (km <= 35) {
-    eta = "Same day / next day";
+  if (km <= 10) {
+    eta = "Same day";
     tier = 0;
-  } else if (km <= 120) {
-    eta = "1–2 days";
+  } else if (km <= 30) {
+    eta = "Same day / next day";
     tier = 1;
-  } else if (km <= 230) {
-    eta = "2–3 days";
+  } else if (km <= 55) {
+    eta = "Next day";
     tier = 2;
   } else {
-    eta = "3–4 days";
+    eta = "1–2 days";
     tier = 3;
   }
   return { name: district.name, km, eta, tier };
 }
 
-/** All 25 districts with predicted windows, nearest first. */
+/** All 8 municipalities with predicted windows, nearest first. */
 export function predictedZones(): ZonePrediction[] {
   return DISTRICTS.map(predictZone).sort((a, b) => a.km - b.km);
 }

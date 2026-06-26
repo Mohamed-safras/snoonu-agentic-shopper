@@ -1,13 +1,14 @@
 /** Shared Leaflet map constants (HQ origin, tile source, marker markup). */
 
-/** Kapruka HQ — Nugegoda. Routes/ETA originate here. */
-export const KAPRUKA_HQ: [number, number] = [6.8728, 79.8889];
+/** Snoonu HQ — West Bay / Lusail, Doha (illustrative only). Routes/ETA
+ *  originate here, matching the mock MCP server's delivery-distance origin. */
+export const SNOONU_HQ: [number, number] = [25.3548, 51.4326];
 
 /** CARTO Voyager raster tiles (no API key). */
 export const MAP_TILE_URL =
   "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
 
-/** HTML for the Kapruka hub marker (logo badge). */
+/** HTML for the Snoonu hub marker (logo badge). */
 export const HUB_HTML =
   '<div class="leaflet-hub"><img src="/trova-logo.svg" class="leaflet-hub-logo" /></div>';
 

@@ -4,7 +4,7 @@
  * (shared across the delivery card, order tracking, and re-opens).
  */
 import { DISTRICTS } from "@/lib/map/zones";
-import { KAPRUKA_HQ } from "./constants";
+import { SNOONU_HQ } from "./constants";
 
 export interface RouteResult {
   coords: [number, number][];
@@ -30,12 +30,12 @@ export function districtCoord(name?: string): [number, number] | null {
   return match ? [match.lat, match.lng] : null;
 }
 
-/** Geocode a free-text place (within Sri Lanka) to a coordinate via Nominatim. */
+/** Geocode a free-text place (within Qatar) to a coordinate via Nominatim. */
 export async function geocode(query: string): Promise<[number, number] | null> {
   try {
     const geo = await fetch(
       "https://nominatim.openstreetmap.org/search?q=" +
-        encodeURIComponent(query + " Sri Lanka") +
+        encodeURIComponent(query + " Qatar") +
         "&format=json&limit=1",
       { headers: { "Accept-Language": "en" } },
     ).then((r) => r.json());
@@ -46,13 +46,13 @@ export async function geocode(query: string): Promise<[number, number] | null> {
   return null;
 }
 
-/** Road route + distance/ETA from Kapruka HQ to a destination via OSRM. */
+/** Road route + distance/ETA from Snoonu HQ to a destination via OSRM. */
 export async function fetchRoute(
   dest: [number, number],
 ): Promise<RouteResult | null> {
   try {
     const route = await fetch(
-      `https://router.project-osrm.org/route/v1/driving/${KAPRUKA_HQ[1]},${KAPRUKA_HQ[0]};${dest[1]},${dest[0]}?overview=full&geometries=geojson`,
+      `https://router.project-osrm.org/route/v1/driving/${SNOONU_HQ[1]},${SNOONU_HQ[0]};${dest[1]},${dest[0]}?overview=full&geometries=geojson`,
     ).then((r) => r.json());
     if (!route.routes?.[0]) return null;
     const coords = route.routes[0].geometry.coordinates.map(
