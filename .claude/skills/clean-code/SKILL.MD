@@ -17,7 +17,7 @@ Make code easier to read, change, and trust — **without changing behaviour**. 
 ## Project conventions (this repo)
 
 - **Modular: one concern per file.** Types, interfaces, schemas, and agents/tools each live in their own file. Don't pile unrelated exports into one module.
-- **Nothing hardcoded.** Never hardcode prices, currency conversions, product/suggestion content, categories, or occasions. Pull from the live Kapruka MCP / LLM at runtime; a no-LLM *fallback* may **order or format** real data but must not invent it.
+- **Nothing hardcoded.** Never hardcode prices, currency conversions, product/suggestion content, categories, or occasions. Pull from the live Snoonu MCP / LLM at runtime; a no-LLM *fallback* may **order or format** real data but must not invent it.
 - **Strict TypeScript.** No `any` where a real type fits. Share domain types from `lib/types.ts`; keep them importable on both client and server.
 - **Server-only code stays server-only** (`import "server-only"`); client components keep the `"use client"` directive.
 - **next/image** for remote/raster images (with `fill`+`sizes` or explicit `width`/`height`); plain `<img>` is correct for local **SVG** logos and **data-URL** images.

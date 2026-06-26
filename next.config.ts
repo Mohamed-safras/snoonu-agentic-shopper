@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
   // full node_modules tree), keeping the image small.
   output: "standalone",
   images: {
-    // Kapruka is a marketplace: product images come from many third-party shop
-    // CDNs (kapruka.com, cdn.shopify.com, …) that we can't enumerate ahead of
+    // Snoonu is a marketplace: product images come from many third-party shop
+    // CDNs (snoonu.com, cdn.shopify.com, …) that we can't enumerate ahead of
     // time. Allow any HTTPS host so next/image can load every catalog image.
     remotePatterns: [{ protocol: "https", hostname: "**" }],
   },
