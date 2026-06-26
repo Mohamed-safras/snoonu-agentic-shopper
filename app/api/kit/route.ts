@@ -1,5 +1,5 @@
 /** GET /api/kit?goal=power-cut+ready&budget=30000&nonce=… — assemble a real,
- *  budget-fit kit of complementary Kapruka products that solve the shopper's
+ *  budget-fit kit of complementary Snoonu products that solve the shopper's
  *  goal. Same shape as /api/hamper (a Bundle). */
 import { buildKit } from "@/lib/agents/bundles/kit";
 import { activeProviderConfigured } from "@/lib/llm";
@@ -17,13 +17,13 @@ export async function GET(request: Request) {
   const nonce = Number(searchParams.get("nonce")) || undefined;
 
   if (!activeProviderConfigured()) {
-    return Response.json({ slots: [], total: 0, budget, currency: "LKR" });
+    return Response.json({ slots: [], total: 0, budget, currency: "QAR" });
   }
   try {
     return Response.json(await buildKit(goal, budget, { nonce }));
   } catch {
     return Response.json(
-      { slots: [], total: 0, budget, currency: "LKR" },
+      { slots: [], total: 0, budget, currency: "QAR" },
       { status: 502 },
     );
   }

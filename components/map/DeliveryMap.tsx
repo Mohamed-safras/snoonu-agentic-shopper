@@ -4,7 +4,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import {
   HUB_HTML,
-  KAPRUKA_HQ,
+  SNOONU_HQ,
   MAP_TILE_URL,
   PIN_HTML,
 } from "@/lib/map/constants";
@@ -68,7 +68,7 @@ export function DeliveryMap({
       iconSize: [40, 40],
       iconAnchor: [20, 20],
     });
-    L.marker(KAPRUKA_HQ, { icon: hubIcon })
+    L.marker(SNOONU_HQ, { icon: hubIcon })
       .addTo(map)
       .bindTooltip("Snoonu · Nugegoda", { direction: "top" });
     // Tap anywhere on the map to drop the delivery pin there (Uber/PickMe-style).
@@ -149,7 +149,7 @@ export function DeliveryMap({
         layersRef.current.push(bg, fg);
         setStats({ km: route.km, min: route.min });
       }
-      map.fitBounds(L.latLngBounds([KAPRUKA_HQ, dest]).pad(0.25));
+      map.fitBounds(L.latLngBounds([SNOONU_HQ, dest]).pad(0.25));
     };
 
     const render = async (dest: [number, number], cacheKey: string) => {

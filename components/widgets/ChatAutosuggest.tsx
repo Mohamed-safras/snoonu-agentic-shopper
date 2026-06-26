@@ -11,7 +11,7 @@ interface Suggestion {
 }
 
 /**
- * Autosuggest backed by REAL Kapruka catalog search (/api/suggest) while typing,
+ * Autosuggest backed by REAL Snoonu catalog search (/api/suggest) while typing,
  * and by behavior (recent searches) + dynamic trending (store.suggestions, which
  * come from real categories) when empty. Nothing hardcoded.
  */

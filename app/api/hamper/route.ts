@@ -1,5 +1,5 @@
 /** GET /api/hamper?budget=5000&occasion=birthday&category=Chocolates&name=tea+lover
- *  — build a real, budget-fit gift hamper of complementary Kapruka products,
+ *  — build a real, budget-fit gift hamper of complementary Snoonu products,
  *  optionally constrained to a category and shaped by a free-text theme. */
 import { buildHamper } from "@/lib/agents/bundles/hamper";
 import { activeProviderConfigured } from "@/lib/llm";
@@ -21,7 +21,7 @@ export async function GET(request: Request) {
   const nonce = Number(searchParams.get("nonce")) || undefined;
 
   if (!activeProviderConfigured()) {
-    return Response.json({ slots: [], total: 0, budget, currency: "LKR" });
+    return Response.json({ slots: [], total: 0, budget, currency: "QAR" });
   }
   try {
     return Response.json(
@@ -35,7 +35,7 @@ export async function GET(request: Request) {
     );
   } catch {
     return Response.json(
-      { slots: [], total: 0, budget, currency: "LKR" },
+      { slots: [], total: 0, budget, currency: "QAR" },
       { status: 502 },
     );
   }

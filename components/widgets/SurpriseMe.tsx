@@ -20,7 +20,7 @@ interface SurpriseQuiz {
 }
 
 // Local resilience fallback only — the real options come from /api/surprise
-// (LLM-generated, grounded in live Kapruka categories, varies each session).
+// (LLM-generated, grounded in live Snoonu categories, varies each session).
 const FALLBACK_QUIZ: SurpriseQuiz = {
   recipients: [
     { value: "my partner", label: "Partner", emoji: "💖" },

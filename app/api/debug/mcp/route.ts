@@ -1,10 +1,10 @@
 /**
- * Dev-only smoke test for the Kapruka MCP layer. Exercises the read tools and
+ * Dev-only smoke test for the Snoonu MCP layer. Exercises the read tools and
  * the adapters end-to-end so we can confirm real data shapes before the UI
  * depends on them. Does NOT create orders. Disabled in production.
  *
  *   GET /api/debug/mcp           → tools + search + categories
- *   GET /api/debug/mcp?q=cake&city=Galle&date=2026-06-20
+ *   GET /api/debug/mcp?q=cake&city=Doha&date=2026-06-20
  */
 import { NextResponse } from "next/server";
 import { listTools } from "@/lib/mcp/client";
@@ -27,7 +27,7 @@ export async function GET(request: Request) {
 
   const url = new URL(request.url);
   const q = url.searchParams.get("q") || "red roses";
-  const city = url.searchParams.get("city") || "Kandy";
+  const city = url.searchParams.get("city") || "Doha";
   const date = url.searchParams.get("date") || "2026-06-20";
 
   try {

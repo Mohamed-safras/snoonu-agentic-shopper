@@ -30,7 +30,7 @@ const toISO = (date: Date) => date.toISOString().slice(0, 10);
 
 /**
  * 10-day grid whose availability + fee + perishable warning come from the REAL
- * Kapruka check_delivery tool for the chosen city.
+ * Snoonu check_delivery tool for the chosen city.
  */
 export function DatePicker({
   cityName,

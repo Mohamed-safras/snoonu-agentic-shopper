@@ -1,5 +1,5 @@
 /** POST /api/product-qa — answer a shopper's question about ONE product, grounded
- *  in its real Kapruka detail (+ general product knowledge). Body: {productId,
+ *  in its real Snoonu detail (+ general product knowledge). Body: {productId,
  *  question, history, lang}. STREAMS the reply as plain text. */
 import { getProduct } from "@/lib/mcp/tools";
 import { toProductFromDetail } from "@/lib/mcp/adapters";

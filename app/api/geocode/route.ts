@@ -9,7 +9,7 @@
  */
 export const runtime = "nodejs";
 
-const UA = "TrovaShoppingConcierge/1.0 (Kapruka Agent Challenge)";
+const UA = "TrovaShoppingConcierge/1.0 (Snoonu Agent Challenge)";
 
 interface GeoResult {
   label: string;
@@ -88,7 +88,7 @@ async function reverse(lat: string, lng: string) {
 
 async function search(q: string): Promise<GeoResult[]> {
   const n = (await getJson(
-    `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=6&countrycodes=lk&q=${encodeURIComponent(q)}`,
+    `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=6&countrycodes=qa&q=${encodeURIComponent(q)}`,
   )) as { display_name: string; lat: string; lon: string }[] | null;
   if (Array.isArray(n) && n.length)
     return n.map((r) => ({
@@ -97,9 +97,9 @@ async function search(q: string): Promise<GeoResult[]> {
       lng: parseFloat(r.lon),
     }));
 
-  // Photon, biased to Sri Lanka's centre.
+  // Photon, biased to Qatar's centre.
   const p = (await getJson(
-    `https://photon.komoot.io/api?q=${encodeURIComponent(q)}&limit=6&lat=7.87&lon=80.77`,
+    `https://photon.komoot.io/api?q=${encodeURIComponent(q)}&limit=6&lat=25.30&lon=51.20`,
   )) as {
     features?: {
       geometry: { coordinates: [number, number] };

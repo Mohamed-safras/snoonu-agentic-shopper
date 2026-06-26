@@ -64,7 +64,7 @@ export function useAutonomousCheckout() {
       instructions: profile.instructions,
       // `senderName` can legitimately be empty on a saved profile — the
       // manual CheckoutForm hides/doesn't require that field for a "for
-      // myself" order. Kapruka's create_order rejects an empty sender name
+      // myself" order. Snoonu's create_order rejects an empty sender name
       // outright (zod: sender.name must be >= 1 char), so fall back to the
       // recipient's own name (always validated non-empty) rather than ever
       // submitting blank.
@@ -79,7 +79,7 @@ export function useAutonomousCheckout() {
       return false;
     }
     // Autobuy is meant to be hands-off end to end — once the order is
-    // confirmed, jump straight to the real Kapruka pay page instead of
+    // confirmed, jump straight to the real Snoonu pay page instead of
     // making the shopper find and tap a link or scan a QR (that only makes
     // sense for the manual flow, where someone else might pay from a
     // different device). `autoOpened` tells the order-placed card to skip

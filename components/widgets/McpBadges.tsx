@@ -104,13 +104,13 @@ export function CutoffHeatBar({ cutoffHour = 14 }: { cutoffHour?: number }) {
 }
 
 const TRUST_TOOLS = [
-  { k: "kapruka_search_products", ico: "🔍", short: "search" },
-  { k: "kapruka_get_product", ico: "📦", short: "product" },
-  { k: "kapruka_list_categories", ico: "🗂️", short: "categories" },
-  { k: "kapruka_list_delivery_cities", ico: "📍", short: "cities" },
-  { k: "kapruka_check_delivery", ico: "🚚", short: "delivery" },
-  { k: "kapruka_create_order", ico: "🧾", short: "order" },
-  { k: "kapruka_track_order", ico: "📦", short: "tracking" },
+  { k: "snoonu_search_products", ico: "🔍", short: "search" },
+  { k: "snoonu_get_product", ico: "📦", short: "product" },
+  { k: "snoonu_list_categories", ico: "🗂️", short: "categories" },
+  { k: "snoonu_list_delivery_cities", ico: "📍", short: "cities" },
+  { k: "snoonu_check_delivery", ico: "🚚", short: "delivery" },
+  { k: "snoonu_create_order", ico: "🧾", short: "order" },
+  { k: "snoonu_track_order", ico: "📦", short: "tracking" },
 ];
 
 /** Footer strip lighting up the MCP tools the agent has used this session. */

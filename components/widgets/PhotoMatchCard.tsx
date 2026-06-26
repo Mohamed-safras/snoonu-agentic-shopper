@@ -4,7 +4,7 @@ import type { Product } from "@/types";
 import Image from "next/image";
 import { useTranslate } from "@/hooks/useTranslate";
 
-/** Visual-search result: the uploaded photo(s) + closest Kapruka matches. */
+/** Visual-search result: the uploaded photo(s) + closest Snoonu matches. */
 export function PhotoMatchCard({
   srcs,
   products,

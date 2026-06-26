@@ -18,7 +18,7 @@ function pastel(name: string): string {
 }
 
 /**
- * Popular Categories: real Kapruka categories (kapruka_list_categories), each
+ * Popular Categories: real Snoonu categories (snoonu_list_categories), each
  * fronted by a real product photo from that category. Tapping one starts a
  * discovery search. No hardcoded data — names + images come live from MCP. On
  * mobile the grid scrolls horizontally with page dots tracking the swipe.

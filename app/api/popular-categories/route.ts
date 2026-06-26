@@ -1,5 +1,5 @@
-/** GET /api/popular-categories — the most popular Kapruka categories, ranked
- *  from the LIVE catalog: we read every category from kapruka_list_categories,
+/** GET /api/popular-categories — the most popular Snoonu categories, ranked
+ *  from the LIVE catalog: we read every category from snoonu_list_categories,
  *  then order them by how many products each actually has (a real popularity
  *  signal from MCP — no hardcoded category names or priorities). Each tile is
  *  fronted by a real, on-topic product photo, picked at random per request so

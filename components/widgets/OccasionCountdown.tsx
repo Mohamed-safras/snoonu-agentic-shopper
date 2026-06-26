@@ -7,7 +7,7 @@ import { useTranslate } from "@/hooks/useTranslate";
 
 /**
  * AI-native promo banner. Every slide — theme, copy, badge, OFFER and a
- * limited-time COUNTDOWN — is generated at runtime by the LLM from Kapruka's
+ * limited-time COUNTDOWN — is generated at runtime by the LLM from Snoonu's
  * real catalog, backed by a real product image (see /api/banners). The
  * countdown ticks live off the AI-provided window. "Shop now" runs a real search.
  */

@@ -1,6 +1,6 @@
 /**
  * GET /api/related?id=<productId>&q=<name>&cat=<category>&price=<amount>
- * Relevant "you may also like" products from the live Kapruka catalog. Builds a
+ * Relevant "you may also like" products from the live Snoonu catalog. Builds a
  * candidate pool from BOTH the product's category (same-kind items) and its name
  * (close matches), then ranks by category + name-token + price relevance and
  * keeps only solid matches. Excludes the product being viewed.
@@ -25,7 +25,7 @@ export async function GET(request: Request) {
       const res = await searchProducts({
         query: term,
         limit: 12,
-        currency: "LKR",
+        currency: "QAR",
       });
       return res.results.map(toProductFromSearch);
     } catch {

@@ -30,7 +30,7 @@ export interface CheckoutFormProps {
 /**
  * Self-contained guest checkout: resolves the delivery city (live MCP), picks a
  * date (live feasibility), captures recipient + address + a map confirm-pin, and
- * creates a REAL Kapruka order — all in ONE form (no separate delivery step).
+ * creates a REAL Snoonu order — all in ONE form (no separate delivery step).
  * City search, address/map handling, and the AI gift-note writer each live in
  * their own hook (hooks/useCitySearch, useAddressMap, useGiftNote) so this
  * component stays focused on the checkout activity itself.
@@ -115,7 +115,7 @@ export function CheckoutForm({
   // street/area "Delivery address" field below — a dedicated slot for it is
   // clearer than asking the shopper to remember to fold it into one long
   // free-text address. Composed back into a single string at submit time
-  // (Kapruka's API and the saved profile both just take one address line).
+  // (Snoonu's API and the saved profile both just take one address line).
   const [unitNumber, setUnitNumber] = useState("");
   const [instructions, setInstructions] = useState(
     () => savedProfile?.instructions || "",
@@ -608,16 +608,16 @@ export function CheckoutForm({
                 autoComplete="tel"
                 value={phone}
                 // Allow only phone characters (digits, +, space, hyphen) — this
-                // is what stopped letters like "04t35345" reaching Kapruka.
+                // is what stopped letters like "04t35345" reaching Snoonu.
                 onChange={(event) =>
                   setPhone(event.target.value.replace(/[^\d+\s-]/g, ""))
                 }
-                placeholder="0771234567"
+                placeholder="33123456"
               />
               {phone.trim() !== "" && !phoneValid && (
                 <span className="cf-err">
                   {translate(
-                    "Enter a valid Sri Lankan number — e.g. 0771234567 or +94771234567",
+                    "Enter a valid Qatari number — e.g. 33123456 or +97433123456",
                   )}
                 </span>
               )}
@@ -734,7 +734,7 @@ export function CheckoutForm({
                     value={citySearch}
                     onChange={(event) => setCitySearch(event.target.value)}
                     placeholder={translate(
-                      "Type a city or local name — e.g. Kandy, Galle…",
+                      "Type a city or local name — e.g. Doha, Al Rayyan…",
                     )}
                   />
                   {cityLoading && (

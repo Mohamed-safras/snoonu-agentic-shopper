@@ -34,7 +34,7 @@ function selectedPicks(slots: HamperSlot[]): number[] {
 
 /**
  * Gift Hamper Builder: the shopper sets a budget (+ optional category, theme,
- * recipient and item count), the agent assembles complementary REAL Kapruka
+ * recipient and item count), the agent assembles complementary REAL Snoonu
  * products that fit, and they can swap or lock any slot, fine-tune the budget,
  * then add it to the cart or send the whole hamper as a gift.
  */
@@ -64,7 +64,7 @@ export function HamperBuilder() {
   const budget = Number(budgetInput.replace(/[^\d]/g, ""));
   const validBudget = budget >= 500;
 
-  // Real Kapruka categories for the dropdown (kapruka_list_categories via API).
+  // Real Snoonu categories for the dropdown (snoonu_list_categories via API).
   useEffect(() => {
     let cancelled = false;
     fetch("/api/categories")

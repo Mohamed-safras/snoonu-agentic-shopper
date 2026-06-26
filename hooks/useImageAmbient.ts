@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
  *
  * The pixels are read from a tiny copy of the image loaded through Next's image
  * optimizer (`/_next/image`), which is SAME-ORIGIN — so the canvas isn't tainted
- * and `getImageData` is allowed even for remote Kapruka photos. On any failure
+ * and `getImageData` is allowed even for remote Snoonu photos. On any failure
  * (blocked host, decode error) it returns null and the caller keeps its default.
  */
 function optimizedUrl(src: string): string {

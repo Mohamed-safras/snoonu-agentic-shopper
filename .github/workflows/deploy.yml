@@ -70,7 +70,7 @@ jobs:
             GROQ_BASE_MODEL=llama-3.3-70b-versatile
             GROQ_FAST_MODEL=llama-3.1-8b-instant
             GROQ_VISION_MODEL=meta-llama/llama-4-scout-17b-16e-instruct
-            KAPRUKA_MCP_URL=https://mcp.kapruka.com/mcp
+            SNOONU_MCP_URL=${{ vars.SNOONU_MCP_URL }}
           # Secrets live in Secret Manager, never in this repo or workflow logs.
           secrets: |
             GROQ_API_KEY=GROQ_API_KEY:latest

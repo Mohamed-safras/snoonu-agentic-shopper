@@ -68,7 +68,7 @@ export function DeliveryCard({
       <div className="addr-row" style={{ marginTop: 4 }}>
         <input
           className="addr-input"
-          placeholder={translate("e.g. Kandy, Galle, Nugegoda…")}
+          placeholder={translate("e.g. Doha, Al Rayyan, Al Wakrah…")}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />

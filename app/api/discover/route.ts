@@ -1,6 +1,6 @@
 /**
  * GET /api/discover?lang=en&recent=a,b&cart=flowers,cake&n=8
- * Dynamic, behavior-personalized suggestion chips grounded in real Kapruka data.
+ * Dynamic, behavior-personalized suggestion chips grounded in real Snoonu data.
  */
 import { discoverSuggestions } from "@/lib/agents/content/discover";
 import type { Lang } from "@/types";

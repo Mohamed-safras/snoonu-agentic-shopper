@@ -1,8 +1,8 @@
 /** Shared checkout field validators (manual CheckoutForm + autobuy's mini
  *  delivery form both validate the same way). */
 
-/** Valid Sri Lankan phone: local 0XXXXXXXXX or +94XXXXXXXXX / 94XXXXXXXXX. */
+/** Valid Qatari mobile: local 8 digits starting 3/5/6/7, or +974XXXXXXXX / 974XXXXXXXX. */
 export function isValidPhone(value: string): boolean {
   const digits = value.replace(/[\s-]/g, "");
-  return /^0\d{9}$/.test(digits) || /^(\+?94)\d{9}$/.test(digits);
+  return /^[3567]\d{7}$/.test(digits) || /^(\+?974)[3567]\d{7}$/.test(digits);
 }

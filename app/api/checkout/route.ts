@@ -1,5 +1,5 @@
 /**
- * POST /api/checkout — create a REAL Kapruka guest order and return the Order
+ * POST /api/checkout — create a REAL Snoonu guest order and return the Order
  * (with genuine pay link). Validates input via the checkout specialist's zod
  * schema; rate-guarded against the live order endpoint.
  */

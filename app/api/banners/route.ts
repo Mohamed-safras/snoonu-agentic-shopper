@@ -1,4 +1,4 @@
-/** GET /api/banners?lang=en — dynamic promo slides grounded in real Kapruka data. */
+/** GET /api/banners?lang=en — dynamic promo slides grounded in real Snoonu data. */
 import { getBanners } from "@/lib/agents/content/banners";
 import type { Lang } from "@/types";
 

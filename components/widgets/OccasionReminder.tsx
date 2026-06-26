@@ -175,7 +175,7 @@ export function OccasionReminder() {
                 {feasibility.perishableWarning
                   ? ` · ${feasibility.perishableWarning}`
                   : ""}{" "}
-                <LiveBadge tool="kapruka_check_delivery" />
+                <LiveBadge tool="snoonu_check_delivery" />
               </span>
             ) : (
               <span>

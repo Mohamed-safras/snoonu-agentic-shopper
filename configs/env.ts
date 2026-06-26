@@ -49,7 +49,7 @@ export const config = {
   },
 
   mcp: {
-    url: env("KAPRUKA_MCP_URL", "https://mcp.kapruka.com/mcp"),
+    url: env("SNOONU_MCP_URL", "http://localhost:8000/mcp"),
   },
 
   orders: {

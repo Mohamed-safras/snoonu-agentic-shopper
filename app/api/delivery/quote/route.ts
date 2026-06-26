@@ -1,4 +1,4 @@
-/** GET /api/delivery/quote?city=Galle&date=2026-06-20&product=flowers00t2075 */
+/** GET /api/delivery/quote?city=Doha&date=2026-06-20&product=flowers00t2075 */
 import { quoteDelivery } from "@/lib/agents/specialists/delivery";
 
 export const runtime = "nodejs";

@@ -37,7 +37,7 @@ function selectedPicks(slots: BundleSlot[]): number[] {
 
 /**
  * Smart Kit ("shop by goal"): the shopper describes a need + budget, the agent
- * assembles a complete set of real Kapruka products that solves it. Swap/lock
+ * assembles a complete set of real Snoonu products that solves it. Swap/lock
  * any item, fine-tune the budget, then add the kit to the cart or buy it.
  */
 export function KitBuilder() {

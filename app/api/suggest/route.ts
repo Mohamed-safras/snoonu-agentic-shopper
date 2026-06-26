@@ -1,5 +1,5 @@
 /**
- * GET /api/suggest?q=ros — real search suggestions from the live Kapruka
+ * GET /api/suggest?q=ros — real search suggestions from the live Snoonu
  * catalog. Re-ranks the MCP's fuzzy results by how well each product actually
  * matches the typed query (and drops the off-topic tail) so the dropdown stays
  * relevant. Backs the composer autosuggest.

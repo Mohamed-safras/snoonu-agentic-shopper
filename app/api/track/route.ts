@@ -1,4 +1,4 @@
-/** GET /api/track?order=VIMP34456CB2 — look up a Kapruka order's progress. */
+/** GET /api/track?order=VIMP34456CB2 — look up a Snoonu order's progress. */
 import { track } from "@/lib/agents/specialists/tracking";
 
 export const runtime = "nodejs";

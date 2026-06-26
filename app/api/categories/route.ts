@@ -1,4 +1,4 @@
-/** GET /api/categories — real top-level Kapruka category names (for the tabs). */
+/** GET /api/categories — real top-level Snoonu category names (for the tabs). */
 import { listCategories } from "@/lib/mcp/tools";
 
 export const runtime = "nodejs";

@@ -7,11 +7,11 @@ import { MAP_TILE_URL } from "@/lib/map/constants";
 
 // tier 0..3 → fastest → slowest
 const TIER_COLOR = ["#2F8F5B", "#4C2D8F", "#C9A000", "#C73838"];
-const TIER_LABEL = ["Same / next day", "1–2 days", "2–3 days", "3–4 days"];
+const TIER_LABEL = ["Same day", "Same / next day", "Next day", "1–2 days"];
 
 /**
- * All 25 Sri Lankan districts plotted as points on a map, coloured by PREDICTED
- * delivery window (estimated from road-distance to Kapruka HQ). The user's
+ * All 8 Qatar municipalities plotted as points on a map, coloured by PREDICTED
+ * delivery window (estimated from road-distance to Snoonu HQ). The user's
  * district is enlarged. Authoritative fee/feasibility still comes from the MCP.
  */
 export function DeliveryZones({ highlight }: { highlight?: string }) {

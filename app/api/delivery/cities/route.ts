@@ -1,4 +1,4 @@
-/** GET /api/delivery/cities?q=kandy — resolve Kapruka delivery cities/aliases. */
+/** GET /api/delivery/cities?q=kandy — resolve Snoonu delivery cities/aliases. */
 import { findCities } from "@/lib/agents/specialists/delivery";
 
 export const runtime = "nodejs";
