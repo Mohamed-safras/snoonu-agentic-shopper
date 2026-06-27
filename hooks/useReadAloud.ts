@@ -57,7 +57,7 @@ export function useReadAloud(): void {
           if (message.kind !== "text") continue;
           if (message.role === "user" && lastUserMessageIndex === -1)
             lastUserMessageIndex = messageIndex;
-          else if (message.role === "Hala" && latestReplyIndex === -1) {
+          else if (message.role === "hala" && latestReplyIndex === -1) {
             latestReplyIndex = messageIndex;
             latestReply = message;
           }
