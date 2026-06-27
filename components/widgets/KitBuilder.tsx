@@ -4,7 +4,7 @@ import { Icon } from "@/components/ui/Icon";
 import { ProductImage } from "@/components/product/ProductImage";
 import { fmtPrice } from "@/lib/format/money";
 import { enqueueSpeech, stopSpeaking, warmUpSpeech } from "@/lib/speech/speak";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import type { Bundle, BundleSlot } from "@/lib/agents/bundles/bundle";
 import type { Product } from "@/types";
 import { useTranslate } from "@/hooks/useTranslate";
@@ -41,12 +41,12 @@ function selectedPicks(slots: BundleSlot[]): number[] {
  * any item, fine-tune the budget, then add the kit to the cart or buy it.
  */
 export function KitBuilder() {
-  const addProduct = useTrova((store) => store.addProduct);
-  const showToast = useTrova((store) => store.showToast);
-  const startGiftCheckout = useTrova((store) => store.startGiftCheckout);
-  const setSkuProduct = useTrova((store) => store.setSkuProduct);
-  const speak = useTrova((store) => store.speak);
-  const language = useTrova((store) => store.lang);
+  const addProduct = useHala((store) => store.addProduct);
+  const showToast = useHala((store) => store.showToast);
+  const startGiftCheckout = useHala((store) => store.startGiftCheckout);
+  const setSkuProduct = useHala((store) => store.setSkuProduct);
+  const speak = useHala((store) => store.speak);
+  const language = useHala((store) => store.lang);
   const translate = useTranslate();
 
   const [goalInput, setGoalInput] = useState("");

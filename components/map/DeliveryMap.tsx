@@ -63,7 +63,7 @@ export function DeliveryMap({
     }).setView([7.8731, 80.7718], 8);
     L.tileLayer(MAP_TILE_URL, { maxZoom: 19 }).addTo(map);
     const hubIcon = L.divIcon({
-      className: "leaflet-trova-icon",
+      className: "leaflet-hala-icon",
       html: HUB_HTML,
       iconSize: [40, 40],
       iconAnchor: [20, 20],
@@ -102,7 +102,7 @@ export function DeliveryMap({
 
     const drawPin = (dest: [number, number]) => {
       const pinIcon = L.divIcon({
-        className: "leaflet-trova-icon",
+        className: "leaflet-hala-icon",
         html: PIN_HTML,
         iconSize: [22, 22],
         iconAnchor: [11, 22],

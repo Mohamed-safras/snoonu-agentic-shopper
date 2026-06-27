@@ -10,7 +10,7 @@ export const MAP_TILE_URL =
 
 /** HTML for the Snoonu hub marker (logo badge). */
 export const HUB_HTML =
-  '<div class="leaflet-hub"><img src="/trova-logo.svg" class="leaflet-hub-logo" /></div>';
+  '<div class="leaflet-hub"><img src="/hala-logo.svg" class="leaflet-hub-logo" /></div>';
 
 /** HTML for the destination drop pin. */
 export const PIN_HTML =

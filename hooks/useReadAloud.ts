@@ -7,7 +7,7 @@
  */
 "use client";
 import { useEffect } from "react";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { enqueueSpeech, stopSpeaking, warmUpSpeech } from "@/lib/speech/speak";
 import type { ChatMessage } from "@/types";
 
@@ -23,13 +23,13 @@ function lastSentenceEndIndex(text: string): number {
 
 export function useReadAloud(): void {
   useEffect(() => {
-    let wasPlaying = useTrova.getState().playing;
+    let wasPlaying = useHala.getState().playing;
     let spokenMessageId: string | null = null; // assistant message we're voicing
     let spokenCharCount = 0; // chars of it already queued
     // Only speak replies from turns that actually run THIS session.
     let hasStartedTurnThisSession = false;
 
-    return useTrova.subscribe((state) => {
+    return useHala.subscribe((state) => {
       // A new turn started → stop anything playing and reset progress. Warm the
       // TTS path (throttled) during think-time so a cooled connection still
       // starts promptly.
@@ -44,7 +44,7 @@ export function useReadAloud(): void {
       if (state.speak && hasStartedTurnThisSession) {
         // Find the latest user message and the latest assistant reply. Only a
         // reply AFTER the last user message belongs to the current turn (during
-        // "thinking" the last trova message is the PREVIOUS reply — don't re-speak).
+        // "thinking" the last Hala message is the PREVIOUS reply — don't re-speak).
         let lastUserMessageIndex = -1;
         let latestReplyIndex = -1;
         let latestReply: Extract<ChatMessage, { kind: "text" }> | null = null;
@@ -57,7 +57,7 @@ export function useReadAloud(): void {
           if (message.kind !== "text") continue;
           if (message.role === "user" && lastUserMessageIndex === -1)
             lastUserMessageIndex = messageIndex;
-          else if (message.role === "trova" && latestReplyIndex === -1) {
+          else if (message.role === "Hala" && latestReplyIndex === -1) {
             latestReplyIndex = messageIndex;
             latestReply = message;
           }

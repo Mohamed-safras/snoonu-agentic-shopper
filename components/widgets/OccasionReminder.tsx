@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
 import { LiveBadge } from "@/components/widgets/McpBadges";
 import { fmtPrice } from "@/lib/format/money";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { useTranslate } from "@/hooks/useTranslate";
 
 interface Feasibility {
@@ -30,9 +30,9 @@ const localDateString = (date: Date) => {
  * knows they're in time, and a one-tap jump to finding the gift.
  */
 export function OccasionReminder() {
-  const occasion = useTrova((store) => store.conv.occasion);
-  const city = useTrova((store) => store.conv.city);
-  const userSend = useTrova((store) => store.userSend);
+  const occasion = useHala((store) => store.conv.occasion);
+  const city = useHala((store) => store.conv.city);
+  const userSend = useHala((store) => store.userSend);
   const translate = useTranslate();
 
   const [date, setDate] = useState("");

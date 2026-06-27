@@ -29,11 +29,11 @@ export function Brand() {
         type="button"
         className="kap-mark"
         onClick={() => window.location.reload()}
-        aria-label={translate("Reload Trova")}
+        aria-label={translate("Reload Hala")}
         title={translate("Reload")}
       >
         <Image
-          src="/trova-logo.svg"
+          src="/hala-logo.svg"
           alt={translate("Snoonu")}
           width={40}
           height={40}
@@ -42,7 +42,7 @@ export function Brand() {
       </button>
       <div className="brand-txt">
         <div className="brand-name">
-          {translate("Trova")}{" "}
+          {translate("Hala")}{" "}
           <span className="by">{translate("× Snoonu")}</span>
         </div>
         <div className="brand-sub">

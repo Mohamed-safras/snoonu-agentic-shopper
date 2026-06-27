@@ -11,7 +11,7 @@
  * synthesis), and clean prose is spoken (markdown/symbols/emoji stripped).
  */
 import { detectScriptLang } from "@/lib/i18n/lang";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { defaultVoiceForLanguage } from "./voices";
 import type { Lang } from "@/types";
 
@@ -75,7 +75,7 @@ export function registerSpeechSessionGesture(): () => void {
     speechSessionActive = true;
     // Warm a TTS connection the instant the shopper engages, so the first reply
     // hits a hot pooled connection (~250ms) instead of a cold handshake (~3s).
-    if (useTrova.getState().speak) warmUpSpeech();
+    if (useHala.getState().speak) warmUpSpeech();
   };
   const events = ["pointerdown", "keydown"] as const;
   for (const eventName of events)
@@ -95,7 +95,7 @@ let activeRequestToken = 0;
 /** Start Edge synthesis for a chunk immediately. Resolves to the audio blob, or
  *  null if it failed (so playback can fall back to browser speech). */
 function synthesizeChunk(text: string, language: Lang): Promise<Blob | null> {
-  const { voiceByLanguage } = useTrova.getState();
+  const { voiceByLanguage } = useHala.getState();
   const voiceId =
     voiceByLanguage[language] ?? defaultVoiceForLanguage(language);
   return fetch("/api/tts", {

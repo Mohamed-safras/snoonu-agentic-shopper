@@ -57,7 +57,7 @@ export async function translateStrings(lang: Lang): Promise<Strings> {
   const provider = getProvider();
   const res = await provider.generate({
     translate: true,
-    system: `You are a professional localizer for a Qatar-based e-commerce app. Translate every JSON string value into ${LANG_NAME[lang]}, writing in a warm, everyday spoken register, NOT a stiff literal or formal literary/news translation. Keep the JSON keys and array structure identical, keep emojis and the brand names "Trova" and "Snoonu" unchanged. Return ONLY the JSON object.`,
+    system: `You are a professional localizer for a Qatar-based e-commerce app. Translate every JSON string value into ${LANG_NAME[lang]}, writing in a warm, everyday spoken register, NOT a stiff literal or formal literary/news translation. Keep the JSON keys and array structure identical, keep emojis and the brand names "Hala" and "Snoonu" unchanged. Return ONLY the JSON object.`,
     messages: [{ role: "user", content: JSON.stringify(T.en) }],
     json: true,
     temperature: 0.3,

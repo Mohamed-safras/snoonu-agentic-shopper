@@ -1,8 +1,8 @@
-# Trova — Snoonu AI Shopping Concierge
+# Hala — Snoonu AI Shopping Concierge
 
-A full-screen, conversational shopping agent for **Snoonu**, Qatar's super app. Trova takes a customer from _"I'm not sure what to get"_ all the way to _"it's on its way"_ — discovery, live delivery quotes, **real guest checkout with a working pay link**, and order tracking — in one warm conversation, in **English, Arabic, Sinhala, or Tamil**.
+A full-screen, conversational shopping agent for **Snoonu**, Qatar's super app. Hala takes a customer from _"I'm not sure what to get"_ all the way to _"it's on its way"_ — discovery, live delivery quotes, **real guest checkout with a working pay link**, and order tracking — in one warm conversation, in **English, Arabic, Sinhala, or Tamil**.
 
-Trova reads the _feeling_ behind a message first, then the keywords — it responds with warmth, and when intent is unclear it asks one friendly clarifying question (with quick-pick chips) instead of guessing, keeping conversation context across turns so suggestions get more accurate the more you chat.
+Hala reads the _feeling_ behind a message first, then the keywords — it responds with warmth, and when intent is unclear it asks one friendly clarifying question (with quick-pick chips) instead of guessing, keeping conversation context across turns so suggestions get more accurate the more you chat.
 
 ## Highlights
 
@@ -61,7 +61,7 @@ LLM provider abstraction (Gemini | Groq)   +   MCP client (lib/mcp/*)
 - Pick two products to **compare** and confirm the card shows tagged verdicts and a spoken recommendation, not just a table.
 - Tap the 📷 button to do a visual product search (Gemini vision) — take a photo or choose from the gallery, attach several images at once.
 - Type `/` in the composer to see slash-command autocomplete; tap the mic to dictate.
-- Send a vague message (e.g. _"a gift"_) to see Trova ask a friendly clarifying question; **stop** a long request mid-stream, or **edit & resend** a previous message.
+- Send a vague message (e.g. _"a gift"_) to see Hala ask a friendly clarifying question; **stop** a long request mid-stream, or **edit & resend** a previous message.
 - Toggle light/dark mode (top-right) and confirm cards stay readable and the ambient background is visible in both.
 
 ## Key files

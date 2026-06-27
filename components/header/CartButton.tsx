@@ -1,14 +1,14 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { Icon } from "@/components/ui/Icon";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 
 /** Cart button (count + running total) that opens the cart drawer. Also owns
  *  the cart-driven suggestion refresh, since it lives next to the cart. */
 export function CartButton() {
-  const cart = useTrova((store) => store.cart);
-  const setCartOpen = useTrova((store) => store.setCartOpen);
-  const loadSuggestions = useTrova((store) => store.loadSuggestions);
+  const cart = useHala((store) => store.cart);
+  const setCartOpen = useHala((store) => store.setCartOpen);
+  const loadSuggestions = useHala((store) => store.loadSuggestions);
 
   const count = cart.reduce((acc, item) => acc + item.quantity, 0);
   // Refresh the dynamic suggestions whenever the cart changes (skip the first

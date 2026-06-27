@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { useTranslate } from "@/hooks/useTranslate";
 
 const STEP_LABELS = ["Who", "Budget", "Vibe"];
@@ -36,7 +36,11 @@ const FALLBACK_QUIZ: SurpriseQuiz = {
     { value: "premium", label: "Premium", emoji: "👑" },
   ],
   vibes: [
-    { value: "sweet romantic flowers and chocolate", label: "Romantic", emoji: "🌹" },
+    {
+      value: "sweet romantic flowers and chocolate",
+      label: "Romantic",
+      emoji: "🌹",
+    },
     { value: "fun playful gift hamper", label: "Playful", emoji: "🎉" },
     { value: "elegant jewellery", label: "Elegant", emoji: "💎" },
     { value: "tasty cake and treats", label: "Treats", emoji: "🍰" },
@@ -53,7 +57,7 @@ export function SurpriseMe({
 }: {
   onComplete: (brief: string) => void;
 }) {
-  const lang = useTrova((state) => state.lang);
+  const lang = useHala((state) => state.lang);
   const translate = useTranslate();
   const [quiz, setQuiz] = useState<SurpriseQuiz | null>(null);
   const [stepIndex, setStepIndex] = useState(0);
@@ -112,14 +116,19 @@ export function SurpriseMe({
         <span className="surprise-icon">🎁</span>
         <div className="surprise-h-txt">
           <h4>{translate("Surprise me")}</h4>
-          <div className="sub">{translate("Three quick taps → a hand-picked gift")}</div>
+          <div className="sub">
+            {translate("Three quick taps → a hand-picked gift")}
+          </div>
         </div>
       </div>
 
       {/* Labelled progress */}
       <div className="surprise-steps">
         {STEP_LABELS.map((label, index) => (
-          <div key={label} className={"sstep" + (stepIndex >= index ? " on" : "")}>
+          <div
+            key={label}
+            className={"sstep" + (stepIndex >= index ? " on" : "")}
+          >
             <span className="sstep-bar" />
             <span className="sstep-lbl">{translate(label)}</span>
           </div>

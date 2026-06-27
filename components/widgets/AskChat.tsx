@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { enqueueSpeech, stopSpeaking, warmUpSpeech } from "@/lib/speech/speak";
 import { useTranslate } from "@/hooks/useTranslate";
 
@@ -11,7 +11,7 @@ export interface AskTurn {
 }
 
 interface ChatMessage {
-  role: "user" | "trova";
+  role: "user" | "hala";
   text: string;
 }
 
@@ -46,8 +46,8 @@ export function AskChat({
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const threadRef = useRef<HTMLDivElement>(null);
-  const speak = useTrova((store) => store.speak);
-  const language = useTrova((store) => store.lang);
+  const speak = useHala((store) => store.speak);
+  const language = useHala((store) => store.lang);
   const translate = useTranslate();
 
   const scrollToEnd = () =>
@@ -70,7 +70,7 @@ export function AskChat({
     setMessages((previous) => [
       ...previous,
       { role: "user", text: question },
-      { role: "trova", text: "" },
+      { role: "hala", text: "" },
     ]);
     setBusy(true);
     // Drop any speech still queued from the previous answer so this new reply
@@ -83,7 +83,7 @@ export function AskChat({
     const setAnswer = (value: string) =>
       setMessages((previous) => {
         const copy = [...previous];
-        copy[copy.length - 1] = { role: "trova", text: value };
+        copy[copy.length - 1] = { role: "hala", text: value };
         return copy;
       });
 
@@ -132,7 +132,7 @@ export function AskChat({
         <div className="askchat-thread" ref={threadRef}>
           {messages.map((message, index) => (
             <div key={index} className={"askchat-msg " + message.role}>
-              {message.role === "trova" && !message.text ? (
+              {message.role === "hala" && !message.text ? (
                 <span className="llm-dot">
                   <i />
                   <i />

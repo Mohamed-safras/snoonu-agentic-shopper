@@ -1,5 +1,5 @@
 /** Helpers for the price-drop / back-in-stock watchlist. */
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import type { Product } from "@/types";
 import type { WatchItem } from "@/store/slices/prefs/types";
 
@@ -21,7 +21,7 @@ export function toWatchItem(product: Product): WatchItem {
  *  watchlist card, and refreshes the stored snapshots so the same change isn't
  *  re-announced next time. */
 export async function refreshWatchlist(): Promise<void> {
-  const store = useTrova.getState();
+  const store = useHala.getState();
   const watches = store.watches;
   if (!watches.length) return;
 

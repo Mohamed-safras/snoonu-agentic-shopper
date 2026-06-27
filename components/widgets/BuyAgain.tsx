@@ -1,7 +1,7 @@
 "use client";
 import { ProductCard } from "@/components/product/ProductCard";
 import { dedupeById } from "@/lib/catalog/products";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { useTranslate } from "@/hooks/useTranslate";
 
 /**
@@ -10,11 +10,11 @@ import { useTranslate } from "@/hooks/useTranslate";
  * Hidden until there's at least one past order.
  */
 export function BuyAgain() {
-  const orders = useTrova((store) => store.orders);
-  const favorites = useTrova((store) => store.favorites);
-  const addProduct = useTrova((store) => store.addProduct);
-  const toggleFav = useTrova((store) => store.toggleFav);
-  const setSkuProduct = useTrova((store) => store.setSkuProduct);
+  const orders = useHala((store) => store.orders);
+  const favorites = useHala((store) => store.favorites);
+  const addProduct = useHala((store) => store.addProduct);
+  const toggleFav = useHala((store) => store.toggleFav);
+  const setSkuProduct = useHala((store) => store.setSkuProduct);
   const translate = useTranslate();
 
   // Most-recent orders first (the orders slice already prepends new ones).

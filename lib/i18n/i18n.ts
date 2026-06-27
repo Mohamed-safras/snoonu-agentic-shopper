@@ -49,7 +49,7 @@ export const enStrings: Strings = {
   checkout: "Checkout",
   add: "Add to cart",
   free: "FREE",
-  greet_title: "Marhaba! I'm Trova 👋",
+  greet_title: "Ahlan! I'm Hala 👋",
   greet_body:
     "Your personal shopping concierge for all of Qatar. Tell me who it's for and the moment you're celebrating — I'll find something perfect and get it to checkout.",
   suggest: "Or tap a quick start:",

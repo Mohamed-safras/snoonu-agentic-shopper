@@ -1,12 +1,12 @@
 "use client";
 import { Icon } from "@/components/ui/Icon";
 import { useTranslate } from "@/hooks/useTranslate";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 
 /** Opens the orders drawer — only shown once there are past orders. */
 export function OrdersButton() {
-  const ordersCount = useTrova((store) => store.orders.length);
-  const setOrdersOpen = useTrova((store) => store.setOrdersOpen);
+  const ordersCount = useHala((store) => store.orders.length);
+  const setOrdersOpen = useHala((store) => store.setOrdersOpen);
   const translate = useTranslate();
 
   if (ordersCount === 0) return null;

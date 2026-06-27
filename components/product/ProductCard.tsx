@@ -4,7 +4,7 @@ import { Icon } from "@/components/ui/Icon";
 import { ProductImage } from "./ProductImage";
 import { fmtPrice } from "@/lib/format/money";
 import { isGenericCategory } from "@/lib/catalog/products";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { toWatchItem } from "@/lib/catalog/watch";
 import type { Product } from "@/types";
 import Link from "next/link";
@@ -30,14 +30,14 @@ export function ProductCard({
   const [added, setAdded] = useState(false);
   // Watch state is read straight from the store so any card can toggle it
   // without every shelf having to thread watch props through.
-  const watched = useTrova((store) =>
+  const watched = useHala((store) =>
     product ? store.watches.some((watch) => watch.id === product.id) : false,
   );
-  const toggleWatch = useTrova((store) => store.toggleWatch);
-  const comparing = useTrova((store) =>
+  const toggleWatch = useHala((store) => store.toggleWatch);
+  const comparing = useHala((store) =>
     product ? store.compareItems.some((item) => item.id === product.id) : false,
   );
-  const toggleCompare = useTrova((store) => store.toggleCompare);
+  const toggleCompare = useHala((store) => store.toggleCompare);
   const translate = useTranslate();
 
   if (!product) return null;

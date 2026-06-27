@@ -7,7 +7,7 @@ import { RecentOrders } from "@/components/checkout/RecentOrders";
 import { PopularCategories } from "@/components/widgets/PopularCategories";
 import { ForYou } from "@/components/widgets/ForYou";
 import { BuyAgain } from "@/components/widgets/BuyAgain";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { useStrings, useTranslate } from "@/hooks/useTranslate";
 
 /**
@@ -15,13 +15,13 @@ import { useStrings, useTranslate } from "@/hooks/useTranslate";
  * rail on the landing screen, and the message thread. Fully store-driven.
  */
 export function Thread() {
-  const messages = useTrova((store) => store.messages);
-  const suggestions = useTrova((store) => store.suggestions);
-  const orders = useTrova((store) => store.orders);
-  const playing = useTrova((store) => store.playing);
-  const userSend = useTrova((store) => store.userSend);
-  const pushAttach = useTrova((store) => store.pushAttach);
-  const reorderToCart = useTrova((store) => store.reorderToCart);
+  const messages = useHala((store) => store.messages);
+  const suggestions = useHala((store) => store.suggestions);
+  const orders = useHala((store) => store.orders);
+  const playing = useHala((store) => store.playing);
+  const userSend = useHala((store) => store.userSend);
+  const pushAttach = useHala((store) => store.pushAttach);
+  const reorderToCart = useHala((store) => store.reorderToCart);
   const string = useStrings();
   const translate = useTranslate();
   const conversing = messages.length > 0;

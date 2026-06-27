@@ -121,7 +121,7 @@ export type ChatMessage =
   | {
       id: string;
       kind: "text";
-      role: "user" | "trova";
+      role: "user" | "hala";
       lead?: boolean;
       /** Currently-displayed text (may be a translation of `original`). */
       text: string;

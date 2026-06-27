@@ -32,7 +32,7 @@ export function DeliveryZones({ highlight }: { highlight?: string }) {
       const on = highlight && d.name.toLowerCase() === highlight.toLowerCase();
       const size = on ? 18 : 12;
       const icon = L.divIcon({
-        className: "leaflet-trova-icon",
+        className: "leaflet-hala-icon",
         html: `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${TIER_COLOR[z.tier]};border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div>`,
         iconSize: [size, size],
         iconAnchor: [size / 2, size / 2],

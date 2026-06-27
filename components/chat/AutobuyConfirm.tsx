@@ -4,7 +4,7 @@ import { Icon } from "@/components/ui/Icon";
 import { ProductImage } from "@/components/product/ProductImage";
 import { isGenericCategory, tokenize } from "@/lib/catalog/products";
 import { fmtPrice } from "@/lib/format/money";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { useAutonomousCheckout } from "@/hooks/useAutonomousCheckout";
 import { useTranslate } from "@/hooks/useTranslate";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
@@ -37,14 +37,14 @@ export function AutobuyConfirm({
   currency: string;
 }) {
   const translate = useTranslate();
-  const setSkuProduct = useTrova((store) => store.setSkuProduct);
-  const showToast = useTrova((store) => store.showToast);
-  const deliveryProfile = useTrova((store) => store.deliveryProfile);
-  const conv = useTrova((store) => store.conv);
-  const addToCart = useTrova((store) => store.addToCart);
-  const setGiftSelection = useTrova((store) => store.setGiftSelection);
-  const recordOrderSuccess = useTrova((store) => store.recordOrderSuccess);
-  const patchConv = useTrova((store) => store.patchConv);
+  const setSkuProduct = useHala((store) => store.setSkuProduct);
+  const showToast = useHala((store) => store.showToast);
+  const deliveryProfile = useHala((store) => store.deliveryProfile);
+  const conv = useHala((store) => store.conv);
+  const addToCart = useHala((store) => store.addToCart);
+  const setGiftSelection = useHala((store) => store.setGiftSelection);
+  const recordOrderSuccess = useHala((store) => store.recordOrderSuccess);
+  const patchConv = useHala((store) => store.patchConv);
   const { place, placing, error } = useAutonomousCheckout();
 
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
@@ -83,7 +83,8 @@ export function AutobuyConfirm({
     const stillKept = products.filter((product) => !droppedIds.has(product.id));
     if (!stillKept.length) return undefined;
     const altTokens = new Set(tokenize(alternate.name));
-    if (alternate.category) tokenize(alternate.category).forEach((t) => altTokens.add(t));
+    if (alternate.category)
+      tokenize(alternate.category).forEach((t) => altTokens.add(t));
     let best: Product | undefined;
     let bestScore = 0;
     for (const product of stillKept) {
@@ -114,9 +115,9 @@ export function AutobuyConfirm({
   const usedPct = budget > 0 ? Math.min((total / budget) * 100, 100) : 0;
   const canAutoCheckout = Boolean(
     deliveryProfile?.recipientName &&
-      deliveryProfile?.phone &&
-      deliveryProfile?.address &&
-      deliveryProfile?.city,
+    deliveryProfile?.phone &&
+    deliveryProfile?.address &&
+    deliveryProfile?.city,
   );
 
   function drop(id: string) {

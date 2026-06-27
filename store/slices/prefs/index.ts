@@ -2,7 +2,7 @@ import type { SliceCreator } from "../../types";
 import type { PrefsSlice } from "./types";
 import { DEFAULT_VOICE_BY_LANGUAGE } from "@/lib/speech/voices";
 
-const FAV_KEY = "trova_favs";
+const FAV_KEY = "hala_favs";
 
 function loadFavs(): string[] {
   if (typeof window === "undefined") return [];

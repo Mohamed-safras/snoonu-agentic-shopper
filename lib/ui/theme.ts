@@ -3,7 +3,7 @@
 
 export type ThemeMode = "light";
 
-export const THEME_KEY = "trova-theme";
+export const THEME_KEY = "hala-theme";
 
 export function resolveMode(): "light" {
   return "light";

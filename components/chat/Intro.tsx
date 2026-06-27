@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { useStrings, useTranslate } from "@/hooks/useTranslate";
 
 /**
@@ -18,20 +18,29 @@ export function Intro({
   onSurprise: () => void;
   onAutobuy: () => void;
 }) {
-  const lang = useTrova((store) => store.lang);
+  const lang = useHala((store) => store.lang);
   const strings = useStrings();
   const translate = useTranslate();
   const cls =
-    lang === "si" ? "si-text" : lang === "ta" ? "ta-text" : lang === "ar" ? "ar-text" : "";
-  const dir = lang === "ar" ? "rtl" : undefined;
+    lang === "si"
+      ? "si-text"
+      : lang === "ta"
+        ? "ta-text"
+        : lang === "ar"
+          ? "ar-text"
+          : "";
+  // "auto" lets the browser detect direction per-element from its actual text
+  // (Arabic content right-aligns/flows RTL), without forcing the surrounding
+  // layout (avatar, icons, buttons) to mirror.
+  const dir = "auto";
 
   return (
     <>
       <div className="row">
         <div className="avatar">
           <Image
-            src="/trova-logo.svg"
-            alt={translate("Trova")}
+            src="/hala-logo.svg"
+            alt={translate("Hala")}
             width={34}
             height={34}
             unoptimized
@@ -39,10 +48,12 @@ export function Intro({
         </div>
         <div className="bubble-wrap" style={{ maxWidth: "min(92%,620px)" }}>
           <div className="name-time">
-            <b>{translate("Trova")}</b> · {strings.online}
+            <b>{translate("Hala")}</b> · {strings.online}
           </div>
           <div className="bubble">
-            <p className={"lead " + cls} dir={dir}>{strings.greet_title}</p>
+            <p className={"lead " + cls} dir={dir}>
+              {strings.greet_title}
+            </p>
             <p className={cls} dir={dir} style={{ color: "var(--ink-2)" }}>
               {strings.greet_body}
             </p>

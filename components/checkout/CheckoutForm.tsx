@@ -7,7 +7,7 @@ import { DatePicker } from "./DatePicker";
 import { useCitySearch } from "@/hooks/useCitySearch";
 import { useAddressMap } from "@/hooks/useAddressMap";
 import { useGiftNote } from "@/hooks/useGiftNote";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { submitOrder } from "@/lib/checkout/submitOrder";
 import { findEarliestDate } from "@/lib/checkout/findEarliestDate";
 import { fmtPrice } from "@/lib/format/money";
@@ -45,27 +45,27 @@ export function CheckoutForm({
 }: CheckoutFormProps) {
   // Read the cart live from the store so items added (from anywhere) while the
   // checkout card is open show up in "Choose items" immediately.
-  const cart = useTrova((store) => store.cart);
-  const setQty = useTrova((store) => store.setQty);
-  const setSkuProduct = useTrova((store) => store.setSkuProduct);
-  const lang = useTrova((store) => store.lang);
+  const cart = useHala((store) => store.cart);
+  const setQty = useHala((store) => store.setQty);
+  const setSkuProduct = useHala((store) => store.setSkuProduct);
+  const lang = useHala((store) => store.lang);
   const translate = useTranslate();
-  const occasion = useTrova((store) => store.conv.occasion);
+  const occasion = useHala((store) => store.conv.occasion);
   // Saved from the last successful order — pre-fills recipient/address/etc.
   // below so a repeat checkout (and autobuy's hand-off into this form) never
   // has to ask for the same details twice.
-  const savedProfile = useTrova.getState().deliveryProfile;
+  const savedProfile = useHala.getState().deliveryProfile;
   // Stage 1: pick which cart items to order. Stage 2: delivery + payment form.
   const [stage, setStage] = useState<"select" | "form">("select");
   // Track only DEselected ids — anything not here (incl. newly added items)
   // is selected by default. A "send as gift" of a specific set (giftSelectionIds)
   // opens with ONLY those items ticked — everything else starts deselected.
   const [deselectedIds, setDeselectedIds] = useState<Set<string>>(() => {
-    const selection = useTrova.getState().giftSelectionIds;
+    const selection = useHala.getState().giftSelectionIds;
     if (selection && selection.length) {
       const keep = new Set(selection);
       return new Set(
-        useTrova
+        useHala
           .getState()
           .cart.filter((item) => !keep.has(item.id))
           .map((item) => item.id),
@@ -77,8 +77,8 @@ export function CheckoutForm({
   // Consume the one-shot gift selection so a later direct checkout defaults to
   // "all selected" again.
   useEffect(() => {
-    if (useTrova.getState().giftSelectionIds)
-      useTrova.getState().setGiftSelection(null);
+    if (useHala.getState().giftSelectionIds)
+      useHala.getState().setGiftSelection(null);
   }, []);
 
   // Who the order is for — a gift to someone else, or the shopper themselves.
@@ -106,7 +106,7 @@ export function CheckoutForm({
   );
   const [phone, setPhone] = useState(() => savedProfile?.phone || "");
   const [senderName, setSenderName] = useState(
-    () => savedProfile?.senderName || useTrova.getState().checkoutName || "",
+    () => savedProfile?.senderName || useHala.getState().checkoutName || "",
   );
   const [locationType, setLocationType] = useState<
     "house" | "apartment" | "office" | "other"
@@ -277,10 +277,10 @@ export function CheckoutForm({
     if (!result.order) {
       setErr(translate(result.error));
     } else {
-      useTrova.getState().setCheckoutName(senderName.trim());
+      useHala.getState().setCheckoutName(senderName.trim());
       // Remember these details so the next checkout (manual or autobuy's
       // hand-off into this form) is pre-filled instead of asked again.
-      useTrova.getState().setDeliveryProfile({
+      useHala.getState().setDeliveryProfile({
         recipientName: recipientName.trim(),
         phone: phone.trim(),
         address: fullAddress,
@@ -296,10 +296,12 @@ export function CheckoutForm({
       // panel; manual checkout is untouched since `autobuy` is never set there.
       const opened = Boolean(
         autobuy &&
-          result.order.payUrl &&
-          window.open(result.order.payUrl, "_blank", "noopener,noreferrer"),
+        result.order.payUrl &&
+        window.open(result.order.payUrl, "_blank", "noopener,noreferrer"),
       );
-      const placed = opened ? { ...result.order, autoOpened: true } : result.order;
+      const placed = opened
+        ? { ...result.order, autoOpened: true }
+        : result.order;
       setPlacedOrder(placed);
       onOrder(placed);
     }
@@ -311,7 +313,7 @@ export function CheckoutForm({
    *  (delivery profile, dates) is already remembered. */
   function orderAgain() {
     if (!placedOrder) return;
-    placedOrder.items.forEach((item) => useTrova.getState().addProduct(item));
+    placedOrder.items.forEach((item) => useHala.getState().addProduct(item));
     setPlacedOrder(null);
   }
 
@@ -354,10 +356,8 @@ export function CheckoutForm({
               ))}
             </span>
             <span className="cf-picked-txt">
-              <b>
-                {translate("{n} items", { n: placedOrder.items.length })}
-              </b>{" "}
-              · {fmtPrice(placedOrder.total, placedOrder.currency)}
+              <b>{translate("{n} items", { n: placedOrder.items.length })}</b> ·{" "}
+              {fmtPrice(placedOrder.total, placedOrder.currency)}
             </span>
           </div>
           <div className="sub">
@@ -675,19 +675,19 @@ export function CheckoutForm({
           </div>
 
           <div className="cf-addr-city">
-          <div className="cf-field cf-addr-field">
-            <label>{translate("Delivery address")}</label>
-            <input
-              className={
-                "addr-input" + (address && !addressValid ? " invalid" : "")
-              }
-              autoComplete="off"
-              value={address}
-              onChange={(event) => setAddress(event.target.value)}
-              onBlur={() => setTimeout(() => setAddrResults([]), 180)}
-              placeholder={translate("Street, area, landmark")}
-            />
-            {addrResults.length > 0 && (
+            <div className="cf-field cf-addr-field">
+              <label>{translate("Delivery address")}</label>
+              <input
+                className={
+                  "addr-input" + (address && !addressValid ? " invalid" : "")
+                }
+                autoComplete="off"
+                value={address}
+                onChange={(event) => setAddress(event.target.value)}
+                onBlur={() => setTimeout(() => setAddrResults([]), 180)}
+                placeholder={translate("Street, area, landmark")}
+              />
+              {addrResults.length > 0 && (
                 <div className="cf-addr-suggest">
                   {addrResults.map((result, index) => (
                     <button
@@ -703,83 +703,83 @@ export function CheckoutForm({
                   ))}
                 </div>
               )}
-            {address.trim() !== "" && !addressValid && (
-              <span className="cf-err">
-                {translate("Add a bit more detail to the address")}
-              </span>
-            )}
-          </div>
-          <div className="cf-field cf-city-field">
-            <label>{translate("Deliver to (city)")}</label>
-            {city ? (
-              <div className="cf-city-chosen">
-                <Icon name="pin" size={15} />
-                <b>{city}</b>
-                <button
-                  className="cf-city-change"
-                  onClick={() => {
-                    setCity("");
-                    setDate(null);
-                    setDateText(null);
-                  }}
-                >
-                  {translate("Change")}
-                </button>
-              </div>
-            ) : (
-              <>
-                <div className="cf-city-input-row">
-                  <input
-                    className="addr-input"
-                    value={citySearch}
-                    onChange={(event) => setCitySearch(event.target.value)}
-                    placeholder={translate(
-                      "Type a city or local name — e.g. Doha, Al Rayyan…",
-                    )}
-                  />
-                  {cityLoading && (
-                    <span className="llm-dot cf-city-loading">
-                      <i />
-                      <i />
-                      <i />
-                    </span>
-                  )}
+              {address.trim() !== "" && !addressValid && (
+                <span className="cf-err">
+                  {translate("Add a bit more detail to the address")}
+                </span>
+              )}
+            </div>
+            <div className="cf-field cf-city-field">
+              <label>{translate("Deliver to (city)")}</label>
+              {city ? (
+                <div className="cf-city-chosen">
+                  <Icon name="pin" size={15} />
+                  <b>{city}</b>
+                  <button
+                    className="cf-city-change"
+                    onClick={() => {
+                      setCity("");
+                      setDate(null);
+                      setDateText(null);
+                    }}
+                  >
+                    {translate("Change")}
+                  </button>
                 </div>
-                {cityResults.length > 0 && (
-                  // Absolutely positioned (like .cf-addr-suggest) so showing
-                  // results doesn't grow this field's box taller than the
-                  // address field beside it — both stay the same height
-                  // whether or not a dropdown is open.
-                  <div className="cf-addr-suggest cf-city-suggest">
-                    {cityResults.map((city) => (
-                      <button
-                        type="button"
-                        key={city.key}
-                        className="cf-addr-opt"
-                        onClick={() => {
-                          setCity(city.name);
-                          setCitySearch("");
-                          setCityResults([]);
-                        }}
-                      >
-                        <Icon name="pin" size={13} />
-                        <span>{city.name}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-                {!cityLoading &&
-                  citySearch.trim().length >= 2 &&
-                  cityResults.length === 0 && (
-                    <span className="cf-err">
-                      {translate(
-                        "No cities found — try a different spelling",
+              ) : (
+                <>
+                  <div className="cf-city-input-row">
+                    <input
+                      className="addr-input"
+                      value={citySearch}
+                      onChange={(event) => setCitySearch(event.target.value)}
+                      placeholder={translate(
+                        "Type a city or local name — e.g. Doha, Al Rayyan…",
                       )}
-                    </span>
+                    />
+                    {cityLoading && (
+                      <span className="llm-dot cf-city-loading">
+                        <i />
+                        <i />
+                        <i />
+                      </span>
+                    )}
+                  </div>
+                  {cityResults.length > 0 && (
+                    // Absolutely positioned (like .cf-addr-suggest) so showing
+                    // results doesn't grow this field's box taller than the
+                    // address field beside it — both stay the same height
+                    // whether or not a dropdown is open.
+                    <div className="cf-addr-suggest cf-city-suggest">
+                      {cityResults.map((city) => (
+                        <button
+                          type="button"
+                          key={city.key}
+                          className="cf-addr-opt"
+                          onClick={() => {
+                            setCity(city.name);
+                            setCitySearch("");
+                            setCityResults([]);
+                          }}
+                        >
+                          <Icon name="pin" size={13} />
+                          <span>{city.name}</span>
+                        </button>
+                      ))}
+                    </div>
                   )}
-              </>
-            )}
-          </div>
+                  {!cityLoading &&
+                    citySearch.trim().length >= 2 &&
+                    cityResults.length === 0 && (
+                      <span className="cf-err">
+                        {translate(
+                          "No cities found — try a different spelling",
+                        )}
+                      </span>
+                    )}
+                </>
+              )}
+            </div>
           </div>
 
           {/* Map: visible once there's a city OR a confirmed pin (so "use my
@@ -882,8 +882,7 @@ export function CheckoutForm({
               />
               <span
                 className={
-                  "cf-giftnote-count" +
-                  (giftMsg.length >= 270 ? " warn" : "")
+                  "cf-giftnote-count" + (giftMsg.length >= 270 ? " warn" : "")
                 }
               >
                 {giftMsg.length}/300
@@ -891,9 +890,7 @@ export function CheckoutForm({
             </div>
           )}
 
-          {displayedError && (
-            <div className="sl-warning">{displayedError}</div>
-          )}
+          {displayedError && <div className="sl-warning">{displayedError}</div>}
 
           <div className="totrow grand" style={{ marginTop: 4 }}>
             <span>{translate("Items subtotal")}</span>

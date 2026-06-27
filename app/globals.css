@@ -1,6 +1,6 @@
 /* ===========================================================
-   Trova - globals.css - Snoonu brand: signature red + gold
-   Tailwind v4 base + the full Trova design system (ported).
+   Hala - globals.css - Snoonu brand: signature red + gold
+   Tailwind v4 base + the full Hala design system (ported).
    =========================================================== */
 @import "tailwindcss";
 
@@ -3744,7 +3744,7 @@ img {
   color: #fff;
   border-bottom-right-radius: 5px;
 }
-.askchat-msg.trova {
+.askchat-msg.hala {
   align-self: flex-start;
   background: #ffffff;
   border: 1px solid var(--hair-2);
@@ -6971,7 +6971,7 @@ img {
   background: #f8eced;
   cursor: crosshair;
 }
-.leaflet-trova-icon {
+.leaflet-hala-icon {
   background: transparent !important;
   border: 0 !important;
 }
@@ -6997,7 +6997,7 @@ img {
 .leaflet-hub-ring {
   display: none;
 }
-.leaflet-trova-tip {
+.leaflet-hala-tip {
   background: #220609 !important;
   color: #fff !important;
   border: 0 !important;
@@ -7009,7 +7009,7 @@ img {
   line-height: 1.4 !important;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25) !important;
 }
-.leaflet-trova-tip b {
+.leaflet-hala-tip b {
   font-weight: 800;
   display: block;
   margin-bottom: 2px;
@@ -8489,6 +8489,9 @@ img {
   margin-bottom: 14px;
 }
 .sku-tag {
+  display: flex;
+  align-items: center;
+  gap: 3px;
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;

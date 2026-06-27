@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import NextImage from "next/image";
 import { Icon } from "@/components/ui/Icon";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { useTranslate } from "@/hooks/useTranslate";
 
 /**
@@ -18,9 +18,9 @@ export function OccasionCountdown({
   onShopNow: (query: string) => void;
   onClose?: () => void;
 }) {
-  const banners = useTrova((s) => s.banners);
-  const loadBanners = useTrova((s) => s.loadBanners);
-  const lang = useTrova((s) => s.lang);
+  const banners = useHala((s) => s.banners);
+  const loadBanners = useHala((s) => s.loadBanners);
+  const lang = useHala((s) => s.lang);
   const translate = useTranslate();
   const [idx, setIdx] = useState(0);
   const [dismissed, setDismissed] = useState(false);
@@ -144,7 +144,10 @@ export function OccasionCountdown({
               {translate("Shop now →")}
             </button>
             {showTimer && (
-              <div className="occ-chips-row" aria-label={translate("offer ends in")}>
+              <div
+                className="occ-chips-row"
+                aria-label={translate("offer ends in")}
+              >
                 <div className="occ-chip">
                   <b>{String(hrs).padStart(2, "0")}</b>
                   <span>{translate("h")}</span>

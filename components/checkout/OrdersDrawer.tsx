@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { fmtPrice } from "@/lib/format/money";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import type { Order } from "@/types";
 import { useTranslate } from "@/hooks/useTranslate";
 
@@ -15,12 +15,12 @@ function payable(order: Order): boolean {
 }
 
 export function OrdersDrawer() {
-  const orders = useTrova((store) => store.orders);
-  const ordersOpen = useTrova((store) => store.ordersOpen);
-  const setOrdersOpen = useTrova((store) => store.setOrdersOpen);
-  const reorderToCart = useTrova((store) => store.reorderToCart);
-  const pushAttach = useTrova((store) => store.pushAttach);
-  const patchConv = useTrova((store) => store.patchConv);
+  const orders = useHala((store) => store.orders);
+  const ordersOpen = useHala((store) => store.ordersOpen);
+  const setOrdersOpen = useHala((store) => store.setOrdersOpen);
+  const reorderToCart = useHala((store) => store.reorderToCart);
+  const pushAttach = useHala((store) => store.pushAttach);
+  const patchConv = useHala((store) => store.patchConv);
   const translate = useTranslate();
 
   const onReorder = (order: Order) => {

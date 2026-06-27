@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { fmtPrice } from "@/lib/format/money";
 import type { DeliveryQuote } from "@/types";
 import { useTranslate } from "@/hooks/useTranslate";
@@ -41,7 +41,7 @@ export function DatePicker({
   selected?: string | null;
   onPick: (iso: string, label: string, sameDay: boolean) => void;
 }) {
-  const productId = useTrova((store) => store.cart[0]?.id);
+  const productId = useHala((store) => store.cart[0]?.id);
   const translate = useTranslate();
   const [avail, setAvail] = useState<Record<string, DeliveryQuote | null>>({});
   const [loading, setLoading] = useState(false);

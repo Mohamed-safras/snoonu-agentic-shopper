@@ -22,7 +22,7 @@ import { WarningAlert } from "./WarningAlert";
 import { GatedReveal } from "./GatedReveal";
 import { AutobuyConfirm } from "./AutobuyConfirm";
 import { AgentSteps } from "./AgentSteps";
-import { useTrova, type ChatMessage } from "@/store";
+import { useHala, type ChatMessage } from "@/store";
 import type { UiDirective } from "@/types";
 import { useTranslate } from "@/hooks/useTranslate";
 
@@ -81,25 +81,25 @@ function attachTitle(directive: UiDirective): string {
  * and piece of data comes from the store.
  */
 export function MessageView({ message }: { message: ChatMessage }) {
-  const lang = useTrova((store) => store.lang);
+  const lang = useHala((store) => store.lang);
   const translate = useTranslate();
-  const conv = useTrova((store) => store.conv);
-  const dislikes = useTrova((store) => store.dislikes);
-  const favorites = useTrova((store) => store.favorites);
-  const toggleFav = useTrova((store) => store.toggleFav);
-  const addDislike = useTrova((store) => store.addDislike);
-  const userSend = useTrova((store) => store.userSend);
-  const handleChip = useTrova((store) => store.handleChip);
-  const onOpenProduct = useTrova((store) => store.setSkuProduct);
-  const onAdd = useTrova((store) => store.addProduct);
-  const pushAttach = useTrova((store) => store.pushAttach);
+  const conv = useHala((store) => store.conv);
+  const dislikes = useHala((store) => store.dislikes);
+  const favorites = useHala((store) => store.favorites);
+  const toggleFav = useHala((store) => store.toggleFav);
+  const addDislike = useHala((store) => store.addDislike);
+  const userSend = useHala((store) => store.userSend);
+  const handleChip = useHala((store) => store.handleChip);
+  const onOpenProduct = useHala((store) => store.setSkuProduct);
+  const onAdd = useHala((store) => store.addProduct);
+  const pushAttach = useHala((store) => store.pushAttach);
   // A real order just succeeded — remember it, drop the ordered items from
   // the cart, and show the "Order placed" card (replacing any existing one
   // so re-placing after editing updates in place instead of stacking).
-  const onOrder = useTrova((store) => store.recordOrderSuccess);
-  const setComposerDraft = useTrova((store) => store.setComposerDraft);
-  const resendUserMessage = useTrova((store) => store.resendUserMessage);
-  const playing = useTrova((store) => store.playing);
+  const onOrder = useHala((store) => store.recordOrderSuccess);
+  const setComposerDraft = useHala((store) => store.setComposerDraft);
+  const resendUserMessage = useHala((store) => store.resendUserMessage);
+  const playing = useHala((store) => store.playing);
   const [viewerIndex, setViewerIndex] = useState<number | null>(null);
 
   function renderAttach(attach: Extract<ChatMessage, { kind: "attach" }>) {
@@ -213,15 +213,21 @@ export function MessageView({ message }: { message: ChatMessage }) {
   }
 
   const cls =
-    lang === "si" ? "si-text" : lang === "ta" ? "ta-text" : lang === "ar" ? "ar-text" : "";
+    lang === "si"
+      ? "si-text"
+      : lang === "ta"
+        ? "ta-text"
+        : lang === "ar"
+          ? "ar-text"
+          : "";
 
   if (message.kind === "typing" || message.kind === "thinking") {
     return (
       <div className="row">
         <div className="avatar">
           <Image
-            src="/trova-logo.svg"
-            alt={translate("Trova")}
+            src="/hala-logo.svg"
+            alt={translate("Hala")}
             width={34}
             height={34}
             unoptimized
@@ -295,8 +301,8 @@ export function MessageView({ message }: { message: ChatMessage }) {
       ) : (
         <div className="avatar">
           <Image
-            src="/trova-logo.svg"
-            alt={translate("Trova")}
+            src="/hala-logo.svg"
+            alt={translate("Hala")}
             width={34}
             height={34}
             unoptimized
@@ -325,7 +331,7 @@ export function MessageView({ message }: { message: ChatMessage }) {
           <div className={"bubble" + (isUser ? " has-edit" : "")}>
             <p
               className={(message.lead && !isUser ? "lead " : "") + cls}
-              dir={lang === "ar" ? "rtl" : undefined}
+              dir="auto"
             >
               {message.text}
             </p>

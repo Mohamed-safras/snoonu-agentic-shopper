@@ -9,7 +9,7 @@ import { CommandPalette } from "./CommandPalette";
 import { ChatAutosuggest } from "./ChatAutosuggest";
 import { saveRecent } from "@/lib/catalog/recents";
 import { useVoiceInput } from "@/hooks/useVoiceInput";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { matchCommand, type CommandId } from "@/lib/ui/commands";
 import Link from "next/link";
 import { useTranslate } from "@/hooks/useTranslate";
@@ -18,19 +18,19 @@ import { useTranslate } from "@/hooks/useTranslate";
 // slash-command menu, and drives every action through the store.
 const Composer: React.FC = () => {
   const textInputRef = useRef<HTMLTextAreaElement>(null);
-  const lang = useTrova((store) => store.lang);
-  const playing = useTrova((store) => store.playing);
-  const messages = useTrova((store) => store.messages);
-  const clearThread = useTrova((store) => store.clearThread);
-  const showToast = useTrova((store) => store.showToast);
-  const userSend = useTrova((store) => store.userSend);
-  const pushAttach = useTrova((store) => store.pushAttach);
-  const setCartOpen = useTrova((store) => store.setCartOpen);
-  const setOrdersOpen = useTrova((store) => store.setOrdersOpen);
-  const startTracking = useTrova((store) => store.startTracking);
-  const startDelivery = useTrova((store) => store.startDelivery);
-  const pushWatchlistUpdate = useTrova((store) => store.pushWatchlistUpdate);
-  const stopGeneration = useTrova((store) => store.stopGeneration);
+  const lang = useHala((store) => store.lang);
+  const playing = useHala((store) => store.playing);
+  const messages = useHala((store) => store.messages);
+  const clearThread = useHala((store) => store.clearThread);
+  const showToast = useHala((store) => store.showToast);
+  const userSend = useHala((store) => store.userSend);
+  const pushAttach = useHala((store) => store.pushAttach);
+  const setCartOpen = useHala((store) => store.setCartOpen);
+  const setOrdersOpen = useHala((store) => store.setOrdersOpen);
+  const startTracking = useHala((store) => store.startTracking);
+  const startDelivery = useHala((store) => store.startDelivery);
+  const pushWatchlistUpdate = useHala((store) => store.pushWatchlistUpdate);
+  const stopGeneration = useHala((store) => store.stopGeneration);
   const translate = useTranslate();
 
   const [textInput, setTextInput] = useState("");
@@ -45,12 +45,12 @@ const Composer: React.FC = () => {
   // subscription callback (the React-recommended place to setState in response
   // to an external system — not synchronously in the effect body).
   useEffect(() => {
-    return useTrova.subscribe((state, prev) => {
+    return useHala.subscribe((state, prev) => {
       const draft = state.composerDraft;
       if (draft == null || draft === prev.composerDraft) return;
       setTextInput(draft);
       setTextInputFocused(false);
-      useTrova.getState().setComposerDraft(null);
+      useHala.getState().setComposerDraft(null);
       const current = textInputRef.current;
       if (current) {
         current.focus();

@@ -11,7 +11,7 @@ import {
   warmUpSpeech,
   isSpeechSessionActive,
 } from "@/lib/speech/speak";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import type { Product, ProductComparison } from "@/types";
 import { useTranslate } from "@/hooks/useTranslate";
 
@@ -87,10 +87,10 @@ export function CompareCard({
   savedDetail?: Product[];
   savedComparison?: ProductComparison | null;
 }) {
-  const addProduct = useTrova((store) => store.addProduct);
-  const setSkuProduct = useTrova((store) => store.setSkuProduct);
-  const saveCompareResult = useTrova((store) => store.saveCompareResult);
-  const lang = useTrova((store) => store.lang);
+  const addProduct = useHala((store) => store.addProduct);
+  const setSkuProduct = useHala((store) => store.setSkuProduct);
+  const saveCompareResult = useHala((store) => store.saveCompareResult);
+  const lang = useHala((store) => store.lang);
   const translate = useTranslate();
   // A card whose comparison was already computed carries it on the directive, so
   // a reload renders the SAVED result — no re-fetch, no loader, no re-speaking.
@@ -123,7 +123,7 @@ export function CompareCard({
     // Already have this exact result (saved card on mount, or unchanged) → skip.
     if (key === loadedKey) return;
     let cancelled = false;
-    if (useTrova.getState().speak) {
+    if (useHala.getState().speak) {
       stopSpeaking(); // clear any prior queued speech before this comparison
       warmUpSpeech(); // warm TTS during the compare call
     }
@@ -149,7 +149,7 @@ export function CompareCard({
             saveCompareResult(messageId, resolved, data.comparison);
           // Read the recommendation aloud once — only for a card driven by a real
           // gesture this session, never one restored on a page reload.
-          const { speak, lang: spokenLang } = useTrova.getState();
+          const { speak, lang: spokenLang } = useHala.getState();
           const recommended = resolved[data.comparison.recommendationIndex];
           if (
             speak &&

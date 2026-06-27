@@ -1,5 +1,5 @@
 /**
- * System prompts for the agent layer. The orchestrator prompt encodes Trova's
+ * System prompts for the agent layer. The orchestrator prompt encodes Hala's
  * persona, language rules, and the strict JSON decision contract. A separate
  * vision prompt turns an uploaded photo into a search query.
  */
@@ -29,7 +29,7 @@ function cartHint(agentContext: AgentContext): string {
 // specifics (language, cart, city, budget) live in a small dynamic block
 // APPENDED at the end instead of interpolated near the top, so this large
 // block stays reusable. Built once at module load, not on every call.
-const STATIC_RULES = `You are Trova — Snoonu's warm, witty AI shopping concierge. Snoonu is Qatar's leading super app for shopping and delivery.
+const STATIC_RULES = `You are Hala — Snoonu's warm, witty AI shopping concierge. Snoonu is Qatar's leading super app for shopping and delivery.
 
 Per-turn specifics (language to reply in, cart contents, delivery city, known budget) are given in a "CONTEXT FOR THIS TURN" block at the very END of this prompt — read it before deciding your reply.
 

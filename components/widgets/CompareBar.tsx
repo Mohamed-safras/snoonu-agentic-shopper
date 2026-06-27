@@ -1,7 +1,7 @@
 "use client";
 import { Icon } from "@/components/ui/Icon";
 import { ProductImage } from "@/components/product/ProductImage";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import type { Product } from "@/types";
 import { useTranslate } from "@/hooks/useTranslate";
 
@@ -16,10 +16,10 @@ export function CompareBar({
 }: {
   onCompare?: (products: Product[]) => void;
 }) {
-  const compareItems = useTrova((store) => store.compareItems);
-  const toggleCompare = useTrova((store) => store.toggleCompare);
-  const clearCompare = useTrova((store) => store.clearCompare);
-  const pushAttach = useTrova((store) => store.pushAttach);
+  const compareItems = useHala((store) => store.compareItems);
+  const toggleCompare = useHala((store) => store.toggleCompare);
+  const clearCompare = useHala((store) => store.clearCompare);
+  const pushAttach = useHala((store) => store.pushAttach);
   const translate = useTranslate();
 
   if (!compareItems.length) return null;
@@ -43,7 +43,9 @@ export function CompareBar({
             className="compare-bar-thumb"
             onClick={() => toggleCompare(product)}
             title={translate("Remove {name}", { name: product.name })}
-            aria-label={translate("Remove {name} from compare", { name: product.name })}
+            aria-label={translate("Remove {name} from compare", {
+              name: product.name,
+            })}
           >
             <ProductImage product={product} />
             <span className="compare-bar-x">
@@ -57,7 +59,8 @@ export function CompareBar({
         onClick={openCompare}
         disabled={compareItems.length < 2}
       >
-        <Icon name="compare" size={15} /> {translate("Compare ({n})", { n: compareItems.length })}
+        <Icon name="compare" size={15} />{" "}
+        {translate("Compare ({n})", { n: compareItems.length })}
       </button>
       <button
         className="compare-bar-clear"

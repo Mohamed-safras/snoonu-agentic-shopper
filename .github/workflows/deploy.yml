@@ -7,8 +7,8 @@ on:
 env:
   PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
   REGION: ${{ vars.GCP_REGION }}
-  SERVICE: trova
-  REPOSITORY: trova-images
+  SERVICE: hala
+  REPOSITORY: hala-images
 
 # id-token: write is required for Workload Identity Federation — no
 # service-account key is downloaded or stored anywhere (blocked by org policy).
@@ -54,11 +54,11 @@ jobs:
           # v3 changed the "wait" default to false — keep waiting so the job
           # only succeeds once the revision is actually serving.
           wait: true
-          # Run as trova-runtime (granted Vertex AI + Secret Manager access in
+          # Run as hala-runtime (granted Vertex AI + Secret Manager access in
           # setup) — without this, Cloud Run falls back to the default compute
           # service account, which has none of those permissions. Public chat
           # UI needs unauthenticated access, or every visitor gets a 403.
-          flags: --service-account=trova-runtime@${{ env.PROJECT_ID }}.iam.gserviceaccount.com --allow-unauthenticated
+          flags: --service-account=hala-runtime@${{ env.PROJECT_ID }}.iam.gserviceaccount.com --allow-unauthenticated
           env_vars: |
             DEFAULT_LLM_PROVIDER=gemini
             GOOGLE_GENAI_USE_VERTEXAI=true

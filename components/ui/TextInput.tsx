@@ -1,6 +1,6 @@
 "use client";
 import { useTranslate } from "@/hooks/useTranslate";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import React, { RefObject, SetStateAction, useEffect, useState } from "react";
 
 export interface TextInputProps {
@@ -24,7 +24,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   handleSend,
 }) => {
   const [phIdx, setPhIdx] = useState(0);
-  const placeholders = useTrova((store) => store.placeholders);
+  const placeholders = useHala((store) => store.placeholders);
   const translate = useTranslate();
 
   // Placeholder rotates through crisp LLM-phrased example queries (dynamic),

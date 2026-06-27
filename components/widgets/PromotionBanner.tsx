@@ -1,6 +1,6 @@
 "use client";
 import { OccasionCountdown } from "./OccasionCountdown";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 
 /**
  * Promo banner slot. Self-contained: reads its open/closed state and the send
@@ -8,10 +8,10 @@ import { useTrova } from "@/store";
  * conversation starts, or forced via the header toggle).
  */
 const PromotionBanner = () => {
-  const bannerForced = useTrova((store) => store.bannerForced);
-  const setBannerForced = useTrova((store) => store.setBannerForced);
-  const userSend = useTrova((store) => store.userSend);
-  const conversing = useTrova((store) => store.messages.length > 0);
+  const bannerForced = useHala((store) => store.bannerForced);
+  const setBannerForced = useHala((store) => store.setBannerForced);
+  const userSend = useHala((store) => store.userSend);
+  const conversing = useHala((store) => store.messages.length > 0);
   const bannerOpen = bannerForced ? bannerForced === "open" : !conversing;
 
   return (

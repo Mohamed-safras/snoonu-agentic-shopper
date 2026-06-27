@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { useTranslate } from "@/hooks/useTranslate";
 
 interface CategoryTile {
@@ -24,7 +24,7 @@ function pastel(name: string): string {
  * mobile the grid scrolls horizontally with page dots tracking the swipe.
  */
 export function PopularCategories() {
-  const userSend = useTrova((store) => store.userSend);
+  const userSend = useHala((store) => store.userSend);
   const translate = useTranslate();
   const [tiles, setTiles] = useState<CategoryTile[]>([]);
   const [broken, setBroken] = useState<Set<string>>(new Set());
@@ -48,7 +48,8 @@ export function PopularCategories() {
         if (list.length) setTiles(list);
         else if (attempt < 3) setTimeout(() => load(attempt + 1), 1500);
       } catch {
-        if (!cancelled && attempt < 3) setTimeout(() => load(attempt + 1), 1500);
+        if (!cancelled && attempt < 3)
+          setTimeout(() => load(attempt + 1), 1500);
       }
     };
     void load(0);
@@ -129,7 +130,11 @@ export function PopularCategories() {
         ))}
       </div>
       {pageCount > 1 && (
-        <div className="popcat-dots" role="tablist" aria-label={translate("Category pages")}>
+        <div
+          className="popcat-dots"
+          role="tablist"
+          aria-label={translate("Category pages")}
+        >
           {Array.from({ length: pageCount }, (_, page) => (
             <button
               key={page}

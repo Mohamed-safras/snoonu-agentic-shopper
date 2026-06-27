@@ -4,7 +4,7 @@ import { Icon } from "@/components/ui/Icon";
 import { ProductImage } from "@/components/product/ProductImage";
 import { fmtPrice } from "@/lib/format/money";
 import { enqueueSpeech, stopSpeaking, warmUpSpeech } from "@/lib/speech/speak";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import type { Hamper, HamperSlot } from "@/lib/agents/bundles/hamper";
 import type { Product } from "@/types";
 import { useTranslate } from "@/hooks/useTranslate";
@@ -39,13 +39,13 @@ function selectedPicks(slots: HamperSlot[]): number[] {
  * then add it to the cart or send the whole hamper as a gift.
  */
 export function HamperBuilder() {
-  const occasion = useTrova((store) => store.conv.occasion);
-  const addProduct = useTrova((store) => store.addProduct);
-  const showToast = useTrova((store) => store.showToast);
-  const startGiftCheckout = useTrova((store) => store.startGiftCheckout);
-  const setSkuProduct = useTrova((store) => store.setSkuProduct);
-  const speak = useTrova((store) => store.speak);
-  const language = useTrova((store) => store.lang);
+  const occasion = useHala((store) => store.conv.occasion);
+  const addProduct = useHala((store) => store.addProduct);
+  const showToast = useHala((store) => store.showToast);
+  const startGiftCheckout = useHala((store) => store.startGiftCheckout);
+  const setSkuProduct = useHala((store) => store.setSkuProduct);
+  const speak = useHala((store) => store.speak);
+  const language = useHala((store) => store.lang);
   const translate = useTranslate();
 
   const [budgetInput, setBudgetInput] = useState("");

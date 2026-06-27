@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "../ui/Icon";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { VOICE_OPTIONS_BY_LANGUAGE } from "@/lib/speech/voices";
 import { languageName } from "@/lib/i18n/lang";
 import { previewVoice, primeSpeech, stopSpeaking } from "@/lib/speech/speak";
@@ -15,11 +15,11 @@ import { useStrings, useTranslate } from "@/hooks/useTranslate";
  * first.
  */
 export function VoiceSettings() {
-  const language = useTrova((store) => store.lang);
-  const speak = useTrova((store) => store.speak);
-  const toggleSpeak = useTrova((store) => store.toggleSpeak);
-  const voiceByLanguage = useTrova((store) => store.voiceByLanguage);
-  const setVoiceForLanguage = useTrova((store) => store.setVoiceForLanguage);
+  const language = useHala((store) => store.lang);
+  const speak = useHala((store) => store.speak);
+  const toggleSpeak = useHala((store) => store.toggleSpeak);
+  const voiceByLanguage = useHala((store) => store.voiceByLanguage);
+  const setVoiceForLanguage = useHala((store) => store.setVoiceForLanguage);
   const strings = useStrings();
   const translate = useTranslate();
   const [open, setOpen] = useState(false);

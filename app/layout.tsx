@@ -42,10 +42,10 @@ const notoTamil = Noto_Sans_Tamil({
 });
 
 export const metadata: Metadata = {
-  title: "Trova · Snoonu AI Shopping Concierge",
+  title: "Hala · Snoonu AI Shopping Concierge",
   description:
-    "Trova — Snoonu's warm AI shopping concierge. Discover gifts, get live delivery quotes, and check out, all in one conversation.",
-  icons: { icon: "/trova-logo.svg" },
+    "Hala — Snoonu's warm AI shopping concierge. Discover gifts, get live delivery quotes, and check out, all in one conversation.",
+  icons: { icon: "/hala-logo.svg" },
 };
 
 export const viewport: Viewport = {

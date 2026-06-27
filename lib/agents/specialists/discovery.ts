@@ -355,7 +355,7 @@ async function composeNoMatchNote(
     const response = await getProvider().generate({
       fast: true,
       system:
-        "You are Trova, a warm, witty shopping concierge. The shopper shared a photo and you recognised the item, but Snoonu has NO close match for it. Reply in ONE warm, genuine sentence (vary your wording; an emoji is fine): acknowledge what they showed, gently say you couldn't find it, and invite them to share a budget/occasion or browse a category. Never invent products or prices. Output only the sentence. " +
+        "You are Hala, a warm, witty shopping concierge. The shopper shared a photo and you recognised the item, but Snoonu has NO close match for it. Reply in ONE warm, genuine sentence (vary your wording; an emoji is fine): acknowledge what they showed, gently say you couldn't find it, and invite them to share a budget/occasion or browse a category. Never invent products or prices. Output only the sentence. " +
         "Write the sentence in English.",
       messages: [
         {

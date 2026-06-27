@@ -1,10 +1,7 @@
 "use client";
 import { useEffect } from "react";
-import { useTrova, hydrateTrova } from "@/store";
-import {
-  warmUpSpeech,
-  registerSpeechSessionGesture,
-} from "@/lib/speech/speak";
+import { useHala, hydrateHala } from "@/store";
+import { warmUpSpeech, registerSpeechSessionGesture } from "@/lib/speech/speak";
 import { useReadAloud } from "@/hooks/useReadAloud";
 import { refreshWatchlist } from "@/lib/catalog/watch";
 
@@ -14,23 +11,23 @@ import { refreshWatchlist } from "@/lib/catalog/watch";
  * in its own module (read-aloud → useReadAloud, watchlist → refreshWatchlist).
  */
 export function Bootstrap() {
-  const lang = useTrova((store) => store.lang);
-  const loadSuggestions = useTrova((store) => store.loadSuggestions);
+  const lang = useHala((store) => store.lang);
+  const loadSuggestions = useHala((store) => store.loadSuggestions);
 
   // 1) Restore persisted state + theme on mount; prefetch translations; warm TTS;
   //    refresh the watchlist; track OS theme changes.
   useEffect(() => {
-    hydrateTrova();
-    useTrova.getState().initTheme();
+    hydrateHala();
+    useHala.getState().initTheme();
     // Warm ALL languages in the background so switching the language tab is
     // instant + accurate (no flash of English while a fetch resolves).
-    const { loadLang } = useTrova.getState();
+    const { loadLang } = useHala.getState();
     (["ar", "si", "ta"] as const).forEach(
       (language) => void loadLang(language),
     );
     // Warm the TTS connection so the first read-aloud reply isn't delayed by a
     // cold connection (first synthesis is ~3s, later ones ~250ms).
-    if (useTrova.getState().speak) warmUpSpeech();
+    if (useHala.getState().speak) warmUpSpeech();
     // After rehydration settles, refresh the watchlist (price drop / restock).
     const watchTimer = setTimeout(() => void refreshWatchlist(), 1500);
 
@@ -51,6 +48,18 @@ export function Bootstrap() {
   useEffect(() => {
     void loadSuggestions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
+
+  // 4) Sync <html lang> with the active language (for `:lang()` CSS font
+  //    selectors + accessibility). Deliberately NOT setting `dir="rtl"` here —
+  //    that would mirror every flex row app-wide (icon order, button order,
+  //    chip rows), and this CSS uses hardcoded physical left/right positioning
+  //    in many places that wouldn't follow, producing a half-mirrored mess.
+  //    Arabic TEXT direction is handled per-element via dir="auto" instead
+  //    (see MessageView.tsx, Intro.tsx), which right-aligns/flows Arabic
+  //    content correctly without flipping the surrounding layout.
+  useEffect(() => {
+    document.documentElement.lang = lang;
   }, [lang]);
 
   return null;

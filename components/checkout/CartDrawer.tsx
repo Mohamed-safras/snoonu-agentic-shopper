@@ -1,18 +1,18 @@
 "use client";
 import { Icon } from "@/components/ui/Icon";
 import { ProductImage } from "@/components/product/ProductImage";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { fmtPrice } from "@/lib/format/money";
 import Link from "next/link";
 import { useStrings, useTranslate } from "@/hooks/useTranslate";
 
 export function CartDrawer() {
-  const cart = useTrova((store) => store.cart);
-  const setQty = useTrova((store) => store.setQty);
-  const removeItem = useTrova((store) => store.removeItem);
-  const cartOpen = useTrova((store) => store.cartOpen);
-  const setCartOpen = useTrova((store) => store.setCartOpen);
-  const startDelivery = useTrova((store) => store.startDelivery);
+  const cart = useHala((store) => store.cart);
+  const setQty = useHala((store) => store.setQty);
+  const removeItem = useHala((store) => store.removeItem);
+  const cartOpen = useHala((store) => store.cartOpen);
+  const setCartOpen = useHala((store) => store.setCartOpen);
+  const startDelivery = useHala((store) => store.startDelivery);
 
   const text = useStrings();
   const translate = useTranslate();

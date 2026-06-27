@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { findEarliestDate } from "@/lib/checkout/findEarliestDate";
 import { submitOrder } from "@/lib/checkout/submitOrder";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { useTranslate } from "@/hooks/useTranslate";
 import type { DeliveryProfile } from "@/store/slices/prefs/types";
 import type { Product } from "@/types";
@@ -15,13 +15,13 @@ import type { Product } from "@/types";
  *  profile on success so the NEXT autobuy is fully autonomous too. */
 export function useAutonomousCheckout() {
   const translate = useTranslate();
-  const addProduct = useTrova((store) => store.addProduct);
-  const removeItems = useTrova((store) => store.removeItems);
-  const pushOrderPlaced = useTrova((store) => store.pushOrderPlaced);
-  const addOrder = useTrova((store) => store.addOrder);
-  const patchConv = useTrova((store) => store.patchConv);
-  const setDeliveryProfile = useTrova((store) => store.setDeliveryProfile);
-  const showToast = useTrova((store) => store.showToast);
+  const addProduct = useHala((store) => store.addProduct);
+  const removeItems = useHala((store) => store.removeItems);
+  const pushOrderPlaced = useHala((store) => store.pushOrderPlaced);
+  const addOrder = useHala((store) => store.addOrder);
+  const patchConv = useHala((store) => store.patchConv);
+  const setDeliveryProfile = useHala((store) => store.setDeliveryProfile);
+  const showToast = useHala((store) => store.showToast);
   const [placing, setPlacing] = useState(false);
   const [error, setError] = useState("");
 
@@ -49,9 +49,11 @@ export function useAutonomousCheckout() {
       return false;
     }
     products.forEach((product) => addProduct(product));
-    const cartItems = useTrova
+    const cartItems = useHala
       .getState()
-      .cart.filter((item) => products.some((product) => product.id === item.id));
+      .cart.filter((item) =>
+        products.some((product) => product.id === item.id),
+      );
     const result = await submitOrder({
       cart: cartItems,
       recipientName: profile.recipientName,
@@ -86,7 +88,7 @@ export function useAutonomousCheckout() {
     // that panel since there's nothing left to scan.
     const opened = Boolean(
       result.order.payUrl &&
-        window.open(result.order.payUrl, "_blank", "noopener,noreferrer"),
+      window.open(result.order.payUrl, "_blank", "noopener,noreferrer"),
     );
     const order = { ...result.order, autoOpened: opened };
     setDeliveryProfile(profile);

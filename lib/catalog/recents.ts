@@ -6,8 +6,8 @@
 
 import { SKIP_WORDS } from "./skipwords";
 
-const KEY = "trova_recent_searches";
-const FREQ_KEY = "trova_search_frequency";
+const KEY = "hala_recent_searches";
+const FREQ_KEY = "hala_search_frequency";
 
 // Autobuy's internal continuity text folds feedback onto the original
 // request with this exact separator ("X — but Y — but Z…", see
@@ -25,7 +25,9 @@ export function loadRecents(): string[] {
     // (from before this filter existed) self-heal out of the rotation
     // instead of requiring the user to clear storage.
     return JSON.parse(localStorage.getItem(KEY) || "[]")
-      .filter((value: unknown) => typeof value === "string" && isCleanQuery(value))
+      .filter(
+        (value: unknown) => typeof value === "string" && isCleanQuery(value),
+      )
       .slice(0, 8);
   } catch {
     return [];

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Shelf } from "@/components/product/Shelf";
 import { loadFrequent, loadRecents } from "@/lib/catalog/recents";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import type { Product } from "@/types";
 import { useTranslate } from "@/hooks/useTranslate";
 
@@ -14,14 +14,14 @@ import { useTranslate } from "@/hooks/useTranslate";
  * turn settles. Hidden when there's no signal yet (brand-new visitor sees none).
  */
 export function ForYou() {
-  const cart = useTrova((store) => store.cart);
-  const favorites = useTrova((store) => store.favorites);
-  const dislikes = useTrova((store) => store.dislikes);
-  const playing = useTrova((store) => store.playing);
-  const addProduct = useTrova((store) => store.addProduct);
-  const toggleFav = useTrova((store) => store.toggleFav);
-  const addDislike = useTrova((store) => store.addDislike);
-  const setSkuProduct = useTrova((store) => store.setSkuProduct);
+  const cart = useHala((store) => store.cart);
+  const favorites = useHala((store) => store.favorites);
+  const dislikes = useHala((store) => store.dislikes);
+  const playing = useHala((store) => store.playing);
+  const addProduct = useHala((store) => store.addProduct);
+  const toggleFav = useHala((store) => store.toggleFav);
+  const addDislike = useHala((store) => store.addDislike);
+  const setSkuProduct = useHala((store) => store.setSkuProduct);
   const translate = useTranslate();
   const [products, setProducts] = useState<Product[]>([]);
 

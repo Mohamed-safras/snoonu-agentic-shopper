@@ -30,7 +30,8 @@ export const createAgentSlice: SliceCreator<AgentSlice> = (set, get) => ({
       }));
     // On a replay the user message is already in `messages` (and thus history);
     // pushing/adding it again would duplicate the turn.
-    if (trimmed && !opts.replay) history.push({ role: "user", content: trimmed });
+    if (trimmed && !opts.replay)
+      history.push({ role: "user", content: trimmed });
 
     if ((trimmed || images.length) && !opts.silent && !opts.replay) {
       store.addMessage({
@@ -56,7 +57,7 @@ export const createAgentSlice: SliceCreator<AgentSlice> = (set, get) => ({
       get().addMessage({
         id: assistantId,
         kind: "text",
-        role: "trova",
+        role: "hala",
         lead: true,
         text: "",
         at: Date.now(),

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { useTranslate } from "@/hooks/useTranslate";
 
 const EMOJI: Record<string, string> = {
@@ -21,7 +21,7 @@ export function GiftMessage({
   fromName?: string;
   onSave: (message: string) => void;
 }) {
-  const lang = useTrova((store) => store.lang);
+  const lang = useHala((store) => store.lang);
   const translate = useTranslate();
   const [message, setMessage] = useState("");
   const [focused, setFocused] = useState(false);

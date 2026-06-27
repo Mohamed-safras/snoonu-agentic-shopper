@@ -6,7 +6,7 @@
 "use client";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import type { TrovaState } from "./types";
+import type { HalaState } from "./types";
 import { createI18nSlice } from "./slices/i18n";
 import { createThemeSlice } from "./slices/theme";
 import { createCatalogSlice } from "./slices/catalog";
@@ -18,35 +18,35 @@ import { createConversationSlice } from "./slices/conversation";
 import { createPrefsSlice } from "./slices/prefs";
 import { createUiSlice } from "./slices/ui";
 
-export const useTrova = create<TrovaState>()(
+export const useHala = create<HalaState>()(
   persist(
-    (...a) => ({
-      ...createI18nSlice(...a),
-      ...createThemeSlice(...a),
-      ...createCatalogSlice(...a),
-      ...createChatSlice(...a),
-      ...createCartSlice(...a),
-      ...createOrdersSlice(...a),
-      ...createConversationSlice(...a),
-      ...createPrefsSlice(...a),
-      ...createAgentSlice(...a),
-      ...createUiSlice(...a),
+    (...hala) => ({
+      ...createI18nSlice(...hala),
+      ...createThemeSlice(...hala),
+      ...createCatalogSlice(...hala),
+      ...createChatSlice(...hala),
+      ...createCartSlice(...hala),
+      ...createOrdersSlice(...hala),
+      ...createConversationSlice(...hala),
+      ...createPrefsSlice(...hala),
+      ...createAgentSlice(...hala),
+      ...createUiSlice(...hala),
     }),
     {
-      name: "trova-chat",
+      name: "hala-chat",
       storage: createJSONStorage(() =>
         typeof window !== "undefined"
           ? window.localStorage
           : (undefined as unknown as Storage),
       ),
-      // Manual rehydration (see hydrateTrova) avoids SSR/client mismatch.
+      // Manual rehydration (see hydrateHala) avoids SSR/client mismatch.
       skipHydration: true,
       // Bump when a translation-cache shape/quality change means OLD persisted
       // translations must be dropped (not just merged) so they retranslate
       // fresh instead of staying stuck with stale/lower-quality cached text.
       version: 3,
       migrate: (persisted, version) => {
-        const state = persisted as TrovaState;
+        const state = persisted as HalaState;
         if (version < 2) {
           state.i18n = {};
           state.uiTranslations = {};
@@ -100,11 +100,11 @@ export const useTrova = create<TrovaState>()(
 );
 
 /** Rehydrate the persisted store on the client (call once on mount). */
-export function hydrateTrova() {
-  void useTrova.persist.rehydrate();
+export function hydrateHala() {
+  void useHala.persist.rehydrate();
 }
 
 export { nextId } from "./ids";
-export type { TrovaState } from "./types";
+export type { HalaState } from "./types";
 export type { SendOptions } from "./slices/agent/types";
 export type { ChatMessage, Chip, UiDirective } from "@/types";

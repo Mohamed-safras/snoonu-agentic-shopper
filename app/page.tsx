@@ -8,12 +8,12 @@ import { OrdersDrawer } from "@/components/checkout/OrdersDrawer";
 import PromotionBanner from "@/components/widgets/PromotionBanner";
 import Composer from "@/components/widgets/Composer";
 import { CompareBar } from "@/components/widgets/CompareBar";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 
 export default function Home() {
-  const occasion = useTrova((store) => store.conv.occasion);
-  const toast = useTrova((store) => store.toast);
-  const skuProduct = useTrova((store) => store.skuProduct);
+  const occasion = useHala((store) => store.conv.occasion);
+  const toast = useHala((store) => store.toast);
+  const skuProduct = useHala((store) => store.skuProduct);
 
   return (
     <div id="app" data-mood={occasion || ""}>

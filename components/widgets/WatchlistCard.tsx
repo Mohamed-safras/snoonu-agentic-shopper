@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { ProductImage } from "@/components/product/ProductImage";
 import { fmtPrice } from "@/lib/format/money";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import type { Product } from "@/types";
 import type { WatchItem } from "@/store/slices/prefs/types";
 import { useTranslate } from "@/hooks/useTranslate";
@@ -27,10 +27,10 @@ function asProduct(watch: WatchItem): Product {
  * just lists the current snapshots with add / open / stop-watching actions.
  */
 export function WatchlistCard() {
-  const watches = useTrova((store) => store.watches);
-  const removeWatch = useTrova((store) => store.removeWatch);
-  const addProduct = useTrova((store) => store.addProduct);
-  const setSkuProduct = useTrova((store) => store.setSkuProduct);
+  const watches = useHala((store) => store.watches);
+  const removeWatch = useHala((store) => store.removeWatch);
+  const addProduct = useHala((store) => store.addProduct);
+  const setSkuProduct = useHala((store) => store.setSkuProduct);
   const translate = useTranslate();
 
   if (!watches.length)

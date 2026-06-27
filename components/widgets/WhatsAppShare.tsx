@@ -16,7 +16,7 @@ export function WhatsAppShare({
   // Plain ASCII only — no emoji or special glyphs (×, •), which rendered as
   // broken characters for some recipients. Clean text shares reliably anywhere.
   const lines: string[] = [];
-  lines.push(`Order ${order.id} via Trova x Snoonu`);
+  lines.push(`Order ${order.id} via Hala x Snoonu`);
   for (const item of order.items)
     lines.push(`- ${item.quantity}x ${item.name}`);
   if (order.dateLabel) lines.push(`Delivery: ${order.dateLabel}`);

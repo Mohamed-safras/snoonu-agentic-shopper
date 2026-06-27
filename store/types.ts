@@ -1,6 +1,6 @@
 /**
  * Central state shape, composed from focused slices (the zustand equivalent of
- * Redux slices). `TrovaState` is the intersection of every slice; each slice
+ * Redux slices). `HalaState` is the intersection of every slice; each slice
  * creator is typed against the whole state, so any slice can call another
  * slice's actions through `get()`.
  */
@@ -16,7 +16,7 @@ import type { ConversationSlice } from "./slices/conversation/types";
 import type { PrefsSlice } from "./slices/prefs/types";
 import type { UiSlice } from "./slices/ui/types";
 
-export type TrovaState = I18nSlice &
+export type HalaState = I18nSlice &
   ThemeSlice &
   CatalogSlice &
   ChatSlice &
@@ -32,7 +32,7 @@ export type StoreMutators = [["zustand/persist", unknown]];
 
 /** A slice creator typed against the full state (so `get()` sees everything). */
 export type SliceCreator<TSlice> = StateCreator<
-  TrovaState,
+  HalaState,
   StoreMutators,
   [],
   TSlice

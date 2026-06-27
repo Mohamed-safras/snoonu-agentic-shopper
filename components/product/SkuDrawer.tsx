@@ -9,7 +9,7 @@ import { Icon } from "@/components/ui/Icon";
 import { fmtPrice } from "@/lib/format/money";
 import { dedupeById, isGenericCategory } from "@/lib/catalog/products";
 import { toWatchItem } from "@/lib/catalog/watch";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { useImageAmbient } from "@/hooks/useImageAmbient";
 import type { Product, ProductVariant } from "@/types";
 import Link from "next/link";
@@ -29,17 +29,17 @@ export function SkuDrawer({ product }: { product: Product }) {
   const [compareProducts, setCompareProducts] = useState<Product[] | null>(
     null,
   );
-  const lang = useTrova((store) => store.lang);
+  const lang = useHala((store) => store.lang);
   const translate = useTranslate();
   const animatingRef = useRef(false);
   const swipeStartXRef = useRef<number | null>(null);
-  const dislikes = useTrova((store) => store.dislikes);
-  const setSkuProduct = useTrova((store) => store.setSkuProduct);
-  const addProduct = useTrova((store) => store.addProduct);
-  const watched = useTrova((store) =>
+  const dislikes = useHala((store) => store.dislikes);
+  const setSkuProduct = useHala((store) => store.setSkuProduct);
+  const addProduct = useHala((store) => store.addProduct);
+  const watched = useHala((store) =>
     store.watches.some((watch) => watch.id === product.id),
   );
-  const toggleWatch = useTrova((store) => store.toggleWatch);
+  const toggleWatch = useHala((store) => store.toggleWatch);
 
   useEffect(() => {
     let alive = true;
@@ -110,6 +110,24 @@ export function SkuDrawer({ product }: { product: Product }) {
   const visibleRelated = dedupeById(related).filter(
     (product) => !dislikes.includes(product.id) && product.id !== detail.id,
   );
+  // The category field is a lowercase slug (e.g. "flowers-gifting") used
+  // elsewhere for matching; brand often falls back to the category's human
+  // name (e.g. "Flowers & Gifting") when there's no real brand. Strip
+  // non-alphanumerics before comparing so the slug vs. name formatting
+  // difference doesn't make the dedup check miss that they're the same tag.
+  const normalizeForCompare = (value: string) =>
+    value.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const categoryLabel = detail.category
+    ? detail.category
+        .replace(/[-_]+/g, " ")
+        .replace(/\b\w/g, (c) => c.toUpperCase())
+    : "";
+  const showCategoryTag =
+    detail.category &&
+    !isGenericCategory(detail.category) &&
+    normalizeForCompare(detail.category) !==
+      normalizeForCompare(detail.brand || "");
+
   const about = detail.blurb || "";
   const aboutLong = about.length > 200;
   // Real off% from the MCP compare-at price (shown only when present).
@@ -216,7 +234,9 @@ export function SkuDrawer({ product }: { product: Product }) {
           ×
         </button>
         <div className="sku-drawer-head">
-          <div className="sku-drawer-sku">{translate("SKU ·")} {detail.id}</div>
+          <div className="sku-drawer-sku">
+            {translate("SKU ·")} {detail.id}
+          </div>
         </div>
         <div className="sku-drawer-gallery">
           {/* Photo-tinted backdrop on its own layer so it can fade IN smoothly
@@ -292,16 +312,16 @@ export function SkuDrawer({ product }: { product: Product }) {
           )}
         </div>
         <div className="sku-drawer-body">
-          <div className="sku-drawer-name">{detail.name}</div>
+          <div className="sku-drawer-name" dir="auto">
+            {detail.name}
+          </div>
           <div className="sku-drawer-tags">
             {detail.brand && !isGenericCategory(detail.brand) && (
               <span className="sku-tag">{detail.brand}</span>
             )}
-            {detail.category &&
-              !isGenericCategory(detail.category) &&
-              detail.category.toLowerCase() !== detail.brand?.toLowerCase() && (
-                <span className="sku-tag">{detail.category}</span>
-              )}
+            {showCategoryTag && (
+              <span className="sku-tag">{categoryLabel}</span>
+            )}
             {typeof detail.rating === "number" && (
               <span className="sku-tag">
                 <Icon name="star" size={11} /> {detail.rating.toFixed(1)}
@@ -376,6 +396,7 @@ export function SkuDrawer({ product }: { product: Product }) {
                 <div className="sku-meta-k">{translate("About")}</div>
                 <div
                   className="sku-meta-v"
+                  dir="auto"
                   style={{ display: "block", lineHeight: 1.6, fontSize: 15 }}
                 >
                   {aboutLong && !aboutOpen
@@ -433,8 +454,7 @@ export function SkuDrawer({ product }: { product: Product }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {translate("View on Snoonu")}{" "}
-                <Icon name="external" size={13} />
+                {translate("View on Snoonu")} <Icon name="external" size={13} />
               </Link>
             )}
             <button

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { loadRecents } from "@/lib/catalog/recents";
 import { Icon } from "@/components/ui/Icon";
 import { useTranslate } from "@/hooks/useTranslate";
@@ -24,7 +24,7 @@ export function ChatAutosuggest({
   onPick: (text: string) => void;
   onClose: () => void;
 }) {
-  const trending = useTrova((s) => s.suggestions);
+  const trending = useHala((s) => s.suggestions);
   const translate = useTranslate();
   const [items, setItems] = useState<Suggestion[]>([]);
   const [index, setIndex] = useState(-1);

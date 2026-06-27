@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { useTranslate } from "@/hooks/useTranslate";
 
 /** Gold pulsing "live data" badge. */
@@ -115,12 +115,13 @@ const TRUST_TOOLS = [
 
 /** Footer strip lighting up the MCP tools the agent has used this session. */
 export function McpTrustStrip() {
-  const activeTools = useTrova((s) => s.activeTools);
+  const activeTools = useHala((s) => s.activeTools);
   const translate = useTranslate();
   return (
     <div className="mcp-trust">
       <span className="mcp-trust-label">
-        <span className="mcp-trust-pulse" /> {translate("Powered by Snoonu MCP")}
+        <span className="mcp-trust-pulse" />{" "}
+        {translate("Powered by Snoonu MCP")}
       </span>
       <div className="mcp-trust-tools">
         {TRUST_TOOLS.map((t) => (

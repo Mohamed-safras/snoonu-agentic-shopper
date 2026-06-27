@@ -1,11 +1,11 @@
 "use client";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { LANGS } from "@/lib/i18n/i18n";
 
 /** EN / AR / SI / TA language switcher. */
 export function LangSwitch() {
-  const language = useTrova((store) => store.lang);
-  const setLang = useTrova((store) => store.setLang);
+  const language = useHala((store) => store.lang);
+  const setLang = useHala((store) => store.setLang);
 
   return (
     <div className="lang-switch">

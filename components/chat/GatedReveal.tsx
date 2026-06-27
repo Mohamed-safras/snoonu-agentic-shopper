@@ -1,7 +1,7 @@
 "use client";
 import { Icon } from "@/components/ui/Icon";
 import { ProductImage } from "@/components/product/ProductImage";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import { useTranslate } from "@/hooks/useTranslate";
 import type { Product } from "@/types";
 
@@ -24,8 +24,8 @@ export function GatedReveal({
   children: () => React.ReactNode;
 }) {
   const translate = useTranslate();
-  const ageConfirmed = useTrova((store) => store.ageConfirmed);
-  const confirmAge = useTrova((store) => store.confirmAge);
+  const ageConfirmed = useHala((store) => store.ageConfirmed);
+  const confirmAge = useHala((store) => store.confirmAge);
 
   if (!gated || ageConfirmed) return <>{children()}</>;
 

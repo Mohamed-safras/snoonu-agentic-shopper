@@ -8,7 +8,7 @@
  * app renders gets translated automatically the first time it appears.
  */
 "use client";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 import type { Lang } from "@/types";
 
 const pendingByLang = new Map<Lang, Set<string>>();
@@ -18,7 +18,7 @@ const BATCH_DELAY_MS = 200;
 /** Queue a missing literal for translation into `lang` (deduped + batched). */
 export function requestTranslation(lang: Lang, template: string): void {
   if (lang === "en" || !template) return;
-  const cached = useTrova.getState().uiTranslations[lang];
+  const cached = useHala.getState().uiTranslations[lang];
   if (cached && template in cached) return; // already have it
   let pending = pendingByLang.get(lang);
   if (!pending) pendingByLang.set(lang, (pending = new Set()));
@@ -43,7 +43,7 @@ async function flush(): Promise<void> {
       const translated: string[] = Array.isArray(data?.texts)
         ? data.texts
         : texts;
-      const current = { ...(useTrova.getState().uiTranslations[lang] ?? {}) };
+      const current = { ...(useHala.getState().uiTranslations[lang] ?? {}) };
       texts.forEach((text, index) => {
         const value = translated[index];
         // Only cache a REAL translation. If the backend fell back to the
@@ -52,7 +52,7 @@ async function flush(): Promise<void> {
         // being stuck on English forever.
         if (value && value !== text) current[text] = value;
       });
-      useTrova.setState((store) => ({
+      useHala.setState((store) => ({
         uiTranslations: { ...store.uiTranslations, [lang]: current },
       }));
     } catch {

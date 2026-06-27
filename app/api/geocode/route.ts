@@ -9,7 +9,7 @@
  */
 export const runtime = "nodejs";
 
-const UA = "TrovaShoppingConcierge/1.0 (Snoonu Agent Challenge)";
+const UA = "HalaShoppingConcierge/1.0 (Snoonu Agent Challenge)";
 
 interface GeoResult {
   label: string;

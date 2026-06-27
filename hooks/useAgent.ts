@@ -4,10 +4,10 @@
  * this hook just exposes `send` for existing call sites.
  */
 "use client";
-import { useTrova } from "@/store";
+import { useHala } from "@/store";
 export type { SendOptions } from "@/store";
 
 export function useAgent() {
-  const send = useTrova((store) => store.send);
+  const send = useHala((store) => store.send);
   return { send };
 }
