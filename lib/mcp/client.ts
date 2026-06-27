@@ -1,13 +1,31 @@
 /**
- * Low-level MCP connection to the Snoonu mock server (Streamable HTTP, no
- * auth). Server-only. Maintains a single shared, lazily-connected client and
+ * Low-level MCP connection to the Snoonu mock server (Streamable HTTP).
+ * Server-only. Maintains a single shared, lazily-connected client and
  * exposes `listTools` / `callTool` primitives. Typed per-tool wrappers live
  * in tools.ts.
+ *
+ * The MCP server is IAM-gated on Cloud Run. When this app itself runs on
+ * Cloud Run (K_SERVICE is set), it authorizes via a Google-signed ID token
+ * scoped to the target service, fetched from the metadata server — no
+ * credentials to manage. Locally (no K_SERVICE) the target is normally an
+ * unauthenticated localhost server, so no token is sent.
  */
 import "server-only";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import { config } from "@/configs/env";
+
+async function fetchIdToken(audience: string): Promise<string | null> {
+  if (!process.env.K_SERVICE) return null; // not running on Cloud Run
+  const metadataUrl =
+    "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity" +
+    `?audience=${encodeURIComponent(audience)}`;
+  const res = await fetch(metadataUrl, { headers: { "Metadata-Flavor": "Google" } });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch Cloud Run ID token: ${res.status} ${await res.text()}`);
+  }
+  return await res.text();
+}
 
 type ToolContent = { type: string; text?: string; [k: string]: unknown };
 export interface ToolResult {
@@ -30,7 +48,12 @@ async function connect(): Promise<Client> {
     { name: "snoonu-shopping-agent", version: "1.0.0" },
     { capabilities: {} },
   );
-  const transport = new StreamableHTTPClientTransport(new URL(config.mcp.url));
+  const mcpUrl = new URL(config.mcp.url);
+  const audience = `${mcpUrl.protocol}//${mcpUrl.host}`; // Cloud Run IAM checks audience == service URL, no path
+  const token = await fetchIdToken(audience);
+  const transport = new StreamableHTTPClientTransport(mcpUrl, {
+    requestInit: token ? { headers: { Authorization: `Bearer ${token}` } } : undefined,
+  });
   await client.connect(transport);
   return client;
 }
