@@ -23,7 +23,7 @@ import { friendlyMcpError, isRateLimit } from "@/lib/mcp/errors";
 import type { AgentContext, EmitFn } from "./core/context";
 
 const FALLBACK =
-  "Hey, I'm getting a lot of love right now and need a quick breather 🙏 — please try again in a moment. Meanwhile you can browse flowers, cakes, chocolates, hampers, groceries, electronics, and much more.";
+  "Hey, I'm getting a lot of love right now and need a quick breather 🙏. please try again in a moment.";
 
 // Only this many feedback segments stack onto the original ask — past this,
 // the oldest feedback drops off. Without a cap, several rounds of refinement
