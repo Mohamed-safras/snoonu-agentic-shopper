@@ -118,7 +118,7 @@ export async function assembleBundle(
 
   const slots: BundleSlot[] = [];
   let remaining = budget;
-  let currency = "LKR";
+  let currency = "QAR";
 
   plans.forEach((plan, index) => {
     const ranked = pools[index];
@@ -171,7 +171,7 @@ export async function assembleFromBroadSearch(
   const slots: BundleSlot[] = [];
   const used = new Set<string>();
   let remaining = budget;
-  let currency = "LKR";
+  let currency = "QAR";
 
   const count = Math.min(4, ranked.length);
   for (let index = 0; index < count; index++) {

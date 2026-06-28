@@ -162,7 +162,7 @@ async function buildEnglishSlides(): Promise<BannerSlide[]> {
           const r = await searchProducts({
             query: term,
             limit: 3,
-            currency: "LKR",
+            currency: "QAR",
           });
           matched = r.results.find((x) => x.image_url) ?? matched;
         } catch {

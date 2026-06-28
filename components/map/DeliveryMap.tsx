@@ -70,7 +70,7 @@ export function DeliveryMap({
     });
     L.marker(SNOONU_HQ, { icon: hubIcon })
       .addTo(map)
-      .bindTooltip("Snoonu · Nugegoda", { direction: "top" });
+      .bindTooltip("Snoonu · Doha", { direction: "top" });
     // Tap anywhere on the map to drop the delivery pin there (Uber/PickMe-style).
     if (onPickRef.current) {
       map.getContainer().style.cursor = "crosshair";

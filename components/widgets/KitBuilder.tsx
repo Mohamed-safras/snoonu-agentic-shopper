@@ -152,7 +152,7 @@ export function KitBuilder() {
   }
 
   const items = kit ? kit.slots.map((_, index) => chosen(index)) : [];
-  const currency = kit?.currency || "LKR";
+  const currency = kit?.currency || "QAR";
   const total = items.reduce((sum, product) => sum + (product?.price ?? 0), 0);
   const overBudget = fitBudget ? total > fitBudget : false;
 

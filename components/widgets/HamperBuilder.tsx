@@ -183,7 +183,7 @@ export function HamperBuilder() {
   }
 
   const items = hamper ? hamper.slots.map((_, index) => chosen(index)) : [];
-  const currency = hamper?.currency || "LKR";
+  const currency = hamper?.currency || "QAR";
   const total = items.reduce((sum, product) => sum + (product?.price ?? 0), 0);
   const overBudget = fitBudget ? total > fitBudget : false;
 

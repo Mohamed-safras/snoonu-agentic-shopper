@@ -66,7 +66,7 @@ async function planSlots(
         {
           role: "user",
           content:
-            `Occasion: ${occasion}. Total budget: LKR ${budget}.` +
+            `Occasion: ${occasion}. Total budget: QAR ${budget}.` +
             (constraints ? ` ${constraints}` : ""),
         },
       ],

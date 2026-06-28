@@ -70,7 +70,7 @@ export function OccasionReminder() {
             ? {
                 available: quote.available,
                 fee: quote.fee ?? 0,
-                currency: quote.currency ?? "LKR",
+                currency: quote.currency ?? "QAR",
                 perishableWarning: quote.perishableWarning,
               }
             : null,

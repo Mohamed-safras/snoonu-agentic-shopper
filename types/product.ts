@@ -2,14 +2,14 @@
 
 /**
  * Unified product shape. Prices are the real Snoonu amounts in `currency`
- * (LKR by default) — never converted locally.
+ * (QAR by default) — never converted locally.
  */
 export interface Product {
   id: string;
   name: string;
   brand?: string;
   price: number; // amount in `currency`, exactly as returned by Snoonu
-  currency: string; // e.g. "LKR"
+  currency: string; // e.g. "QAR"
   oldPrice?: number; // compare-at / was-price, same currency
   image?: string; // primary direct image URL (from MCP)
   images?: string[];

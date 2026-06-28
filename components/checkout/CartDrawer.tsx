@@ -18,7 +18,7 @@ export function CartDrawer() {
   const translate = useTranslate();
 
   if (!cartOpen) return null;
-  const currency = cart[0]?.currency || "LKR";
+  const currency = cart[0]?.currency || "QAR";
   const sub = cart.reduce((a, item) => a + item.price * item.quantity, 0);
 
   const onCheckout = () => {

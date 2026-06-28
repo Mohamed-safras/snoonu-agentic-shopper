@@ -178,7 +178,7 @@ export function CheckoutForm({
 
   const isSelected = (id: string) => !deselectedIds.has(id);
   const selectedCart = cart.filter((item) => isSelected(item.id));
-  const currency = cart[0]?.currency || "LKR";
+  const currency = cart[0]?.currency || "QAR";
   const sub = selectedCart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0,

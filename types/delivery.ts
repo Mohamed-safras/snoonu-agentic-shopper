@@ -7,7 +7,7 @@ export interface City {
   region?: string;
   sameDay?: boolean;
   days?: number;
-  fee?: number; // LKR flat rate
+  fee?: number; // QAR flat rate
   lat?: number;
   lng?: number;
 }

@@ -90,7 +90,7 @@ export function ShelfWithBudget({
       setLoadingMore(false);
     }
   }
-  const currency = products[0]?.currency || "LKR";
+  const currency = products[0]?.currency || "QAR";
   const translate = useTranslate();
   const { min, max } = useMemo(() => {
     // Guard against missing/non-numeric prices — a single bad value would make

@@ -43,7 +43,7 @@ async function planKitSlots(
       messages: [
         {
           role: "user",
-          content: `Goal: ${goal}. Total budget: LKR ${budget}.`,
+          content: `Goal: ${goal}. Total budget: QAR ${budget}.`,
         },
       ],
       json: true,
