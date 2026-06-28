@@ -11,12 +11,11 @@ import { CompareBar } from "@/components/widgets/CompareBar";
 import { useHala } from "@/store";
 
 export default function Home() {
-  const occasion = useHala((store) => store.conv.occasion);
   const toast = useHala((store) => store.toast);
   const skuProduct = useHala((store) => store.skuProduct);
 
   return (
-    <div id="app" data-mood={occasion || ""}>
+    <div id="app">
       <Header />
 
       <PromotionBanner />

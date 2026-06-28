@@ -1,7 +1,3 @@
-/* ===========================================================
-   Hala - globals.css - Snoonu brand: signature red + gold
-   Tailwind v4 base + the full Hala design system (ported).
-   =========================================================== */
 @import "tailwindcss";
 
 :root {
@@ -11,16 +7,15 @@
   --ink: #1f1518;
   --ink-2: #4a3236;
   --muted: #8a7376;
-  --hair: #efdfe1;
-  --hair-2: #e3cdd0;
+  --border: #bdbdbd;
+  --hair: var(--border);
+  --hair-2: var(--border);
 
-  /* Snoonu RED */
-  --kap: #d90217;
-  --kap-deep: #a30112;
-  --kap-soft: #fbe2e4;
-  --kap-tint: #fdf3f3;
+  --primary: #d90217;
+  --primary-deep: #a30112;
+  --primary-soft: #fbe2e4;
+  --primary-tint: #fdf3f3;
 
-  /* Snoonu GOLD (smile) */
   --gold: #f5c200;
   --gold-soft: #fffaea;
   --gold-deep: #ff9900;
@@ -113,49 +108,6 @@ img {
     linear-gradient(160deg, #fefeff 0%, #ffffff 50%, #fefeff 100%);
   transition: background 1.2s;
 }
-#app[data-mood="romance"] {
-  background:
-    radial-gradient(
-      ellipse 120% 80% at 20% -10%,
-      rgba(255, 200, 230, 0.75) 0%,
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse 100% 70% at 85% 105%,
-      rgba(200, 155, 255, 0.55) 0%,
-      transparent 50%
-    ),
-    linear-gradient(160deg, #ffe8f5 0%, #f8f0ff 50%, #ede8ff 100%);
-}
-#app[data-mood="fathersday"] {
-  background:
-    radial-gradient(
-      ellipse 120% 80% at 20% -10%,
-      rgba(255, 220, 130, 0.65) 0%,
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse 100% 70% at 85% 105%,
-      rgba(180, 140, 255, 0.45) 0%,
-      transparent 50%
-    ),
-    linear-gradient(160deg, #fff8e0 0%, #f5f0ff 50%, #ede8ff 100%);
-}
-#app[data-mood="birthday"] {
-  background:
-    radial-gradient(
-      ellipse 120% 80% at 20% -10%,
-      rgba(180, 220, 255, 0.7) 0%,
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse 100% 70% at 85% 105%,
-      rgba(200, 155, 255, 0.5) 0%,
-      transparent 50%
-    ),
-    linear-gradient(160deg, #e8f4ff 0%, #f0eeff 50%, #ede8ff 100%);
-}
-
 /* ---- HEADER ---- */
 .hdr {
   position: relative;
@@ -197,7 +149,7 @@ img {
     transform 0.12s ease;
 }
 .hdr .banner-chevron:hover {
-  color: var(--kap);
+  color: var(--primary);
 }
 .hdr .banner-chevron:active {
   transform: translateY(1px);
@@ -230,7 +182,7 @@ img {
   overflow: hidden;
   padding: 0;
   border: 0;
-  background: var(--kap);
+  background: var(--primary);
   box-shadow: 0 6px 16px -4px rgba(20, 16, 20, 0.11);
   cursor: pointer;
   transition: transform 0.14s ease;
@@ -267,7 +219,7 @@ img {
   font-size: 10.5px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--kap);
+  color: var(--primary);
 }
 .brand-sub {
   font-size: 11.5px;
@@ -303,7 +255,7 @@ img {
   transition: 0.18s;
 }
 .lang-switch button.on {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   box-shadow: var(--shadow-sm);
 }
@@ -336,7 +288,7 @@ img {
   height: 20px;
   padding: 0 6px;
   border-radius: 999px;
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   font-size: 11.5px;
   font-weight: 800;
@@ -390,15 +342,15 @@ img {
   border-radius: 999px;
   border: 1px solid var(--hair-2);
   background: var(--surface);
-  color: var(--kap);
+  color: var(--primary);
   cursor: pointer;
   box-shadow: 0 8px 20px -8px rgba(20, 16, 20, 0.22);
   transition: 0.15s;
   animation: jumpIn 0.18s ease;
 }
 .thread-jump-btn:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  background: var(--kap-tint);
+  border-color: var(--border);
+  background: var(--primary-tint);
   transform: translateY(-1px);
 }
 @keyframes jumpIn {
@@ -441,7 +393,7 @@ img {
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: var(--kap);
+  background: var(--primary);
   box-shadow: 0 4px 12px -3px rgba(20, 16, 20, 0.121);
 }
 .avatar img {
@@ -565,7 +517,7 @@ img {
   line-height: 1.38;
 }
 .row.user .bubble {
-  background: linear-gradient(160deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(160deg, var(--primary), var(--primary-deep));
   color: #fff;
   border: 0;
   border-radius: 20px;
@@ -608,7 +560,7 @@ img {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--kap);
+  background: var(--primary);
   opacity: 0.4;
   animation: blink 1.2s infinite both;
 }
@@ -652,7 +604,7 @@ img {
   opacity: 1;
   animation: blink2 1s steps(2) infinite;
   font-size: 16px;
-  color: var(--kap);
+  color: var(--primary);
 }
 /* The rotating label stays on ONE line and ellipsizes — long Sinhala/Tamil
    phrases never wrap or overflow the bubble. */
@@ -735,20 +687,20 @@ img {
   text-overflow: ellipsis;
 }
 .chip:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap-deep);
+  border-color: var(--border);
+  color: var(--primary-deep);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
-  background: var(--kap-tint);
+  background: var(--primary-tint);
 }
 .chip.primary {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   border-color: transparent;
   box-shadow: 0 4px 14px -4px rgba(20, 16, 20, 0.099);
 }
 .chip.primary:hover {
-  background: var(--kap-deep);
+  background: var(--primary-deep);
   color: #fff;
 }
 .chip.ghost {
@@ -800,7 +752,7 @@ img {
   border: 1px solid var(--hair-2);
   border-radius: 999px;
   background: var(--surface);
-  color: var(--kap);
+  color: var(--primary);
   font: inherit;
   font-size: 13.5px;
   font-weight: 600;
@@ -810,8 +762,8 @@ img {
     border-color 0.15s ease;
 }
 .shelf-more-btn:hover:not(:disabled) {
-  background: var(--kap-soft);
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  background: var(--primary-soft);
+  border-color: var(--border);
 }
 .shelf-more-btn:disabled {
   cursor: default;
@@ -954,8 +906,8 @@ img {
   inset: 0;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, var(--kap-tint), var(--paper-2));
-  color: var(--kap);
+  background: linear-gradient(135deg, var(--primary-tint), var(--paper-2));
+  color: var(--primary);
   opacity: 1;
   font-size: 38px;
 }
@@ -1067,18 +1019,18 @@ img {
   background: linear-gradient(135deg, #e63956, #c73838);
 }
 .card-compare:hover {
-  color: var(--kap);
+  color: var(--primary);
 }
 .card-compare.on {
   color: #fff;
-  background: linear-gradient(135deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
 }
 .card-watch:hover {
-  color: var(--kap);
+  color: var(--primary);
 }
 .card-watch.on {
   color: #fff;
-  background: linear-gradient(135deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
 }
 .fav.on {
   color: #fff;
@@ -1114,7 +1066,7 @@ img {
   font-weight: 750;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--kap);
+  color: var(--primary);
 }
 .card-name {
   font-size: 13px;
@@ -1165,7 +1117,7 @@ img {
   font-size: 16px;
   font-weight: 800;
   letter-spacing: -0.01em;
-  color: var(--kap);
+  color: var(--primary);
 }
 .price .lkr {
   font-size: 11.5px;
@@ -1202,7 +1154,7 @@ img {
   height: 15px;
 }
 .card-add:hover {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   border-color: transparent;
   box-shadow: 0 4px 12px -3px rgba(20, 16, 20, 0.11);
@@ -1218,11 +1170,11 @@ img {
   gap: 4px;
   font-size: 11px;
   font-weight: 700;
-  color: var(--kap);
+  color: var(--primary);
   text-decoration: none;
 }
 .card-link:hover {
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   text-decoration: underline;
 }
 .card-link svg {
@@ -1234,7 +1186,7 @@ img {
   text-decoration: none;
 }
 .cl-name-link:hover {
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   text-decoration: underline;
 }
 
@@ -1286,7 +1238,7 @@ img {
   flex-wrap: wrap;
 }
 .btn-primary {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   border: 0;
   padding: 11px 18px;
@@ -1297,12 +1249,12 @@ img {
   align-items: center;
   gap: 8px;
   /* Theme-aware glow: a soft tint in light mode, a real glow against the
-     dark surfaces in dark mode (where --kap itself turns lighter). */
+     dark surfaces in dark mode (where --primary itself turns lighter). */
   box-shadow: 0 2px 6px -2px rgba(20, 16, 20, 0.18);
   transition: 0.16s;
 }
 .btn-primary:hover {
-  background: var(--kap-deep);
+  background: var(--primary-deep);
   transform: translateY(-1px);
   box-shadow: 0 3px 8px -2px rgba(20, 16, 20, 0.22);
 }
@@ -1321,13 +1273,13 @@ img {
   transition: 0.16s;
 }
 .btn-ghost:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap-deep);
+  border-color: var(--border);
+  color: var(--primary-deep);
 }
 
 /* concierge quiz */
 .concierge {
-  background: linear-gradient(160deg, #fff, var(--kap-tint));
+  background: linear-gradient(160deg, #fff, var(--primary-tint));
   border: 1px solid var(--hair);
   border-radius: var(--r-lg);
   padding: 20px;
@@ -1362,8 +1314,8 @@ img {
   font-size: 19px;
 }
 .cq-opt:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  background: var(--kap-tint);
+  border-color: var(--border);
+  background: var(--primary-tint);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -1379,14 +1331,14 @@ img {
   background: var(--hair-2);
 }
 .cq-prog i.on {
-  background: var(--kap);
+  background: var(--primary);
 }
 
 /* delivery / panel */
 .dcard,
 .panel {
   background: rgba(255, 255, 255, 0.76);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--border);
   border-radius: var(--r-lg);
   padding: 18px 20px;
   box-shadow:
@@ -1406,8 +1358,8 @@ img {
   width: 30px;
   height: 30px;
   border-radius: 9px;
-  background: var(--kap-soft);
-  color: var(--kap);
+  background: var(--primary-soft);
+  color: var(--primary);
   display: grid;
   place-items: center;
 }
@@ -1446,8 +1398,8 @@ img {
   transition: 0.16s;
 }
 .addr-input:focus {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  box-shadow: 0 0 0 3px var(--kap-soft);
+  border-color: var(--border);
+  box-shadow: 0 0 0 3px var(--primary-soft);
 }
 /* Chrome/Edge paint autofilled fields (e.g. the phone number) with their own
    background, ignoring `background` entirely — the inset box-shadow trick is
@@ -1470,7 +1422,7 @@ img {
   border-radius: 50%;
   border: 0;
   flex-shrink: 0;
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   display: grid;
   place-items: center;
@@ -1478,7 +1430,7 @@ img {
   transition: 0.16s;
 }
 .addr-go:hover {
-  background: var(--kap-deep);
+  background: var(--primary-deep);
   transform: translateY(-1px);
 }
 .addr-go:disabled {
@@ -1502,11 +1454,11 @@ img {
   gap: 16px;
   padding: 8px 12px;
   margin: 4px 0 2px;
-  background: var(--kap-tint);
+  background: var(--primary-tint);
   border-radius: 10px;
   font-size: 12.5px;
   font-weight: 650;
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   flex-wrap: wrap;
 }
 
@@ -1520,8 +1472,8 @@ img {
   margin-top: 12px;
 }
 .quote-box.warn {
-  background: var(--kap-tint);
-  border: 1px solid var(--kap-soft);
+  background: var(--primary-tint);
+  border: 1px solid var(--primary-soft);
 }
 
 .mod-warning {
@@ -1638,7 +1590,7 @@ img {
   gap: 6px;
   margin-top: 6px;
   padding: 10px 20px;
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   border: none;
   border-radius: 999px;
@@ -1661,7 +1613,7 @@ img {
   padding: 18px;
   margin: 6px 0;
   /* Full width of the chat thread (matches .watchlist's sizing), not capped. */
-  background: linear-gradient(165deg, var(--surface), var(--kap-soft) 220%);
+  background: linear-gradient(165deg, var(--surface), var(--primary-soft) 220%);
   border: 1px solid var(--hair);
   border-radius: var(--r-lg);
   box-shadow: 0 8px 28px -16px rgba(20, 16, 20, 0.138);
@@ -1679,7 +1631,7 @@ img {
   flex-shrink: 0;
   border-radius: 50%;
   color: #fff;
-  background: linear-gradient(155deg, var(--kap), #4a0d14);
+  background: linear-gradient(155deg, var(--primary), #4a0d14);
   box-shadow: 0 4px 12px rgba(20, 16, 20, 0.193);
 }
 .autobuy-confirm-head-text {
@@ -1736,7 +1688,7 @@ img {
     transform 0.15s ease;
 }
 .autobuy-confirm-item-main:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
   transform: translateY(-1px);
 }
 .autobuy-confirm-item-main:focus-visible {
@@ -1745,8 +1697,8 @@ img {
    * box-shadow ring respects the radius instead. */
   outline: none;
   box-shadow:
-    0 0 0 2px var(--kap-soft),
-    0 0 0 1px var(--kap);
+    0 0 0 2px var(--primary-soft),
+    0 0 0 1px var(--primary);
 }
 .autobuy-confirm-item-main:only-child {
   /* No remove button rendered (single item, nothing to drop) — let the main
@@ -1789,7 +1741,7 @@ img {
 }
 .autobuy-confirm-item-price {
   font-size: 13.5px;
-  color: var(--kap);
+  color: var(--primary);
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -1807,7 +1759,7 @@ img {
 .autobuy-confirm-budget-fill {
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--kap), #ff6b76);
+  background: linear-gradient(90deg, var(--primary), #ff6b76);
   transition: width 0.4s cubic-bezier(0.34, 1.18, 0.64, 1);
 }
 .autobuy-confirm-budget-row {
@@ -1870,7 +1822,7 @@ img {
     transform 0.15s ease;
 }
 .autobuy-confirm-alt-main:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
   transform: translateY(-1px);
 }
 .autobuy-confirm-alt-main:focus-visible {
@@ -1878,8 +1830,8 @@ img {
    * card's border-radius, unlike the browser's default rectangular outline. */
   outline: none;
   box-shadow:
-    0 0 0 2px var(--kap-soft),
-    0 0 0 1px var(--kap);
+    0 0 0 2px var(--primary-soft),
+    0 0 0 1px var(--primary);
 }
 .autobuy-confirm-alt .card-media {
   width: 100%;
@@ -1895,7 +1847,7 @@ img {
 }
 .autobuy-confirm-alt-price {
   font-size: 11.5px;
-  color: var(--kap);
+  color: var(--primary);
   font-weight: 700;
 }
 .autobuy-confirm-alt-add {
@@ -1909,7 +1861,7 @@ img {
   border: 1px solid var(--hair);
   background: var(--surface);
   cursor: pointer;
-  color: var(--kap);
+  color: var(--primary);
   transition:
     background 0.15s ease,
     transform 0.1s ease;
@@ -2019,7 +1971,7 @@ img {
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--kap);
+  color: var(--primary);
   cursor: pointer;
   text-align: left;
 }
@@ -2061,7 +2013,7 @@ img {
 .agent-step-live .agent-step-dot {
   width: 8px;
   height: 8px;
-  background: var(--kap);
+  background: var(--primary);
   box-shadow: 0 0 0 3px rgba(20, 16, 20, 0.099);
   animation: pulse-dot 1.1s ease-in-out infinite;
 }
@@ -2128,8 +2080,8 @@ img {
   cursor: pointer;
 }
 .date-cell.on {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  background: linear-gradient(150deg, var(--kap), var(--kap-deep));
+  border-color: var(--border);
+  background: linear-gradient(150deg, var(--primary), var(--primary-deep));
   color: #fff;
   box-shadow: 0 4px 14px -4px rgba(20, 16, 20, 0.121);
 }
@@ -2172,8 +2124,12 @@ img {
 /* When the earliest cell is also selected, the purple selected state must win
    (otherwise white text sits on the yellow background and looks faded). */
 .date-cell.on.earliest {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2)) !important;
-  background: linear-gradient(150deg, var(--kap), var(--kap-deep));
+  border-color: color-mix(
+    in srgb,
+    var(--primary) 18%,
+    var(--hair-2)
+  ) !important;
+  background: linear-gradient(150deg, var(--primary), var(--primary-deep));
   box-shadow: 0 4px 14px -4px rgba(20, 16, 20, 0.121);
 }
 .date-cell .tag.earliest-tag {
@@ -2190,8 +2146,8 @@ img {
 .date-eta-pill {
   font-size: 11px;
   font-weight: 650;
-  background: var(--kap-tint);
-  color: var(--kap-deep);
+  background: var(--primary-tint);
+  color: var(--primary-deep);
   padding: 5px 10px;
   border-radius: 999px;
 }
@@ -2253,8 +2209,8 @@ img {
     box-shadow 0.16s;
 }
 .gift-write-area.focused {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  box-shadow: 0 0 0 3px var(--kap-soft);
+  border-color: var(--border);
+  box-shadow: 0 0 0 3px var(--primary-soft);
 }
 .gift-textarea {
   position: relative;
@@ -2315,9 +2271,9 @@ img {
   white-space: nowrap;
 }
 .gift-suggest-btn:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap-deep);
-  background: var(--kap-tint);
+  border-color: var(--border);
+  color: var(--primary-deep);
+  background: var(--primary-tint);
 }
 .gift-preview-card {
   margin: 0 20px 16px;
@@ -2403,8 +2359,8 @@ img {
   border-color: var(--hair-2);
 }
 .cf-pick.on {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  background: var(--kap-tint);
+  border-color: var(--border);
+  background: var(--primary-tint);
   box-shadow: 0 4px 14px -8px rgba(20, 16, 20, 0.121);
 }
 /* Hide the native checkbox — the whole row is the control. */
@@ -2445,7 +2401,7 @@ img {
   width: 20px;
   height: 20px;
   border-radius: 999px;
-  background: var(--kap-deep);
+  background: var(--primary-deep);
   color: #fff;
   border: 2px solid var(--surface);
   opacity: 0;
@@ -2499,8 +2455,8 @@ img {
   transition: 0.16s;
 }
 .cf-pick.on .cf-pick-tick {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  background: var(--kap);
+  border-color: var(--border);
+  background: var(--primary);
   color: #fff;
 }
 /* Spacing around the × and = in the per-item equation. */
@@ -2532,14 +2488,14 @@ img {
   height: 28px;
   border: 0;
   background: transparent;
-  color: var(--kap);
+  color: var(--primary);
   cursor: pointer;
   display: grid;
   place-items: center;
   transition: 0.14s;
 }
 .cf-qty button:hover:not(:disabled) {
-  background: var(--kap-tint);
+  background: var(--primary-tint);
 }
 .cf-qty button:active:not(:disabled) {
   transform: scale(0.92);
@@ -2569,7 +2525,7 @@ img {
   transition: 0.14s;
 }
 .cf-picked:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
 }
 .cf-picked-thumbs {
   display: flex;
@@ -2600,7 +2556,7 @@ img {
   flex: 0 0 auto;
   font-size: 12px;
   font-weight: 700;
-  color: var(--kap);
+  color: var(--primary);
 }
 
 /* Section divider inside the checkout form. */
@@ -2779,10 +2735,10 @@ img {
   height: 3px;
   background: linear-gradient(
     90deg,
-    var(--kap),
+    var(--primary),
     var(--gold),
-    var(--kap-deep),
-    var(--kap)
+    var(--primary-deep),
+    var(--primary)
   );
   background-size: 200% 100%;
   animation: hamperHue 6s linear infinite;
@@ -2807,7 +2763,7 @@ img {
   display: grid;
   place-items: center;
   color: #fff;
-  background: linear-gradient(150deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(150deg, var(--primary), var(--primary-deep));
   animation: hamperIconGlow 3.4s ease-in-out infinite;
 }
 @keyframes hamperIconGlow {
@@ -2831,7 +2787,7 @@ img {
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--kap-deep, var(--kap));
+  color: var(--primary-deep, var(--primary));
 }
 .hamper-h h4 {
   margin: 1px 0 0;
@@ -2914,8 +2870,12 @@ img {
   gap: 13px;
   padding: 13px 14px 14px;
   border-radius: 14px;
-  background: linear-gradient(135deg, var(--kap-tint), rgba(224, 168, 0, 0.14));
-  border: 1px solid color-mix(in srgb, var(--kap) 28%, var(--hair));
+  background: linear-gradient(
+    135deg,
+    var(--primary-tint),
+    rgba(224, 168, 0, 0.14)
+  );
+  border: 1px solid var(--border);
   box-shadow: 0 10px 26px -18px rgba(20, 16, 20, 0.22);
 }
 .cmp-rec-tag {
@@ -2930,7 +2890,7 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: #fff;
-  background: var(--kap-deep);
+  background: var(--primary-deep);
   padding: 4px 10px;
   border-radius: 999px;
   box-shadow: 0 4px 12px -4px rgba(20, 16, 20, 0.275);
@@ -2978,7 +2938,7 @@ img {
 .cmp-rec-price {
   font-size: 14px;
   font-weight: 800;
-  color: var(--kap-deep);
+  color: var(--primary-deep);
 }
 .cmp-rec-add {
   display: inline-flex;
@@ -2987,7 +2947,7 @@ img {
   font-size: 12.5px;
   font-weight: 700;
   color: #fff;
-  background: var(--kap-deep);
+  background: var(--primary-deep);
   border: none;
   padding: 7px 13px;
   border-radius: 999px;
@@ -3037,7 +2997,7 @@ img {
 .cmp-notice-btn {
   font-size: 12px;
   font-weight: 750;
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   background: var(--surface);
   border: 1px solid var(--hair-2);
   border-radius: 999px;
@@ -3046,9 +3006,9 @@ img {
   transition: 0.14s;
 }
 .cmp-notice-btn:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
-  background: var(--kap-tint);
+  border-color: var(--border);
+  color: var(--primary);
+  background: var(--primary-tint);
 }
 
 /* Loader shown while the comparison is being computed (single, calm state). */
@@ -3125,8 +3085,8 @@ img {
   align-items: center;
   justify-content: center;
   gap: 3px;
-  background: var(--kap-tint);
-  color: var(--kap);
+  background: var(--primary-tint);
+  color: var(--primary);
   overflow-wrap: anywhere;
 }
 .cmp-corner span {
@@ -3134,7 +3094,7 @@ img {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--kap-deep);
+  color: var(--primary-deep);
 }
 .cmp-head {
   display: flex;
@@ -3153,7 +3113,7 @@ img {
 /* Recommended column is tinted across header + cells. */
 .cmp-head.rec,
 .cmp-val.rec {
-  background: var(--kap-tint);
+  background: var(--primary-tint);
 }
 .cmp-thumb {
   width: 100%;
@@ -3192,7 +3152,7 @@ img {
   border-radius: 999px;
 }
 .cmp-badge.pick {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
 }
 .cmp-badge.value {
@@ -3208,14 +3168,14 @@ img {
   border: 1px solid var(--hair-2);
   border-radius: 999px;
   background: transparent;
-  color: var(--kap);
+  color: var(--primary);
   font-size: 11px;
   font-weight: 750;
   cursor: pointer;
 }
 .cmp-add:hover {
-  background: var(--kap-tint);
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  background: var(--primary-tint);
+  border-color: var(--border);
 }
 .cmp-label {
   position: sticky;
@@ -3246,21 +3206,21 @@ img {
   background: color-mix(in srgb, var(--hair) 45%, var(--surface));
 }
 .cmp-val.rec {
-  background: var(--kap-tint);
+  background: var(--primary-tint);
 }
 /* Per-row winner: a tinted, bolder cell with a check — points the eye straight
    at the best option for each criterion. */
 .cmp-val.win {
-  background: color-mix(in srgb, var(--kap) 12%, var(--surface));
+  background: color-mix(in srgb, var(--primary) 12%, var(--surface));
   color: var(--ink);
   font-weight: 750;
   gap: 4px;
 }
 .cmp-val.win.rec {
-  background: color-mix(in srgb, var(--kap) 20%, var(--surface));
+  background: color-mix(in srgb, var(--primary) 20%, var(--surface));
 }
 .cmp-val.win svg {
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   flex: 0 0 auto;
 }
 /* Identical across all products → not decision-relevant, so mute it. */
@@ -3318,7 +3278,7 @@ img {
   gap: 7px;
   margin: 6px 0 12px;
   padding-bottom: 12px;
-  border-bottom: 1px solid color-mix(in srgb, var(--kap) 12%, var(--hair));
+  border-bottom: 1px solid var(--border);
 }
 .cmp-lenses-label {
   display: inline-flex;
@@ -3345,11 +3305,11 @@ img {
   transition: 0.14s;
 }
 .cmp-priority-chip:hover:not(:disabled) {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
+  border-color: var(--border);
+  color: var(--primary);
 }
 .cmp-priority-chip.on {
-  background: linear-gradient(135deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
   border-color: transparent;
   color: #fff;
 }
@@ -3400,10 +3360,10 @@ img {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--kap-deep);
+  color: var(--primary-deep);
 }
 .compare-bar-label svg {
-  color: var(--kap);
+  color: var(--primary);
 }
 @media (max-width: 560px) {
   .compare-bar-label {
@@ -3460,7 +3420,7 @@ img {
   padding: 9px 14px;
   border: 0;
   border-radius: 11px;
-  background: linear-gradient(135deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
   color: #fff;
   font-size: 13px;
   font-weight: 800;
@@ -3526,8 +3486,8 @@ img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--kap-soft);
-  color: var(--kap);
+  background: var(--primary-soft);
+  color: var(--primary);
 }
 .watch-row {
   display: flex;
@@ -3540,7 +3500,7 @@ img {
   transition: border-color 0.15s ease;
 }
 .watch-row:hover {
-  border-color: var(--kap-soft);
+  border-color: var(--primary-soft);
 }
 .watch-row.oos {
   opacity: 0.75;
@@ -3582,7 +3542,7 @@ img {
   cursor: pointer;
 }
 .watch-name:hover {
-  color: var(--kap);
+  color: var(--primary);
 }
 .watch-meta {
   display: flex;
@@ -3608,7 +3568,7 @@ img {
   gap: 3px;
   font-size: 11px;
   font-weight: 600;
-  color: var(--kap);
+  color: var(--primary);
   text-decoration: none;
   margin-top: 2px;
 }
@@ -3630,9 +3590,9 @@ img {
   transition: 0.15s;
 }
 .watch-add:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
-  background: var(--kap-tint);
+  border-color: var(--border);
+  color: var(--primary);
+  background: var(--primary-tint);
 }
 .watch-add:disabled {
   opacity: 0.4;
@@ -3661,12 +3621,12 @@ img {
   transition: 0.15s;
 }
 .sku-watch:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
+  border-color: var(--border);
+  color: var(--primary);
 }
 .sku-watch.on {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  background: var(--kap);
+  border-color: var(--border);
+  background: var(--primary);
   color: #fff;
 }
 
@@ -3676,8 +3636,8 @@ img {
   /* Same grouped tinted panel as the compare follow-up, so the "ask" box reads
      as a contained widget — not a second composer. */
   padding: 12px;
-  background: color-mix(in srgb, var(--kap-tint) 65%, var(--surface));
-  border: 1px solid color-mix(in srgb, var(--kap) 14%, var(--hair));
+  background: color-mix(in srgb, var(--primary-tint) 65%, var(--surface));
+  border: 1px solid var(--border);
   border-radius: 14px;
 }
 .sku-qa .sku-section-label {
@@ -3698,7 +3658,7 @@ img {
   place-items: center;
   border: 0;
   border-radius: 12px;
-  background: linear-gradient(135deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
   color: #fff;
   cursor: pointer;
   transition: 0.15s;
@@ -3710,7 +3670,7 @@ img {
 .sku-qa-answer {
   margin-top: 10px;
   padding: 11px 13px;
-  background: var(--kap-tint);
+  background: var(--primary-tint);
   border-radius: 12px;
   font-size: 14px;
   line-height: 1.55;
@@ -3740,7 +3700,7 @@ img {
 }
 .askchat-msg.user {
   align-self: flex-end;
-  background: linear-gradient(135deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
   color: #fff;
   border-bottom-right-radius: 5px;
 }
@@ -3768,9 +3728,9 @@ img {
   transition: 0.14s;
 }
 .askchat-starter:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
-  background: var(--kap-tint);
+  border-color: var(--border);
+  color: var(--primary);
+  background: var(--primary-tint);
 }
 /* A self-contained "ask about this" pill — deliberately distinct from the main
    composer bar so it's clear this box is scoped to the card, not global chat. */
@@ -3780,16 +3740,16 @@ img {
   gap: 6px;
   padding: 3px 3px 3px 12px;
   background: var(--surface);
-  border: 1.5px solid color-mix(in srgb, var(--kap) 32%, var(--hair));
+  border: 1.5px solid var(--border);
   border-radius: 999px;
 }
 .askchat-row:focus-within {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--kap) 16%, transparent);
+  border-color: var(--border);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 16%, transparent);
 }
 .askchat-ask-icon {
   flex: 0 0 auto;
-  color: var(--kap-deep);
+  color: var(--primary-deep);
 }
 .askchat-row .addr-input {
   flex: 1;
@@ -3812,7 +3772,7 @@ img {
   place-items: center;
   border: 0;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
   color: #fff;
   cursor: pointer;
   transition: 0.15s;
@@ -3827,8 +3787,8 @@ img {
 .cmp-ask {
   margin-top: 4px;
   padding: 12px;
-  background: color-mix(in srgb, var(--kap-tint) 65%, var(--surface));
-  border: 1px solid color-mix(in srgb, var(--kap) 14%, var(--hair));
+  background: color-mix(in srgb, var(--primary-tint) 65%, var(--surface));
+  border: 1px solid var(--border);
   border-radius: 14px;
 }
 .cmp-ask-label {
@@ -3839,11 +3799,11 @@ img {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   margin-bottom: 8px;
 }
 .cmp-ask-label svg {
-  color: var(--kap);
+  color: var(--primary);
 }
 
 /* In-drawer compare overlay (opening compare from "You may also like"). */
@@ -3878,7 +3838,7 @@ img {
   gap: 3px;
   border: 0;
   background: transparent;
-  color: var(--kap);
+  color: var(--primary);
   font-weight: 750;
   font-size: 13px;
   cursor: pointer;
@@ -3907,9 +3867,9 @@ img {
   transition: 0.14s;
 }
 .kit-example:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
-  background: var(--kap-tint);
+  border-color: var(--border);
+  color: var(--primary);
+  background: var(--primary-tint);
 }
 .hamper-field > span {
   font-size: 12px;
@@ -3935,7 +3895,7 @@ img {
 }
 .hamper-input:focus,
 .hamper-select:focus {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
 }
 /* Custom chevron, inset from the edge (the native arrow sits flush to the box). */
 .hamper-select {
@@ -3958,7 +3918,7 @@ img {
   padding: 12px 16px;
   border: 0;
   border-radius: 13px;
-  background: linear-gradient(135deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
   color: #fff;
   font-size: 14px;
   font-weight: 800;
@@ -4013,7 +3973,7 @@ img {
   }
 }
 .hamper-slot:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
   transform: translateY(-2px);
   box-shadow: 0 12px 26px -12px rgba(20, 16, 20, 0.165);
 }
@@ -4042,7 +4002,7 @@ img {
   flex: 0 0 auto;
   box-shadow:
     0 0 0 2px #fff,
-    0 0 0 3.5px var(--kap-tint, rgba(20, 16, 20, 0.066));
+    0 0 0 3.5px var(--primary-tint, rgba(20, 16, 20, 0.066));
 }
 .hamper-slot-body {
   flex: 1;
@@ -4054,8 +4014,8 @@ img {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--kap-deep, var(--kap));
-  background: var(--kap-tint, rgba(20, 16, 20, 0.044));
+  color: var(--primary-deep, var(--primary));
+  background: var(--primary-tint, rgba(20, 16, 20, 0.044));
   padding: 2px 7px;
   border-radius: 999px;
   margin-bottom: 3px;
@@ -4082,15 +4042,15 @@ img {
   border: 1px solid var(--hair-2);
   border-radius: 999px;
   background: transparent;
-  color: var(--kap);
+  color: var(--primary);
   font-size: 11.5px;
   font-weight: 750;
   cursor: pointer;
   transition: 0.15s;
 }
 .hamper-swap:hover {
-  background: var(--kap-tint, rgba(20, 16, 20, 0.033));
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  background: var(--primary-tint, rgba(20, 16, 20, 0.033));
+  border-color: var(--border);
 }
 /* Per-slot actions: lock (pin a pick) + swap, side by side. */
 .hamper-slot-actions {
@@ -4113,18 +4073,18 @@ img {
   transition: 0.15s;
 }
 .hamper-lock:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
+  border-color: var(--border);
+  color: var(--primary);
 }
 .hamper-lock.on {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  background: var(--kap);
+  border-color: var(--border);
+  background: var(--primary);
   color: #fff;
 }
 .hamper-slot.locked {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
   box-shadow:
-    inset 0 0 0 1px var(--kap),
+    inset 0 0 0 1px var(--primary),
     0 2px 10px -6px rgba(20, 16, 20, 0.165);
 }
 /* Fine-tune budget slider (instant client re-fit, no re-search). */
@@ -4151,7 +4111,7 @@ img {
 }
 .hamper-fit-slider {
   width: 100%;
-  accent-color: var(--kap);
+  accent-color: var(--primary);
   cursor: pointer;
 }
 .hamper-foot {
@@ -4227,7 +4187,7 @@ img {
   padding: 14px;
   border: 0;
   border-radius: 14px;
-  background: linear-gradient(135deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
   color: #fff;
   font-size: 14px;
   font-weight: 800;
@@ -4271,15 +4231,15 @@ img {
   white-space: nowrap;
 }
 .hamper-add.ghost {
-  background: var(--kap-tint);
-  color: var(--kap-deep);
+  background: var(--primary-tint);
+  color: var(--primary-deep);
   box-shadow: none;
 }
 .hamper-add.ghost::after {
   display: none;
 }
 .hamper-add.ghost:hover {
-  background: var(--kap-soft, rgba(20, 16, 20, 0.077));
+  background: var(--primary-soft, rgba(20, 16, 20, 0.077));
   transform: translateY(-1px);
   box-shadow: none;
 }
@@ -4354,7 +4314,7 @@ img {
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--kap-deep, var(--kap));
+  color: var(--primary-deep, var(--primary));
 }
 .countdown-h h4 {
   margin: 1px 0 0;
@@ -4435,7 +4395,7 @@ img {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  color: var(--kap-deep, var(--kap));
+  color: var(--primary-deep, var(--primary));
 }
 .countdown-feas {
   display: flex;
@@ -4457,7 +4417,7 @@ img {
 .countdown-feas svg {
   flex: 0 0 auto;
   margin-top: 1px;
-  color: var(--kap);
+  color: var(--primary);
 }
 .countdown-cta {
   display: inline-flex;
@@ -4468,7 +4428,7 @@ img {
   padding: 12px;
   border: 0;
   border-radius: 14px;
-  background: linear-gradient(135deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
   color: #fff;
   font-size: 14px;
   font-weight: 800;
@@ -4499,17 +4459,17 @@ img {
   align-items: center;
   gap: 5px;
   padding: 4px 10px;
-  border: 1px solid color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border: 1px solid var(--border);
   border-radius: 999px;
-  background: var(--kap-tint, rgba(20, 16, 20, 0.033));
-  color: var(--kap-deep, var(--kap));
+  background: var(--primary-tint, rgba(20, 16, 20, 0.033));
+  color: var(--primary-deep, var(--primary));
   font-size: 11.5px;
   font-weight: 700;
   cursor: pointer;
   transition: 0.15s;
 }
 .cf-giftnote-ai:hover:not(:disabled) {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
 }
 .cf-giftnote-ai:disabled {
@@ -4549,13 +4509,13 @@ img {
   transition: 0.15s;
 }
 .cf-giftnote-idea:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  background: var(--kap-tint, rgba(20, 16, 20, 0.033));
+  border-color: var(--border);
+  background: var(--primary-tint, rgba(20, 16, 20, 0.033));
 }
 .cf-giftnote-idea svg {
   flex: 0 0 auto;
   margin-top: 1px;
-  color: var(--kap);
+  color: var(--primary);
 }
 /* "Use my current location" button — geolocation autofill. */
 .cf-locate {
@@ -4565,17 +4525,17 @@ img {
   gap: 8px;
   width: 100%;
   padding: 11px 14px;
-  border: 1.5px dashed color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border: 1.5px dashed var(--border);
   border-radius: 12px;
-  background: var(--kap-tint, rgba(20, 16, 20, 0.033));
-  color: var(--kap-deep, var(--kap));
+  background: var(--primary-tint, rgba(20, 16, 20, 0.033));
+  color: var(--primary-deep, var(--primary));
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
   transition: 0.15s;
 }
 .cf-locate:hover {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
 }
 .cf-locate:disabled {
@@ -4607,7 +4567,7 @@ img {
   color: var(--ink);
 }
 .cf-for-opt.on {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   box-shadow: 0 4px 12px -4px rgba(20, 16, 20, 0.121);
 }
@@ -4616,7 +4576,7 @@ img {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--kap);
+  color: var(--primary);
   padding-bottom: 6px;
   margin-top: 6px;
   border-bottom: 1px solid var(--hair);
@@ -4644,7 +4604,7 @@ img {
 }
 .cf-select:focus {
   outline: none;
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
 }
 .cf-check {
   display: flex;
@@ -4661,7 +4621,7 @@ img {
 .cf-check input {
   width: 16px;
   height: 16px;
-  accent-color: var(--kap);
+  accent-color: var(--primary);
   cursor: pointer;
 }
 /* Optional disclosure toggle (e.g. the confirm-location map). */
@@ -4681,8 +4641,8 @@ img {
   transition: 0.15s;
 }
 .cf-disclose:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
+  border-color: var(--border);
+  color: var(--primary);
 }
 .cf-disclose-chev {
   margin-left: auto;
@@ -4708,7 +4668,7 @@ img {
 }
 .cf-city-chosen .pin,
 .cf-city-chosen svg {
-  color: var(--kap);
+  color: var(--primary);
   flex: none;
 }
 .cf-city-chosen b {
@@ -4728,8 +4688,8 @@ img {
   transition: 0.15s;
 }
 .cf-city-change:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
+  border-color: var(--border);
+  color: var(--primary);
 }
 
 /* Address autocomplete dropdown (Uber/PickMe-style precise pick). */
@@ -4772,12 +4732,12 @@ img {
   border-bottom: 0;
 }
 .cf-addr-opt:hover {
-  background: var(--kap-tint);
+  background: var(--primary-tint);
 }
 .cf-addr-opt svg {
   flex: 0 0 auto;
   margin-top: 2px;
-  color: var(--kap);
+  color: var(--primary);
 }
 /* Two-column delivery grid: address-type + house/unit no. Equal columns —
  * and .cf-addr-city right below shares this exact ratio, so both stacked
@@ -4969,8 +4929,8 @@ img {
   place-items: center;
 }
 .qty button:hover {
-  background: var(--kap-tint);
-  color: var(--kap-deep);
+  background: var(--primary-tint);
+  color: var(--primary-deep);
 }
 .qty button:active {
   transform: scale(0.92);
@@ -5057,7 +5017,7 @@ img {
   animation: rise 0.5s both;
 }
 .rcpt-top {
-  background: linear-gradient(150deg, var(--kap-deep), var(--kap));
+  background: linear-gradient(150deg, var(--primary-deep), var(--primary));
   color: #fff;
   padding: 18px 20px;
   display: flex;
@@ -5103,7 +5063,7 @@ img {
 .rcpt-mini svg {
   width: 15px;
   height: 15px;
-  color: var(--kap);
+  color: var(--primary);
   flex: 0 0 auto;
 }
 .rcpt-mini b {
@@ -5142,8 +5102,8 @@ img {
   display: flex;
   align-items: center;
   gap: 11px;
-  background: var(--kap-tint);
-  border: 1px solid var(--kap-soft);
+  background: var(--primary-tint);
+  border: 1px solid var(--primary-soft);
   border-radius: 13px;
   padding: 14px 16px;
   text-decoration: none;
@@ -5152,7 +5112,7 @@ img {
   cursor: pointer;
 }
 .paylink:hover {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
 }
 .paylink:hover .pl-ic {
@@ -5162,7 +5122,7 @@ img {
   width: 38px;
   height: 38px;
   border-radius: 11px;
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   display: grid;
   place-items: center;
@@ -5236,14 +5196,14 @@ img {
   box-shadow: 0 0 0 1px var(--leaf);
 }
 .tstep.active .tdot i {
-  background: var(--kap);
-  box-shadow: 0 0 0 4px var(--kap-soft);
+  background: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-soft);
   animation: step-pulse 0.9s infinite;
 }
 @keyframes step-pulse {
   0%,
   100% {
-    box-shadow: 0 0 0 4px var(--kap-soft);
+    box-shadow: 0 0 0 4px var(--primary-soft);
   }
   50% {
     box-shadow: 0 0 0 8px rgba(20, 16, 20, 0.066);
@@ -5271,14 +5231,14 @@ img {
   margin-top: 1px;
 }
 .tstep.active .tt {
-  color: var(--kap-deep);
+  color: var(--primary-deep);
 }
 
 /* composer / bottom bar */
 .composer-wrap {
   flex: 0 0 auto;
   position: relative;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.68);
   backdrop-filter: blur(30px) saturate(2);
   -webkit-backdrop-filter: blur(30px) saturate(2);
@@ -5294,7 +5254,7 @@ img {
   align-items: center;
   gap: 10px;
   background: rgba(255, 255, 255, 0.76);
-  border: 1.5px solid rgba(255, 255, 255, 0.82);
+  border: 1.5px solid var(--border);
   border-radius: 18px;
   padding: 7px 7px 7px 16px;
   box-shadow:
@@ -5305,9 +5265,9 @@ img {
   position: relative;
 }
 .inbar:focus-within {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
   box-shadow:
-    0 0 0 4px var(--kap-soft),
+    0 0 0 4px var(--primary-soft),
     0 4px 20px rgba(20, 16, 20, 0.066);
 }
 .inbar textarea {
@@ -5350,10 +5310,10 @@ img {
   height: 18px;
 }
 .mic.mic-on {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   box-shadow:
-    0 0 0 4px var(--kap-soft),
+    0 0 0 4px var(--primary-soft),
     0 4px 12px rgba(20, 16, 20, 0.11);
   animation: mic-pulse 1s ease-in-out infinite;
 }
@@ -5361,12 +5321,12 @@ img {
   0%,
   100% {
     box-shadow:
-      0 0 0 4px var(--kap-soft),
+      0 0 0 4px var(--primary-soft),
       0 4px 12px rgba(20, 16, 20, 0.11);
   }
   50% {
     box-shadow:
-      0 0 0 8px var(--kap-tint),
+      0 0 0 8px var(--primary-tint),
       0 6px 20px rgba(20, 16, 20, 0.121);
   }
 }
@@ -5375,7 +5335,7 @@ img {
   height: 42px;
   border-radius: 50%;
   border: 0;
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   display: grid;
   place-items: center;
@@ -5384,7 +5344,7 @@ img {
   transition: 0.16s;
 }
 .sendbtn:hover {
-  background: var(--kap-deep);
+  background: var(--primary-deep);
   transform: translateY(-2px) scale(1.06);
   box-shadow: 0 12px 24px -6px rgba(20, 16, 20, 0.121);
 }
@@ -5415,7 +5375,7 @@ img {
   backdrop-filter: blur(18px) saturate(1.3);
   -webkit-backdrop-filter: blur(18px) saturate(1.3);
   padding: 8px clamp(14px, 4vw, 30px) 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.65);
+  border-top: 1px solid var(--border);
   box-shadow:
     0 -6px 32px rgba(20, 16, 20, 0.066),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
@@ -5444,12 +5404,12 @@ img {
   white-space: nowrap;
 }
 .cat-chip:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap-deep);
-  background: var(--kap-tint);
+  border-color: var(--border);
+  color: var(--primary-deep);
+  background: var(--primary-tint);
 }
 .cat-chip.on {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   border-color: transparent;
   box-shadow: 0 3px 12px rgba(20, 16, 20, 0.099);
@@ -5466,8 +5426,8 @@ img {
   box-shadow: var(--shadow-sm);
 }
 .bottom-card .inbar:focus-within {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  box-shadow: 0 0 0 3px var(--kap-soft);
+  border-color: var(--border);
+  box-shadow: 0 0 0 3px var(--primary-soft);
 }
 /* Staged photo preview (sits above the input until sent). */
 .staged-images {
@@ -5516,7 +5476,7 @@ img {
 }
 .staged-image-x:hover {
   color: #fff;
-  background: var(--kap);
+  background: var(--primary);
   border-color: transparent;
 }
 
@@ -5556,8 +5516,8 @@ img {
   cursor: pointer;
 }
 .photo-menu button:hover {
-  background: var(--kap-tint);
-  color: var(--kap-deep);
+  background: var(--primary-tint);
+  color: var(--primary-deep);
 }
 
 /* Stop button (shown while a turn is streaming). */
@@ -5839,9 +5799,9 @@ img {
   box-shadow: var(--shadow-sm);
 }
 .ambient-chip:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap-deep);
-  background: var(--kap-tint);
+  border-color: var(--border);
+  color: var(--primary-deep);
+  background: var(--primary-tint);
 }
 .photo-btn {
   width: 38px;
@@ -5857,9 +5817,9 @@ img {
   flex-shrink: 0;
 }
 .photo-btn:hover {
-  background: var(--kap-tint);
-  color: var(--kap-deep);
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  background: var(--primary-tint);
+  color: var(--primary-deep);
+  border-color: var(--border);
 }
 
 .llm-dot {
@@ -6040,14 +6000,14 @@ img {
   transition: 0.16s;
 }
 .tools-btn:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
-  background: var(--kap-tint);
+  border-color: var(--border);
+  color: var(--primary);
+  background: var(--primary-tint);
 }
 .tools-btn.on {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
-  background: var(--kap-tint);
+  border-color: var(--border);
+  color: var(--primary);
+  background: var(--primary-tint);
 }
 
 /* Composer voice settings (read-aloud toggle + voice picker). The menu spans
@@ -6096,7 +6056,7 @@ img {
   color: var(--ink);
 }
 .voice-menu-title svg {
-  color: var(--kap);
+  color: var(--primary);
 }
 .voice-group-label {
   padding: 7px 10px 3px;
@@ -6128,7 +6088,7 @@ img {
   transition: background 0.14s ease;
 }
 .voice-menu-row:hover {
-  background: var(--kap-tint);
+  background: var(--primary-tint);
 }
 .voice-menu-row svg {
   flex: 0 0 auto;
@@ -6136,15 +6096,15 @@ img {
 }
 .voice-menu-row:hover svg {
   opacity: 0.8;
-  color: var(--kap);
+  color: var(--primary);
 }
 .voice-menu-row.active {
-  color: var(--kap);
-  background: var(--kap-tint);
+  color: var(--primary);
+  background: var(--primary-tint);
 }
 .voice-menu-row.active svg {
   opacity: 1;
-  color: var(--kap);
+  color: var(--primary);
 }
 .voice-menu-hint {
   padding: 8px 10px 4px;
@@ -6178,7 +6138,7 @@ img {
   transition: transform 0.16s ease;
 }
 .voice-switch.on {
-  background: var(--kap);
+  background: var(--primary);
 }
 .voice-switch.on i {
   transform: translateX(16px);
@@ -6202,7 +6162,7 @@ img {
   height: 30px;
   flex: 0 0 auto;
   border-radius: 9px;
-  background: var(--kap-tint);
+  background: var(--primary-tint);
   display: grid;
   place-items: center;
   font-size: 16px;
@@ -6268,7 +6228,7 @@ img {
 .voice-bar {
   width: 4px;
   border-radius: 4px;
-  background: linear-gradient(180deg, var(--kap), var(--gold));
+  background: linear-gradient(180deg, var(--primary), var(--gold));
   height: 6px;
   animation: vbar 1s ease-in-out infinite;
 }
@@ -6340,7 +6300,7 @@ img {
 .voice-label {
   font-size: 14px;
   font-weight: 750;
-  color: var(--kap);
+  color: var(--primary);
   letter-spacing: 0.04em;
 }
 /* Live transcript preview while recording. */
@@ -6365,9 +6325,9 @@ img {
   transition: 0.16s;
 }
 .voice-dismiss:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap-deep);
-  background: var(--kap-tint);
+  border-color: var(--border);
+  color: var(--primary-deep);
+  background: var(--primary-tint);
 }
 
 /* toast */
@@ -6377,7 +6337,7 @@ img {
   bottom: 96px;
   transform: translateX(-50%);
   z-index: 80;
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   padding: 11px 18px;
   border-radius: 999px;
@@ -6832,7 +6792,7 @@ img {
   border-radius: 14px;
   overflow: hidden;
   flex-shrink: 0;
-  background: var(--kap-tint);
+  background: var(--primary-tint);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6879,7 +6839,7 @@ img {
 .spotlight-price {
   font-size: 22px;
   font-weight: 800;
-  color: var(--kap);
+  color: var(--primary);
 }
 .spotlight-desc {
   font-size: 13px;
@@ -6938,7 +6898,7 @@ img {
   color: var(--ink);
 }
 .zone-mode-btn.on {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   box-shadow: 0 2px 8px rgba(20, 16, 20, 0.083);
 }
@@ -7048,16 +7008,16 @@ img {
   font-weight: 600;
 }
 .zone-hub-note b {
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   font-weight: 800;
 }
 .zone-hub-pin {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
   border: 2px solid #fff;
-  box-shadow: 0 0 0 1.5px var(--kap);
+  box-shadow: 0 0 0 1.5px var(--primary);
   flex-shrink: 0;
 }
 .leaflet-track-line {
@@ -7173,7 +7133,7 @@ img {
   font-family: var(--mono);
   font-size: 16px;
   font-weight: 800;
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   letter-spacing: 0.02em;
   margin-top: 2px;
 }
@@ -7181,8 +7141,8 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: var(--kap-tint);
-  color: var(--kap-deep);
+  background: var(--primary-tint);
+  color: var(--primary-deep);
   padding: 5px 11px;
   border-radius: 999px;
   font-size: 10.5px;
@@ -7210,10 +7170,10 @@ img {
 }
 .track-stats {
   padding: 8px 16px;
-  background: var(--kap-tint);
+  background: var(--primary-tint);
   font-size: 12.5px;
   font-weight: 650;
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   border-bottom: 1px solid var(--hair);
 }
 
@@ -7232,7 +7192,7 @@ img {
   /* Solid fill, not a soft tint — a pale tint barely shows up against the
      panel background in either theme, so this needs real contrast instead
      of theme-matched subtlety. */
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   margin-bottom: 8px;
 }
@@ -7252,7 +7212,7 @@ img {
   gap: 7px;
   background: transparent;
   border: 1px dashed var(--hair-2);
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   padding: 8px 14px;
   border-radius: 10px;
   font-size: 12.5px;
@@ -7261,8 +7221,8 @@ img {
   transition: all 0.14s;
 }
 .track-lookup-toggle:hover {
-  background: var(--kap-tint);
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  background: var(--primary-tint);
+  border-color: var(--border);
   border-style: solid;
 }
 .track-lookup-h {
@@ -7349,7 +7309,7 @@ img {
   align-items: center;
   gap: 13px;
   padding: 18px 20px;
-  background: linear-gradient(150deg, var(--kap-deep), var(--kap));
+  background: linear-gradient(150deg, var(--primary-deep), var(--primary));
   color: #fff;
 }
 .oplaced-check {
@@ -7402,12 +7362,12 @@ img {
   padding: 12px 20px;
   font-size: 13px;
   color: var(--ink-2);
-  background: var(--kap-tint);
+  background: var(--primary-tint);
   border-bottom: 1px solid var(--hair);
   margin-bottom: 8px;
 }
 .oplaced-deliv svg {
-  color: var(--kap);
+  color: var(--primary);
   flex: 0 0 auto;
 }
 .oplaced-deliv b {
@@ -7639,7 +7599,7 @@ img {
   border-top: 1px dashed var(--hair-2);
 }
 .oplaced-gift svg {
-  color: var(--kap);
+  color: var(--primary);
   flex: 0 0 auto;
 }
 .oplaced-tot {
@@ -7703,11 +7663,11 @@ img {
   transition: 0.15s;
 }
 .oplaced-track:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
+  border-color: var(--border);
+  color: var(--primary);
 }
 .oplaced-track svg {
-  color: var(--kap);
+  color: var(--primary);
 }
 /* Close/reopen shell around every in-thread card. */
 .card-shell {
@@ -7732,7 +7692,7 @@ img {
 }
 .card-shell-x:hover {
   color: var(--ink);
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
   transform: scale(1.08);
 }
 .card-reopen {
@@ -7750,8 +7710,8 @@ img {
   transition: 0.15s;
 }
 .card-reopen:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
+  border-color: var(--border);
+  color: var(--primary);
 }
 /* One-tap reordering rail (landing). */
 .recent-orders {
@@ -7789,7 +7749,7 @@ img {
   transition: 0.15s;
 }
 .reorder-card:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -7806,7 +7766,7 @@ img {
 .reorder-total {
   font-size: 14px;
   font-weight: 800;
-  color: var(--kap);
+  color: var(--primary);
 }
 .reorder-items {
   font-size: 12px;
@@ -7823,7 +7783,7 @@ img {
   gap: 6px;
   font-size: 12px;
   font-weight: 750;
-  color: var(--kap);
+  color: var(--primary);
   margin-top: 2px;
 }
 
@@ -7853,10 +7813,10 @@ img {
   transition: 0.15s;
 }
 .map-tab:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
 }
 .map-tab.on {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   border-color: transparent;
 }
@@ -7883,7 +7843,7 @@ img {
   font-size: 12.5px;
 }
 .zone-row.on {
-  background: var(--kap-tint);
+  background: var(--primary-tint);
 }
 .zone-dot {
   width: 9px;
@@ -7964,11 +7924,11 @@ img {
   transition: 0.15s;
 }
 .track-order-chip:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
 }
 .track-order-chip.on {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  background: var(--kap-tint);
+  border-color: var(--border);
+  background: var(--primary-tint);
 }
 .toc-id {
   font-family: var(--mono);
@@ -7993,7 +7953,7 @@ img {
   height: 16px;
   padding: 0 4px;
   border-radius: 8px;
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   font-size: 10px;
   font-weight: 800;
@@ -8025,7 +7985,7 @@ img {
 .order-line-total {
   font-size: 14px;
   font-weight: 800;
-  color: var(--kap);
+  color: var(--primary);
 }
 .order-line-meta {
   font-size: 11.5px;
@@ -8044,7 +8004,7 @@ img {
   font-size: 11.5px;
   font-weight: 650;
   color: var(--ink-2);
-  background: var(--kap-tint, rgba(20, 16, 20, 0.033));
+  background: var(--primary-tint, rgba(20, 16, 20, 0.033));
   border: 1px solid var(--hair);
   border-radius: 9px;
   padding: 6px 9px;
@@ -8066,7 +8026,7 @@ img {
   padding: 8px 10px;
   border-radius: 10px;
   border: 0;
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   font-size: 12.5px;
   font-weight: 750;
@@ -8084,7 +8044,7 @@ img {
   filter: brightness(1.03);
 }
 .ol-btn:hover {
-  background: var(--kap-deep);
+  background: var(--primary-deep);
 }
 .ol-btn.ghost {
   background: var(--surface);
@@ -8092,8 +8052,8 @@ img {
   border: 1px solid var(--hair-2);
 }
 .ol-btn.ghost:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
+  border-color: var(--border);
+  color: var(--primary);
 }
 @media (max-width: 540px) {
   .zones-grid {
@@ -8288,7 +8248,7 @@ img {
   border-radius: var(--r-lg);
   overflow: hidden;
   /* Default backdrop; the photo-tinted gradient fades in on the .sku-ambient layer. */
-  background: var(--kap-tint);
+  background: var(--primary-tint);
   aspect-ratio: 4/3;
   border: 1px solid var(--hair);
 }
@@ -8342,17 +8302,17 @@ img {
   width: 100%;
   margin-top: 10px;
   padding: 12px;
-  border: 1.5px solid color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border: 1.5px solid var(--border);
   border-radius: 14px;
-  background: var(--kap-tint);
-  color: var(--kap-deep);
+  background: var(--primary-tint);
+  color: var(--primary-deep);
   font-size: 14px;
   font-weight: 800;
   text-decoration: none;
   transition: 0.16s;
 }
 .sku-view-cta:hover {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
 }
 .sku-view-cta svg {
@@ -8496,8 +8456,8 @@ img {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  background: var(--kap-tint);
-  color: var(--kap-deep);
+  background: var(--primary-tint);
+  color: var(--primary-deep);
   padding: 3px 9px;
   border-radius: 4px;
 }
@@ -8519,7 +8479,7 @@ img {
   margin: 14px 0 18px;
 }
 .sku-spec {
-  background: var(--kap-tint);
+  background: var(--primary-tint);
   border: 1px solid var(--hair);
   border-radius: 10px;
   padding: 8px 12px;
@@ -8549,7 +8509,7 @@ img {
 .sku-price-lkr {
   font-size: 26px;
   font-weight: 800;
-  color: var(--kap);
+  color: var(--primary);
   font-variant-numeric: tabular-nums;
 }
 .sku-section-label {
@@ -8628,7 +8588,7 @@ img {
     box-shadow 0.15s ease;
 }
 .sku-related-item:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -8658,7 +8618,7 @@ img {
 .sku-related-price {
   font-size: 13px;
   font-weight: 800;
-  color: var(--kap);
+  color: var(--primary);
   padding: 0 9px 10px;
 }
 .sku-variant-row {
@@ -8680,11 +8640,11 @@ img {
   min-width: 0;
 }
 .sku-variant:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
 }
 .sku-variant.on {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  background: var(--kap-tint);
+  border-color: var(--border);
+  background: var(--primary-tint);
   box-shadow: 0 0 0 3px rgba(20, 16, 20, 0.066);
 }
 .sku-variant-name {
@@ -8751,7 +8711,7 @@ img {
   align-items: center;
   justify-content: center;
   gap: 7px;
-  background: linear-gradient(135deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
   color: #fff;
   border: 0;
   border-radius: 14px;
@@ -8809,7 +8769,7 @@ img {
   text-decoration: line-through;
 }
 .city-match-to {
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   font-weight: 800;
   border-bottom: 1.5px solid var(--gold);
   padding-bottom: 1px;
@@ -8896,7 +8856,7 @@ img {
   top: -2px;
   bottom: -2px;
   width: 2px;
-  background: var(--kap-deep);
+  background: var(--primary-deep);
 }
 .cutoff-foot {
   display: flex;
@@ -8995,7 +8955,7 @@ img {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: var(--kap-tint);
+  background: var(--primary-tint);
   border-radius: 12px;
   padding: 9px 12px;
   animation: rise 0.3s ease both;
@@ -9012,7 +8972,7 @@ img {
 .gift-stack-price {
   font-size: 13px;
   font-weight: 750;
-  color: var(--kap);
+  color: var(--primary);
 }
 .gift-stack-rm {
   border: 0;
@@ -9046,7 +9006,7 @@ img {
     165deg,
     var(--surface) 0%,
     var(--paper-2) 50%,
-    var(--kap-tint) 100%
+    var(--primary-tint) 100%
   );
   border: 1px solid var(--hair);
   border-radius: var(--r-lg);
@@ -9060,7 +9020,11 @@ img {
   padding: 18px 20px;
   border-bottom: 1px solid var(--hair);
   /* Surface → purple, theme-driven (follows the active palette). */
-  background: linear-gradient(135deg, var(--surface) 0%, var(--kap-tint) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--surface) 0%,
+    var(--primary-tint) 100%
+  );
 }
 .surprise-h-txt {
   flex: 1;
@@ -9071,7 +9035,11 @@ img {
   height: 44px;
   flex: 0 0 auto;
   border-radius: 14px;
-  background: linear-gradient(135deg, var(--kap) 0%, var(--kap-deep) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-deep) 100%
+  );
   display: grid;
   place-items: center;
   font-size: 22px;
@@ -9122,7 +9090,7 @@ img {
   transition: background 0.3s;
 }
 .sstep.on .sstep-bar {
-  background: linear-gradient(90deg, var(--kap), var(--kap-deep));
+  background: linear-gradient(90deg, var(--primary), var(--primary-deep));
 }
 .sstep-lbl {
   font-size: 10px;
@@ -9134,7 +9102,7 @@ img {
   transition: color 0.3s;
 }
 .sstep.on .sstep-lbl {
-  color: var(--kap);
+  color: var(--primary);
 }
 .surprise-q {
   padding: 14px 20px 20px;
@@ -9166,8 +9134,8 @@ img {
   transition: 0.15s;
 }
 .surprise-back:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
+  border-color: var(--border);
+  color: var(--primary);
 }
 .surprise-qlbl {
   font-size: 15px;
@@ -9185,16 +9153,16 @@ img {
   align-items: center;
   padding: 4px 11px;
   border-radius: 999px;
-  border: 1px solid var(--kap-soft);
-  background: var(--kap-tint);
-  color: var(--kap-deep);
+  border: 1px solid var(--primary-soft);
+  background: var(--primary-tint);
+  color: var(--primary-deep);
   font-size: 11.5px;
   font-weight: 700;
   cursor: pointer;
   transition: 0.15s;
 }
 .scrumb:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
 }
 .surprise-opts {
   display: grid;
@@ -9223,16 +9191,16 @@ img {
   display: grid;
   place-items: center;
   font-size: 23px;
-  background: var(--kap-tint);
+  background: var(--primary-tint);
   transition: 0.16s;
 }
 .surprise-opt:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
   transform: translateY(-2px);
   box-shadow: 0 10px 22px -10px rgba(20, 16, 20, 0.121);
 }
 .surprise-opt:hover .surprise-opt-e {
-  background: var(--kap);
+  background: var(--primary);
   transform: scale(1.08);
 }
 /* Loading placeholder tiles while the dynamic quiz loads. */
@@ -9240,9 +9208,9 @@ img {
   height: 96px;
   cursor: default;
   /* var(--hair) alone is barely visible against the dark-mode panel
-     gradient (all darker than --hair) — lift it with a touch of --kap so
+     gradient (all darker than --hair) — lift it with a touch of --primary so
      the pulse actually reads as a loading state, not a near-invisible blob. */
-  background: color-mix(in srgb, var(--kap) 14%, var(--hair));
+  background: color-mix(in srgb, var(--primary) 14%, var(--hair));
   border-color: transparent;
   animation: skel-pulse 1.2s ease-in-out infinite;
 }
@@ -9266,7 +9234,7 @@ img {
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.14em;
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   text-transform: uppercase;
   margin-bottom: 10px;
   text-align: center;
@@ -9274,7 +9242,7 @@ img {
 .surprise-pick-card {
   display: flex;
   gap: 14px;
-  background: var(--kap-tint);
+  background: var(--primary-tint);
   border-radius: 14px;
   padding: 14px;
   border: 1px solid rgba(20, 16, 20, 0.066);
@@ -9300,7 +9268,7 @@ img {
 .surprise-pick-price {
   font-size: 13px;
   font-weight: 750;
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   margin-bottom: 10px;
 }
 .surprise-pick-actions {
@@ -9317,11 +9285,15 @@ img {
 .autobuy-chip {
   background: linear-gradient(
     135deg,
-    var(--kap-soft) 0%,
+    var(--primary-soft) 0%,
     #f7c9cd 100%
   ) !important;
-  color: var(--kap) !important;
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2)) !important;
+  color: var(--primary) !important;
+  border-color: color-mix(
+    in srgb,
+    var(--primary) 18%,
+    var(--hair-2)
+  ) !important;
   font-weight: 750 !important;
 }
 /* Both chips above are hardcoded pale-mode gradients (by design, for the gold/
@@ -9365,7 +9337,7 @@ img {
   color: var(--muted);
 }
 .filterbar-icon svg {
-  color: var(--kap);
+  color: var(--primary);
 }
 .filter-select {
   margin-left: auto;
@@ -9384,12 +9356,12 @@ img {
 }
 .filter-select:focus {
   outline: none;
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
+  border-color: var(--border);
 }
 .filter-clear {
   border: 0;
   background: none;
-  color: var(--kap);
+  color: var(--primary);
   font-size: 12px;
   font-weight: 800;
   cursor: pointer;
@@ -9398,7 +9370,7 @@ img {
 .filter-link {
   border: 0;
   background: none;
-  color: var(--kap);
+  color: var(--primary);
   font-weight: 700;
   cursor: pointer;
   text-decoration: underline;
@@ -9428,7 +9400,7 @@ img {
   flex: 0 0 auto;
   font-size: 14px;
   font-weight: 800;
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   white-space: nowrap;
 }
 .filter-chips {
@@ -9468,11 +9440,11 @@ img {
   white-space: nowrap;
 }
 .filter-chip:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap);
+  border-color: var(--border);
+  color: var(--primary);
 }
 .filter-chip.on {
-  background: var(--kap);
+  background: var(--primary);
   color: #fff;
   border-color: transparent;
 }
@@ -9480,7 +9452,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--kap-tint);
+  background: var(--primary-tint);
   border-radius: 999px;
   padding: 12px 12px;
   border: 1px solid rgba(20, 16, 20, 0.055);
@@ -9496,7 +9468,7 @@ img {
   font-family: var(--mono);
   font-size: 12.5px;
   font-weight: 800;
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   min-width: 32px;
 }
 .budget-range {
@@ -9514,7 +9486,7 @@ img {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--kap);
+  background: var(--primary);
   border: 2px solid #fff;
   box-shadow: 0 2px 6px rgba(20, 16, 20, 0.11);
   cursor: pointer;
@@ -9523,7 +9495,7 @@ img {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--kap);
+  background: var(--primary);
   border: 2px solid #fff;
   cursor: pointer;
 }
@@ -9595,7 +9567,7 @@ img {
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.14em;
-  color: var(--kap-deep);
+  color: var(--primary-deep);
   text-transform: uppercase;
 }
 .photo-match-h h4 {
@@ -10005,9 +9977,9 @@ img {
     box-shadow 0.18s;
 }
 .theme-toggle:hover {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  color: var(--kap-deep);
-  background: var(--kap-tint);
+  border-color: var(--border);
+  color: var(--primary-deep);
+  background: var(--primary-tint);
   transform: translateY(-1px) scale(1.08);
   box-shadow: 0 4px 14px -4px rgba(20, 16, 20, 0.121);
 }
@@ -10016,14 +9988,14 @@ img {
 }
 /* Active toggle (e.g. read-aloud on). */
 .theme-toggle.on {
-  border-color: color-mix(in srgb, var(--kap) 55%, var(--hair-2));
-  background: var(--kap);
+  border-color: var(--border);
+  background: var(--primary);
   color: #fff;
   box-shadow: 0 4px 14px -4px rgba(20, 16, 20, 0.193);
 }
 .theme-toggle.on:hover {
   color: #fff;
-  background: var(--kap-deep);
+  background: var(--primary-deep);
 }
 .theme-toggle svg {
   width: 16px;

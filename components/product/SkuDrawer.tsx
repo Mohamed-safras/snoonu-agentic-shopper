@@ -411,7 +411,7 @@ export function SkuDrawer({ product }: { product: Product }) {
                         padding: 0,
                         border: 0,
                         background: "none",
-                        color: "var(--kap)",
+                        color: "var(--primary)",
                         fontWeight: 700,
                         cursor: "pointer",
                       }}
